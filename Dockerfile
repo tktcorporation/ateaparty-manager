@@ -7,4 +7,6 @@ RUN apt-get update && \
     curl \
     git
 
+RUN npm i -g npm pnpm
+
 RUN curl -sSL https://bina.egoist.sh/egoist/dum | bash
