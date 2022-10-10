@@ -1,4 +1,4 @@
-FROM node:18.10.0-bullseye-slim AS build-env
+FROM node:16-bullseye-slim AS build-env
 
 ENV LC_ALL=C.UTF-8
 
