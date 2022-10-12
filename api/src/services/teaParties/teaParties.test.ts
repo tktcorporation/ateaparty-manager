@@ -30,10 +30,10 @@ describe('teaParties', () => {
 
   scenario('creates a teaParty', async () => {
     const result = await createTeaParty({
-      input: { scheduledAt: '2022-10-12T13:50:34Z' },
+      input: { scheduledAt: '2022-10-12T13:50:34.000Z' },
     })
 
-    expect(result.scheduledAt).toEqual('2022-10-12T13:50:34Z')
+    expect(result.scheduledAt).toEqual(new Date('2022-10-12T13:50:34Z'))
   })
 
   scenario('updates a teaParty', async (scenario: StandardScenario) => {
@@ -45,7 +45,7 @@ describe('teaParties', () => {
       input: { scheduledAt: '2022-10-13T13:50:34Z' },
     })
 
-    expect(result.scheduledAt).toEqual('2022-10-13T13:50:34Z')
+    expect(result.scheduledAt).toEqual(new Date('2022-10-13T13:50:34Z'))
   })
 
   scenario('deletes a teaParty', async (scenario: StandardScenario) => {
