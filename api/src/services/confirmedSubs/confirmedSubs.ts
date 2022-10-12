@@ -12,6 +12,14 @@ export const confirmedSub: QueryResolvers['confirmedSub'] = ({ id }) => {
   })
 }
 
+export const confirmedSubBySub: QueryResolvers['confirmedSubBySub'] = ({
+  sub,
+}) => {
+  return db.confirmedSub.findUnique({
+    where: { sub },
+  })
+}
+
 export const createConfirmedSub: MutationResolvers['createConfirmedSub'] = ({
   input,
 }) => {

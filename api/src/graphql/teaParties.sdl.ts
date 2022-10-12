@@ -1,3 +1,5 @@
+import { Role } from 'src/lib/auth'
+
 export const schema = gql`
   type TeaParty {
     id: Int!
@@ -5,8 +7,8 @@ export const schema = gql`
   }
 
   type Query {
-    teaParties: [TeaParty!]! @requireAuth
-    teaParty(id: Int!): TeaParty @requireAuth
+    teaParties: [TeaParty!]! @requireAuth(roles: "${Role.confirmed}")
+    teaParty(id: Int!): TeaParty @requireAuth(roles: "${Role.confirmed}")
   }
 
   input CreateTeaPartyInput {
@@ -18,9 +20,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createTeaParty(input: CreateTeaPartyInput!): TeaParty! @requireAuth
-    updateTeaParty(id: Int!, input: UpdateTeaPartyInput!): TeaParty!
-      @requireAuth
-    deleteTeaParty(id: Int!): TeaParty! @requireAuth
+    createTeaParty(input: CreateTeaPartyInput!): TeaParty! @requireAuth(roles: "${Role.confirmed}")
+    updateTeaParty(id: Int!, input: UpdateTeaPartyInput!): TeaParty! @requireAuth(roles: "${Role.confirmed}")
+    deleteTeaParty(id: Int!): TeaParty! @requireAuth(roles: "${Role.confirmed}")
   }
 `

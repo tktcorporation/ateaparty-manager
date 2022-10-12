@@ -1,6 +1,14 @@
 import type { Decoded } from '@redwoodjs/api'
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 
+import { confirmedSubBySub } from 'src/services/confirmedSubs/confirmedSubs'
+
+export enum Role {
+  admin = 'admin',
+  confirmed = 'confirmed',
+}
+export type RoleType = keyof typeof Role
+
 /**
  * Represents the user attributes returned by the decoding the
  * Authentication provider's JWT together with an optional list of roles.
@@ -36,13 +44,18 @@ export const getCurrentUser = async (
     return null
   }
 
-  const roles = decoded[process.env.AUTH0_AUDIENCE + '/roles']
+  const decodedRoles = decoded[process.env.AUTH0_AUDIENCE + '/roles']
+  const roles: AllowedRoles =
+    decodedRoles && Array.isArray(decodedRoles) ? decodedRoles : []
+  const isConfirmed =
+    decoded.sub &&
+    typeof decoded.sub == 'string' &&
+    (await confirmedSubBySub({ sub: decoded.sub })) !== null
+  isConfirmed && roles.push(Role.confirmed)
 
-  if (roles && Array.isArray(roles)) {
+  if (roles) {
     return { ...decoded, roles }
   }
-
-  console.log('decoded', decoded)
 
   return { ...decoded }
 }
@@ -60,7 +73,7 @@ export const isAuthenticated = (): boolean => {
  * When checking role membership, roles can be a single value, a list, or none.
  * You can use Prisma enums too (if you're using them for roles), just import your enum type from `@prisma/client`
  */
-type AllowedRoles = string | string[] | undefined
+type AllowedRoles = string[] | undefined
 
 /**
  * Checks if the currentUser is authenticated (and assigned one of the given roles)
