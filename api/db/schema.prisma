@@ -12,3 +12,8 @@ model TeaParty {
   id    Int     @id @default(autoincrement())
   scheduledAt DateTime
 }
+
+model ConfirmedSub {
+  id    Int     @id @default(autoincrement())
+  sub   String  @unique
+}

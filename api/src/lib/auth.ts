@@ -42,6 +42,8 @@ export const getCurrentUser = async (
     return { ...decoded, roles }
   }
 
+  console.log('decoded', decoded)
+
   return { ...decoded }
 }
 
