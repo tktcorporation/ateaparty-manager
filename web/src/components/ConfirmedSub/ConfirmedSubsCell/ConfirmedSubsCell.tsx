@@ -20,10 +20,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No confirmedSubs yet. '}
-      <Link
-        to={routes.newConfirmedSub()}
-        className="rw-link"
-      >
+      <Link to={routes.newConfirmedSub()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>
@@ -34,6 +31,8 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ confirmedSubs }: CellSuccessProps<FindConfirmedSubs>) => {
+export const Success = ({
+  confirmedSubs,
+}: CellSuccessProps<FindConfirmedSubs>) => {
   return <ConfirmedSubs confirmedSubs={confirmedSubs} />
 }

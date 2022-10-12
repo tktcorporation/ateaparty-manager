@@ -1,10 +1,10 @@
+import type { CreateConfirmedSubInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import ConfirmedSubForm from 'src/components/ConfirmedSub/ConfirmedSubForm'
-
-import type { CreateConfirmedSubInput } from 'types/graphql'
 
 const CREATE_CONFIRMED_SUB_MUTATION = gql`
   mutation CreateConfirmedSubMutation($input: CreateConfirmedSubInput!) {

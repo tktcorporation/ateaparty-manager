@@ -1,3 +1,8 @@
+import type {
+  EditConfirmedSubById,
+  UpdateConfirmedSubInput,
+} from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -6,12 +11,7 @@ import {
   TextField,
   Submit,
 } from '@redwoodjs/forms'
-
-import type { EditConfirmedSubById, UpdateConfirmedSubInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
-
-
-
 
 type FormConfirmedSub = NonNullable<EditConfirmedSubById['confirmedSub']>
 
@@ -24,10 +24,6 @@ interface ConfirmedSubFormProps {
 
 const ConfirmedSubForm = (props: ConfirmedSubFormProps) => {
   const onSubmit = (data: FormConfirmedSub) => {
-  
-    
-    
-  
     props.onSave(data, props?.confirmedSub?.id)
   }
 
@@ -40,7 +36,7 @@ const ConfirmedSubForm = (props: ConfirmedSubFormProps) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-      
+
         <Label
           name="sub"
           className="rw-label"
@@ -48,23 +44,19 @@ const ConfirmedSubForm = (props: ConfirmedSubFormProps) => {
         >
           Sub
         </Label>
-        
-          <TextField
-            name="sub"
-            defaultValue={props.confirmedSub?.sub}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="sub"
+          defaultValue={props.confirmedSub?.sub}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="sub" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>

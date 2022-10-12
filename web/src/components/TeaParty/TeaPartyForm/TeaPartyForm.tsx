@@ -1,3 +1,5 @@
+import type { EditTeaPartyById, UpdateTeaPartyInput } from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -6,18 +8,13 @@ import {
   DatetimeLocalField,
   Submit,
 } from '@redwoodjs/forms'
-
-import type { EditTeaPartyById, UpdateTeaPartyInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
-
-
 
 const formatDatetime = (value) => {
   if (value) {
     return value.replace(/:\d{2}\.\d{3}\w/, '')
   }
 }
-
 
 type FormTeaParty = NonNullable<EditTeaPartyById['teaParty']>
 
@@ -30,10 +27,6 @@ interface TeaPartyFormProps {
 
 const TeaPartyForm = (props: TeaPartyFormProps) => {
   const onSubmit = (data: FormTeaParty) => {
-  
-    
-    
-  
     props.onSave(data, props?.teaParty?.id)
   }
 
@@ -46,7 +39,7 @@ const TeaPartyForm = (props: TeaPartyFormProps) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-      
+
         <Label
           name="scheduledAt"
           className="rw-label"
@@ -54,23 +47,19 @@ const TeaPartyForm = (props: TeaPartyFormProps) => {
         >
           Scheduled at
         </Label>
-        
-          <DatetimeLocalField
-            name="scheduledAt"
-            defaultValue={formatDatetime(props.teaParty?.scheduledAt)}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <DatetimeLocalField
+          name="scheduledAt"
+          defaultValue={formatDatetime(props.teaParty?.scheduledAt)}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="scheduledAt" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>

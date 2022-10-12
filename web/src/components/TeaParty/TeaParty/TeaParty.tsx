@@ -1,11 +1,13 @@
+import type {
+  DeleteTeaPartyMutationVariables,
+  FindTeaPartyById,
+} from 'types/graphql'
 
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { timeTag,  } from 'src/lib/formatters'
-
-import type { DeleteTeaPartyMutationVariables, FindTeaPartyById } from 'types/graphql'
+import { timeTag } from 'src/lib/formatters'
 
 const DELETE_TEA_PARTY_MUTATION = gql`
   mutation DeleteTeaPartyMutation($id: Int!) {
@@ -49,7 +51,8 @@ const TeaParty = ({ teaParty }: Props) => {
             <tr>
               <th>Id</th>
               <td>{teaParty.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Scheduled at</th>
               <td>{timeTag(teaParty.scheduledAt)}</td>
             </tr>

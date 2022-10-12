@@ -1,4 +1,7 @@
-import type { EditConfirmedSubById, UpdateConfirmedSubInput } from 'types/graphql'
+import type {
+  EditConfirmedSubById,
+  UpdateConfirmedSubInput,
+} from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
@@ -16,7 +19,10 @@ export const QUERY = gql`
   }
 `
 const UPDATE_CONFIRMED_SUB_MUTATION = gql`
-  mutation UpdateConfirmedSubMutation($id: Int!, $input: UpdateConfirmedSubInput!) {
+  mutation UpdateConfirmedSubMutation(
+    $id: Int!
+    $input: UpdateConfirmedSubInput!
+  ) {
     updateConfirmedSub(id: $id, input: $input) {
       id
       sub
@@ -30,7 +36,9 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ confirmedSub }: CellSuccessProps<EditConfirmedSubById>) => {
+export const Success = ({
+  confirmedSub,
+}: CellSuccessProps<EditConfirmedSubById>) => {
   const [updateConfirmedSub, { loading, error }] = useMutation(
     UPDATE_CONFIRMED_SUB_MUTATION,
     {
@@ -54,10 +62,17 @@ export const Success = ({ confirmedSub }: CellSuccessProps<EditConfirmedSubById>
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit ConfirmedSub {confirmedSub?.id}</h2>
+        <h2 className="rw-heading rw-heading-secondary">
+          Edit ConfirmedSub {confirmedSub?.id}
+        </h2>
       </header>
       <div className="rw-segment-main">
-        <ConfirmedSubForm confirmedSub={confirmedSub} onSave={onSave} error={error} loading={loading} />
+        <ConfirmedSubForm
+          confirmedSub={confirmedSub}
+          onSave={onSave}
+          error={error}
+          loading={loading}
+        />
       </div>
     </div>
   )

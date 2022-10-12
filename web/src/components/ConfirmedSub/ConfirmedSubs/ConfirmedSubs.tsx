@@ -1,11 +1,14 @@
+import type {
+  DeleteConfirmedSubMutationVariables,
+  FindConfirmedSubs,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/ConfirmedSub/ConfirmedSubsCell'
 import { truncate } from 'src/lib/formatters'
-
-import type { DeleteConfirmedSubMutationVariables, FindConfirmedSubs } from 'types/graphql'
 
 const DELETE_CONFIRMED_SUB_MUTATION = gql`
   mutation DeleteConfirmedSubMutation($id: Int!) {
