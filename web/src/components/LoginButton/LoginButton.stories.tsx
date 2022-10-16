@@ -15,8 +15,18 @@ import type { ComponentMeta } from '@storybook/react'
 
 import LoginButton from './LoginButton'
 
-export const generated = () => {
-  return <LoginButton />
+export const Button = () => {
+  const [loading, setLoading] = React.useState(false)
+  const logIn = async () => {
+    setLoading(true)
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    setLoading(false)
+  }
+  return <LoginButton loading={loading} logIn={logIn} />
+}
+
+export const Loading = () => {
+  return <LoginButton loading={true} logIn={() => new Promise(() => {})} />
 }
 
 export default {

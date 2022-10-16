@@ -7,8 +7,14 @@ import LoginButton from './LoginButton'
 
 describe('LoginButton', () => {
   it('renders successfully', () => {
+    const [loading, setLoading] = React.useState(false)
+    const logIn = async () => {
+      setLoading(true)
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      setLoading(false)
+    }
     expect(() => {
-      render(<LoginButton />)
+      render(<LoginButton loading={loading} logIn={logIn} />)
     }).not.toThrow()
   })
 })

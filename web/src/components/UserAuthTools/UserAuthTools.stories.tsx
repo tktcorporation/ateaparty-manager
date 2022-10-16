@@ -11,12 +11,35 @@
 //
 // See https://storybook.js.org/docs/react/writing-stories/args.
 
+import { useState } from 'react'
+
 import type { ComponentMeta } from '@storybook/react'
 
 import UserAuthTools from './UserAuthTools'
 
-export const generated = () => {
-  return <UserAuthTools />
+export const Button = () => {
+  const [loading, setLoading] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const logIn = async () => {
+    setLoading(true)
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    setIsAuthenticated(true)
+    setLoading(false)
+  }
+  const logout = async () => {
+    setLoading(true)
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    setIsAuthenticated(false)
+    setLoading(false)
+  }
+  return (
+    <UserAuthTools
+      loading={loading}
+      isAuthenticated={isAuthenticated}
+      logIn={logIn}
+      logOut={logout}
+    />
+  )
 }
 
 export default {

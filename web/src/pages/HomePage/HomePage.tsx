@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
+import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
@@ -15,6 +16,7 @@ import Symbol from './Logo_symbol.svg'
 import Logo from './Logo_yokogumi.svg'
 
 const HomePage = () => {
+  const { loading, isAuthenticated, logIn, logOut } = useAuth()
   return (
     <>
       <MetaTags title="Home" description="Home page" />
@@ -61,7 +63,12 @@ const HomePage = () => {
                         {item.name}
                       </Link>
                     ))}
-                    <UserAuthTools />
+                    <UserAuthTools
+                      loading={loading}
+                      isAuthenticated={isAuthenticated}
+                      logIn={logIn}
+                      logOut={logOut}
+                    />
                   </div>
                 </nav>
               </div>
@@ -121,7 +128,7 @@ const HomePage = () => {
                   </span>
                 </h1>
                 <div className="mt-10 sm:mt-12">
-                  <LoginButton />
+                  <LoginButton loading={loading} logIn={logIn} />
                 </div>
               </div>
             </main>
