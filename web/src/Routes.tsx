@@ -32,6 +32,7 @@ const Routes = () => {
           <Route path="/tea-parties/{id:Int}" page={TeaPartyTeaPartyPage} name="teaParty" />
           <Route path="/tea-parties" page={TeaPartyTeaPartiesPage} name="teaParties" />
         </Set>
+        <Route path="/dashboard" page={DashboardPage} name="dashboard" />
       </Private>
       <Set wrap={LandingLayout}>
         <Route path="/" page={HomePage} name="home" />

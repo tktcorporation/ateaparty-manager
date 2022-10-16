@@ -1,13 +1,17 @@
 import { Fragment } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
+import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import Logo from 'src/assets/Logo_yokogumi.svg'
 import LoginButton from 'src/components/LoginButton/LoginButton'
 
 const HomePage = () => {
-  const { loading, logIn } = useAuth()
+  const { loading, logIn, isAuthenticated } = useAuth()
+  if (isAuthenticated) {
+    navigate(routes.dashboard())
+  }
   return (
     <>
       <MetaTags title="Home" description="Home page" />
