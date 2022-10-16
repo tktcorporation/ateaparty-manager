@@ -1,13 +1,14 @@
 interface LoginButtonProps {
+  label?: string
   loading: boolean
   logIn: (loginProps: { appState: { targetUrl: string } }) => Promise<unknown>
 }
-const LoginButton = ({ loading, logIn }: LoginButtonProps) => {
+const LoginButton = ({ loading, logIn, label }: LoginButtonProps) => {
   return (
     <button
       type="button"
       className={
-        'inline-flex items-center rounded-md border-2 border-primary-400 px-4 py-2 text-sm font-medium text-primary transition' +
+        'inline-flex items-center rounded-md border-2 border-primary-400 px-4 py-2 text-xl font-medium text-primary transition' +
         ' ' +
         (loading
           ? 'cursor-progress'
@@ -22,7 +23,11 @@ const LoginButton = ({ loading, logIn }: LoginButtonProps) => {
       }}
     >
       {!loading ? (
-        'ログイン'
+        label ? (
+          label
+        ) : (
+          'ログイン'
+        )
       ) : (
         <svg
           className="ml-3 mr-3 h-5 w-5 animate-spin text-primary"

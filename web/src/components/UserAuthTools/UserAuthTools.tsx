@@ -13,7 +13,7 @@ const UserAuthTools = ({
   return (
     <button
       className={
-        'inline-flex items-center rounded-md border-2 border-primary-400 px-4 py-2 text-sm font-medium text-primary transition' +
+        'inline-flex items-center rounded-md border-2 border-primary-400 px-4 py-2 text-xl font-medium text-primary transition' +
         ' ' +
         (loading
           ? 'cursor-progress'
