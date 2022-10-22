@@ -1,34 +1,23 @@
-import { routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import NavigationCard from 'src/components/NavigationCard/NavigationCard'
 
-const DashboardPage = () => {
+const MiniConcertPage = () => {
   const navigateToList = [
     {
-      name: 'ミニコンサート',
-      path: routes.miniConcert(),
-      description: 'ミニコンサートへの参加登録、スタッフ登録はこちら',
+      name: '参加登録',
+      path: undefined,
+      description: 'ミニコンサートへの参加登録',
     },
     {
-      name: 'Coming Soon',
+      name: 'スタッフ登録',
       path: undefined,
-      description: '近日公開',
-    },
-    {
-      name: 'Coming Soon',
-      path: undefined,
-      description: '近日公開',
-    },
-    {
-      name: 'Coming Soon',
-      path: undefined,
-      description: '近日公開',
+      description: 'ミニコンサートのスタッフ登録',
     },
   ]
   return (
     <>
-      <MetaTags title="Dashboard" description="Dashboard page" />
+      <MetaTags title="MiniConcert" description="MiniConcert page" />
 
       <div className="flex h-full w-full flex-col items-center justify-center md:mt-20">
         {/* 2 columns on desktop, 1 column on mobile */}
@@ -47,4 +36,4 @@ const DashboardPage = () => {
   )
 }
 
-export default DashboardPage
+export default MiniConcertPage

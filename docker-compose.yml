@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   app:
-    command: /bin/bash -c "dum i && dum rw dev"
+    command: /bin/bash -c "while true; do sleep 1000; done"
     build: .
     working_dir: /app
     volumes:

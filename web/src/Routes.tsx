@@ -11,6 +11,7 @@ import { Set, Router, Route, Private } from '@redwoodjs/router'
 
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 
+import AuthLayout from './layouts/AuthLayout/AuthLayout'
 import LandingLayout from './layouts/LandingLayout/LandingLayout'
 import { Role } from './lib/auth'
 
@@ -32,7 +33,10 @@ const Routes = () => {
           <Route path="/tea-parties/{id:Int}" page={TeaPartyTeaPartyPage} name="teaParty" />
           <Route path="/tea-parties" page={TeaPartyTeaPartiesPage} name="teaParties" />
         </Set>
-        <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+        <Set wrap={AuthLayout}>
+          <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+          <Route path="/mini-concert" page={MiniConcertPage} name="miniConcert" />
+        </Set>
       </Private>
       <Set wrap={LandingLayout}>
         <Route path="/" page={HomePage} name="home" />
