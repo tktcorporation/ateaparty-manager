@@ -8,7 +8,13 @@ import NavigationCard from './NavigationCard'
 describe('NavigationCard', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<NavigationCard />)
+      render(
+        <NavigationCard
+          title="SampleTitle"
+          route={undefined}
+          description="SampleDescription"
+        />
+      )
     }).not.toThrow()
   })
 })
