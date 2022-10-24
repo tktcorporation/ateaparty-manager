@@ -1,5 +1,3 @@
-import { Fragment } from 'react'
-
 import { useAuth } from '@redwoodjs/auth'
 import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'

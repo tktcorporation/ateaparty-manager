@@ -26,17 +26,22 @@ const Routes = () => {
           <Route path="/confirmed-subs" page={ConfirmedSubConfirmedSubsPage} name="confirmedSubs" />
         </Set>
       </Private>
-      <Private unauthenticated="home" roles={Role.confirmed}>
+      <Private unauthenticated="missingAuth" roles={Role.confirmed}>
         <Set wrap={ScaffoldLayout} title="TeaParties" titleTo="teaParties" buttonLabel="New TeaParty" buttonTo="newTeaParty">
           <Route path="/tea-parties/new" page={TeaPartyNewTeaPartyPage} name="newTeaParty" />
           <Route path="/tea-parties/{id:Int}/edit" page={TeaPartyEditTeaPartyPage} name="editTeaParty" />
           <Route path="/tea-parties/{id:Int}" page={TeaPartyTeaPartyPage} name="teaParty" />
           <Route path="/tea-parties" page={TeaPartyTeaPartiesPage} name="teaParties" />
         </Set>
+      </Private>
+      <Private unauthenticated="missingAuth" roles={Role.member}>
         <Set wrap={AuthLayout}>
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
           <Route path="/mini-concert" page={MiniConcertPage} name="miniConcert" />
         </Set>
+      </Private>
+      <Private unauthenticated="home">
+        <Route path="/missing-auth" page={MissingAuthPage} name="missingAuth" />
       </Private>
       <Set wrap={LandingLayout}>
         <Route path="/" page={HomePage} name="home" />

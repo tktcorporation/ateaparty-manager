@@ -1,11 +1,13 @@
 import type { Decoded } from '@redwoodjs/api'
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 
+import { isGuildMember } from 'src/lib/discord/discord'
 import { confirmedSubBySub } from 'src/services/confirmedSubs/confirmedSubs'
 
 export enum Role {
   admin = 'admin',
   confirmed = 'confirmed',
+  member = 'member',
 }
 export type RoleType = keyof typeof Role
 
@@ -47,11 +49,27 @@ export const getCurrentUser = async (
   const decodedRoles = decoded[process.env.AUTH0_AUDIENCE + '/roles']
   const roles: AllowedRoles =
     decodedRoles && Array.isArray(decodedRoles) ? decodedRoles : []
-  const isConfirmed =
-    decoded.sub &&
-    typeof decoded.sub == 'string' &&
-    (await confirmedSubBySub({ sub: decoded.sub })) !== null
-  isConfirmed && roles.push(Role.confirmed)
+
+  // oauth|discord|1234567890
+  const sub = decoded.sub
+  if (sub && typeof sub == 'string') {
+    try {
+      const userId = sub.split('|')[2]
+      const isMember = await isGuildMember(userId)
+      if (isMember) {
+        roles.push(Role.member)
+      }
+
+      const isConfirmed = (await confirmedSubBySub({ sub })) !== null
+      if (isConfirmed) {
+        roles.push(Role.confirmed)
+      }
+    } catch (e) {
+      console.error(e)
+      throw e
+    }
+  }
+  console.log('roles', roles)
 
   if (roles) {
     return { ...decoded, roles }
