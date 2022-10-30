@@ -25,13 +25,17 @@ export const Generated = () => {
     { label: '写真撮影', value: 'Photography' },
     { label: '動画撮影', value: 'Video' },
   ]
-  const [selectedIdList, setSelectedIdList] = useState<string[]>([])
+  const [selectedIdList, setSelectedIdList] = useState<string[]>(['MC'])
   return (
     <>
       <legend className="text-sm font-medium text-gray-900 dark:text-gray-300">
         やりたい、やってみたいタスク
       </legend>
-      <CheckBoxField options={options} setSelectedIdList={setSelectedIdList} />
+      <CheckBoxField
+        options={options}
+        setSelectedIdList={setSelectedIdList}
+        initialSelectedIdList={selectedIdList}
+      />
       {/* preview */}
       <p>Preview:</p>
       <p>{JSON.stringify(selectedIdList)}</p>

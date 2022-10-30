@@ -5,10 +5,17 @@ interface Props {
     value: string
     label: string
   }[]
+  initialSelectedIdList: string[]
   setSelectedIdList: (idList: string[]) => void
 }
-const CheckBoxField = ({ options, setSelectedIdList }: Props) => {
-  const [selectedIdList, setSelectedIdListState] = useState<string[]>([])
+const CheckBoxField = ({
+  options,
+  initialSelectedIdList,
+  setSelectedIdList,
+}: Props) => {
+  const [selectedIdList, setSelectedIdListState] = useState<string[]>(
+    initialSelectedIdList
+  )
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const id = event.target.value
     if (event.target.checked) {
@@ -23,7 +30,7 @@ const CheckBoxField = ({ options, setSelectedIdList }: Props) => {
     setSelectedIdList(selectedIdList)
   }, [selectedIdList, setSelectedIdList])
   return (
-    <fieldset className="mb-6">
+    <fieldset>
       <div className="mt-4 space-y-4">
         {options.map((option) => (
           <div key={option.value} className="flex items-center">

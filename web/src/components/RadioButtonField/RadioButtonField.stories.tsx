@@ -32,7 +32,11 @@ export const Generated = () => {
       <legend className="text-sm font-medium text-gray-900 dark:text-gray-300">
         スタッフ参加の希望度合いを教えてください
       </legend>
-      <RadioButtonField options={options} setValue={setStaffWill} />
+      <RadioButtonField
+        options={options}
+        value={'will'}
+        setValue={setStaffWill}
+      />
       {/* preview */}
       <p>Preview:</p>
       <p>{staffWill}</p>

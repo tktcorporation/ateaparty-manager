@@ -13,13 +13,13 @@
 
 import type { ComponentMeta } from '@storybook/react'
 
-import MiniConcertStaffRegistrationForm from './MiniConcertStaffRegistrationForm'
+import WorkWantToDo from './WorkDontWantToDo'
 
 export const generated = () => {
-  return <MiniConcertStaffRegistrationForm />
+  return <WorkWantToDo />
 }
 
 export default {
-  title: 'Components/MiniConcert/MiniConcertStaffRegistrationForm',
-  component: MiniConcertStaffRegistrationForm,
-} as ComponentMeta<typeof MiniConcertStaffRegistrationForm>
+  title: 'Components/MiniConcert/WorkDontWantToDo',
+  component: WorkWantToDo,
+} as ComponentMeta<typeof WorkWantToDo>
