@@ -3,6 +3,7 @@ import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 
 import { isGuildMember } from 'src/lib/discord/discord'
 import { confirmedSubBySub } from 'src/services/confirmedSubs/confirmedSubs'
+import { upsertMember } from 'src/services/members/members'
 
 export enum Role {
   admin = 'admin',
@@ -52,30 +53,32 @@ export const getCurrentUser = async (
 
   // oauth|discord|1234567890
   const sub = decoded.sub
-  if (sub && typeof sub == 'string') {
-    try {
-      const userId = sub.split('|')[2]
-      const isMember = await isGuildMember(userId)
-      if (isMember) {
-        roles.push(Role.member)
-      }
 
-      const isConfirmed = (await confirmedSubBySub({ sub })) !== null
-      if (isConfirmed) {
-        roles.push(Role.confirmed)
-      }
-    } catch (e) {
-      console.error(e)
-      throw e
-    }
+  if (typeof sub !== 'string') {
+    return { ...decoded }
   }
+
+  const confirmedSub = await confirmedSubBySub({ sub })
+  confirmedSub && roles.push(Role.confirmed)
+
+  const { member, role } = await getMemberAndRoleBySub(sub)
+  role && roles.push(role)
+
   console.log('roles', roles)
 
   if (roles) {
-    return { ...decoded, roles }
+    return { ...decoded, member, roles }
   }
 
   return { ...decoded }
+}
+
+const getMemberAndRoleBySub = async (sub: string) => {
+  const userId = sub.split('|')[2]
+  const isMember = await isGuildMember(userId)
+  const member = isMember ? await upsertMember({ sub }) : undefined
+  const role = isMember ? Role.member : undefined
+  return { member, role }
 }
 
 /**
