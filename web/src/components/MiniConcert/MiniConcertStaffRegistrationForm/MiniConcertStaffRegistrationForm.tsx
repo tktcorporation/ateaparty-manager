@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import MiniConcertStaffWillCell from 'src/components/MiniConcertStaffWillCell'
 import ToggleField from 'src/components/ToggleField/ToggleField'
 
 import StaffWantToDo from '../StaffWantToDo/StaffWantToDo'
@@ -12,6 +13,7 @@ const MiniConcertStaffRegistrationForm = () => {
   return (
     <div>
       <h2>スタッフ参加登録</h2>
+      <MiniConcertStaffWillCell />
       <ToggleField
         label="スタッフ参加を希望する"
         name="staff"

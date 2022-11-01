@@ -11,18 +11,24 @@ export const miniConcertStaffWills: QueryResolvers['miniConcertStaffWills'] =
     return db.miniConcertStaffWill.findMany()
   }
 
-export const miniConcertStaffWill: QueryResolvers['miniConcertStaffWill'] = ({
-  id,
-}) => {
-  return db.miniConcertStaffWill.findUnique({
-    where: { id },
-  })
-}
+export const miniConcertStaffWill: QueryResolvers['miniConcertStaffWill'] =
+  () => {
+    return db.miniConcertStaffWill.findUnique({
+      where: { id: context?.currentUser?.member?.id },
+    })
+  }
 
 export const createMiniConcertStaffWill: MutationResolvers['createMiniConcertStaffWill'] =
   ({ input }) => {
+    const id = context?.currentUser?.member?.id
+    if (!id) {
+      throw new Error('Not logged in')
+    }
     return db.miniConcertStaffWill.create({
-      data: input,
+      data: {
+        memberId: id,
+        StaffWantToDo: input.StaffWantToDo,
+      },
     })
   }
 

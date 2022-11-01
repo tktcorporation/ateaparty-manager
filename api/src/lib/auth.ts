@@ -1,3 +1,5 @@
+import { Member } from 'types/graphql'
+
 import type { Decoded } from '@redwoodjs/api'
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 
@@ -16,7 +18,10 @@ export type RoleType = keyof typeof Role
  * Represents the user attributes returned by the decoding the
  * Authentication provider's JWT together with an optional list of roles.
  */
-type RedwoodUser = Record<string, unknown> & { roles?: string[] }
+type RedwoodUser = Record<string, unknown> & {
+  roles?: string[]
+  member?: Member
+}
 
 /**
  * getCurrentUser returns the user information together with
@@ -73,10 +78,17 @@ export const getCurrentUser = async (
   return { ...decoded }
 }
 
-const getMemberAndRoleBySub = async (sub: string) => {
+const getMemberAndRoleBySub = async (
+  sub: string
+): Promise<{
+  member: Member | undefined
+  role: RoleType | undefined
+}> => {
   const userId = sub.split('|')[2]
   const isMember = await isGuildMember(userId)
-  const member = isMember ? await upsertMember({ sub }) : undefined
+  const member = isMember
+    ? ((await upsertMember({ sub })) as Member)
+    : undefined
   const role = isMember ? Role.member : undefined
   return { member, role }
 }

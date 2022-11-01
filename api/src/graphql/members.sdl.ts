@@ -1,3 +1,5 @@
+import { Role } from 'src/lib/auth'
+
 export const schema = gql`
   type Member {
     id: Int!
@@ -8,8 +10,8 @@ export const schema = gql`
   }
 
   type Query {
-    members: [Member!]! @requireAuth
-    member(id: Int!): Member @requireAuth
+    members: [Member!]! @requireAuth(roles: "${Role.admin}")
+    member(id: Int!): Member @requireAuth(roles: "${Role.admin}")
   }
 
   input CreateMemberInput {
@@ -21,9 +23,9 @@ export const schema = gql`
   }
 
   type Mutation {
-    createMember(input: CreateMemberInput!): Member! @requireAuth
-    updateMember(id: Int!, input: UpdateMemberInput!): Member! @requireAuth
-    # deleteMember(id: Int!): Member! @requireAuth
-    upsertMember(sub: String!): Member! @requireAuth
+    createMember(input: CreateMemberInput!): Member! @requireAuth(roles: "${Role.admin}")
+    updateMember(id: Int!, input: UpdateMemberInput!): Member! @requireAuth(roles: "${Role.admin}")
+    # deleteMember(id: Int!): Member! @requireAuth(roles: "${Role.admin}")
+    upsertMember(sub: String!): Member! @requireAuth(roles: "${Role.admin}")
   }
 `
