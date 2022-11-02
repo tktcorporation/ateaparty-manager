@@ -18,32 +18,25 @@ export const miniConcertStaffWill: QueryResolvers['miniConcertStaffWill'] =
     })
   }
 
-export const createMiniConcertStaffWill: MutationResolvers['createMiniConcertStaffWill'] =
+export const upsertMiniConcertStaffWill: MutationResolvers['upsertMiniConcertStaffWill'] =
   ({ input }) => {
     const id = context?.currentUser?.member?.id
     if (!id) {
       throw new Error('Not logged in')
     }
-    return db.miniConcertStaffWill.create({
-      data: {
+    return db.miniConcertStaffWill.upsert({
+      create: {
         memberId: id,
-        StaffWantToDo: input.StaffWantToDo,
+        staffWill: input.staffWill,
+        staffWantToDo: input.staffWantToDo || '',
       },
-    })
-  }
-
-export const updateMiniConcertStaffWill: MutationResolvers['updateMiniConcertStaffWill'] =
-  ({ id, input }) => {
-    return db.miniConcertStaffWill.update({
-      data: input,
-      where: { id },
-    })
-  }
-
-export const deleteMiniConcertStaffWill: MutationResolvers['deleteMiniConcertStaffWill'] =
-  ({ id }) => {
-    return db.miniConcertStaffWill.delete({
-      where: { id },
+      update: {
+        ...(input.staffWill && { staffWill: input.staffWill }),
+        ...(input.staffWantToDo !== undefined && {
+          staffWantToDo: input.staffWantToDo,
+        }),
+      },
+      where: { memberId: id },
     })
   }
 

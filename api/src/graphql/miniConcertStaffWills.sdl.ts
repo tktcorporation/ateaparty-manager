@@ -3,7 +3,8 @@ import { Role } from 'src/lib/auth'
 export const schema = gql`
   type MiniConcertStaffWill {
     id: Int!
-    StaffWantToDo: String!
+    staffWill: Boolean!
+    staffWantToDo: String!
     createdAt: DateTime!
     updatedAt: DateTime!
     member: Member!
@@ -15,22 +16,14 @@ export const schema = gql`
     miniConcertStaffWill: MiniConcertStaffWill @requireAuth
   }
 
-  input CreateMiniConcertStaffWillInput {
-    StaffWantToDo: String!
-  }
-
-  input UpdateMiniConcertStaffWillInput {
-    StaffWantToDo: String
-    memberId: Int
+  input UpsertMiniConcertStaffWillInput {
+    staffWill: Boolean
+    staffWantToDo: String
   }
 
   type Mutation {
-    createMiniConcertStaffWill(
-      input: CreateMiniConcertStaffWillInput!
+    upsertMiniConcertStaffWill(
+      input: UpsertMiniConcertStaffWillInput!
     ): MiniConcertStaffWill! @requireAuth(roles: "${Role.member}")
-    updateMiniConcertStaffWill(
-      input: UpdateMiniConcertStaffWillInput!
-    ): MiniConcertStaffWill! @requireAuth(roles: "${Role.member}")
-    deleteMiniConcertStaffWill(id: Int!): MiniConcertStaffWill! @requireAuth(roles: "${Role.admin}")
   }
 `

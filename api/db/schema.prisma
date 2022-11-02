@@ -34,7 +34,8 @@ model Member {
 model MiniConcertStaffWill {
   id    Int     @id @default(autoincrement())
 
-  StaffWantToDo String
+  staffWill Boolean
+  staffWantToDo String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
