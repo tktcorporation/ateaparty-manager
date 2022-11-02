@@ -1,5 +1,6 @@
 import { MetaTags } from '@redwoodjs/web'
 
+import MiniConcertStaffWillCell from 'src/components/MiniConcertStaffWillCell/MiniConcertStaffWillCell'
 import NavigationCard from 'src/components/NavigationCard/NavigationCard'
 
 const MiniConcertPage = () => {
@@ -31,6 +32,7 @@ const MiniConcertPage = () => {
             />
           ))}
         </div>
+        <MiniConcertStaffWillCell />
       </div>
     </>
   )

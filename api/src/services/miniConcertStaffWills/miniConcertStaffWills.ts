@@ -24,20 +24,22 @@ export const upsertMiniConcertStaffWill: MutationResolvers['upsertMiniConcertSta
     if (!id) {
       throw new Error('Not logged in')
     }
-    return db.miniConcertStaffWill.upsert({
+    const query = {
       create: {
         memberId: id,
         staffWill: input.staffWill,
         staffWantToDo: input.staffWantToDo || '',
       },
       update: {
-        ...(input.staffWill && { staffWill: input.staffWill }),
+        ...(input.staffWill !== undefined && { staffWill: input.staffWill }),
         ...(input.staffWantToDo !== undefined && {
           staffWantToDo: input.staffWantToDo,
         }),
       },
       where: { memberId: id },
-    })
+    }
+    console.log('query', query)
+    return db.miniConcertStaffWill.upsert(query)
   }
 
 export const MiniConcertStaffWill: MiniConcertStaffWillRelationResolvers = {
