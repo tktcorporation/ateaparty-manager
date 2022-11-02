@@ -18,6 +18,7 @@ import { Role } from './lib/auth'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/logout" page={LogoutPage} name="logout" />
       <Private unauthenticated="home" roles={Role.admin}>
         <Set wrap={ScaffoldLayout} title="ConfirmedSubs" titleTo="confirmedSubs" buttonLabel="New ConfirmedSub" buttonTo="newConfirmedSub">
           <Route path="/confirmed-subs/new" page={ConfirmedSubNewConfirmedSubPage} name="newConfirmedSub" />
