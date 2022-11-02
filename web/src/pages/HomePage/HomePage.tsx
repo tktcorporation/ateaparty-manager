@@ -1,5 +1,5 @@
 import { useAuth } from '@redwoodjs/auth'
-import { navigate, routes } from '@redwoodjs/router'
+import { Redirect, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import Logo from 'src/assets/Logo_yokogumi.svg'
@@ -8,7 +8,7 @@ import LoginButton from 'src/components/LoginButton/LoginButton'
 const HomePage = () => {
   const { loading, logIn, isAuthenticated } = useAuth()
   if (isAuthenticated) {
-    navigate(routes.dashboard())
+    return <Redirect to={routes.dashboard()} />
   }
   return (
     <>
