@@ -1,12 +1,6 @@
 import type { Member } from '@prisma/client'
 
-import {
-  members,
-  member,
-  createMember,
-  updateMember,
-  deleteMember,
-} from './members'
+import { members, member, createMember, updateMember } from './members'
 import type { StandardScenario } from './members.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
@@ -30,11 +24,10 @@ describe('members', () => {
 
   scenario('creates a member', async () => {
     const result = await createMember({
-      input: { sub: 'String9957165', updatedAt: '2022-10-31T21:35:26Z' },
+      input: { sub: 'String9957165' },
     })
 
     expect(result.sub).toEqual('String9957165')
-    expect(result.updatedAt).toEqual('2022-10-31T21:35:26Z')
   })
 
   scenario('updates a member', async (scenario: StandardScenario) => {
@@ -45,14 +38,5 @@ describe('members', () => {
     })
 
     expect(result.sub).toEqual('String92559672')
-  })
-
-  scenario('deletes a member', async (scenario: StandardScenario) => {
-    const original = (await deleteMember({
-      id: scenario.member.one.id,
-    })) as Member
-    const result = await member({ id: original.id })
-
-    expect(result).toEqual(null)
   })
 })

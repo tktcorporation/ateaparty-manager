@@ -1,7 +1,6 @@
 import { routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
-import MiniConcertStaffWillCell from 'src/components/MiniConcertStaffWillCell'
 import NavigationCard from 'src/components/NavigationCard/NavigationCard'
 
 const DashboardPage = () => {
@@ -43,7 +42,6 @@ const DashboardPage = () => {
             />
           ))}
         </div>
-        <MiniConcertStaffWillCell />
       </div>
     </>
   )

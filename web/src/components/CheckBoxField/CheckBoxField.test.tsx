@@ -8,7 +8,18 @@ import CheckBoxField from './CheckBoxField'
 describe('CheckBoxField', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<CheckBoxField />)
+      render(
+        <CheckBoxField
+          options={[
+            {
+              value: 'value',
+              label: 'label',
+            },
+          ]}
+          initialSelectedIdList={[]}
+          setSelectedIdList={() => {}}
+        />
+      )
     }).not.toThrow()
   })
 })

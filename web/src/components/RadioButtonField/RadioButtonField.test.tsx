@@ -8,7 +8,18 @@ import RadioButtonField from './RadioButtonField'
 describe('RadioButtonField', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<RadioButtonField />)
+      render(
+        <RadioButtonField
+          options={[
+            {
+              value: 'string',
+              label: 'string',
+            },
+          ]}
+          value={'string'}
+          setValue={() => {}}
+        />
+      )
     }).not.toThrow()
   })
 })
