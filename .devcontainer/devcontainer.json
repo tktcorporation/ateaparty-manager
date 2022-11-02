@@ -1,7 +1,7 @@
 {
     "name": "redwoodjs-v3-tutrial-2nd",
-    "image": "mcr.microsoft.com/vscode/devcontainers/universal:linux",
-  
+    "image": "mcr.microsoft.com/devcontainers/universal:linux",
+
     // Set *default* container specific settings.json values on container create.
     "settings": {
       "runOnSave.commands": [
@@ -12,7 +12,7 @@
         }
       ]
     },
-  
+
     // Add the IDs of extensions you want installed when the container is created.
     "extensions": [
       "ms-azuretools.vscode-docker",
@@ -38,13 +38,13 @@
       "prisma.prisma",
       "WakaTime.vscode-wakatime"
     ],
-  
+
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
-  
+
     // Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "gh extension install davidraviv/gh-clean-branches",
-  
+
     // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
     "features": {
       "homebrew": "latest"
