@@ -1,3 +1,5 @@
+import { Role } from 'src/lib/auth'
+
 export const schema = gql`
   type MiniConcertStaffWork {
     id: Int!
@@ -18,16 +20,14 @@ export const schema = gql`
   }
 
   type Query {
-    miniConcertStaffWorks: [MiniConcertStaffWork!]! @requireAuth
-    miniConcertStaffWork(id: Int!): MiniConcertStaffWork @requireAuth
+    miniConcertStaffWork: MiniConcertStaffWork @requireAuth(roles: "${Role.member}")
   }
 
   input CreateMiniConcertStaffWorkInput {
-    management: MiniConcertStaffWorkEnergy!
-    mc: MiniConcertStaffWorkEnergy!
-    visitorGuide: MiniConcertStaffWorkEnergy!
-    photography: MiniConcertStaffWorkEnergy!
-    memberId: Int!
+    management: MiniConcertStaffWorkEnergy
+    mc: MiniConcertStaffWorkEnergy
+    visitorGuide: MiniConcertStaffWorkEnergy
+    photography: MiniConcertStaffWorkEnergy
   }
 
   input UpdateMiniConcertStaffWorkInput {
@@ -35,17 +35,14 @@ export const schema = gql`
     mc: MiniConcertStaffWorkEnergy
     visitorGuide: MiniConcertStaffWorkEnergy
     photography: MiniConcertStaffWorkEnergy
-    memberId: Int
   }
 
   type Mutation {
     createMiniConcertStaffWork(
       input: CreateMiniConcertStaffWorkInput!
-    ): MiniConcertStaffWork! @requireAuth
+    ): MiniConcertStaffWork! @requireAuth(roles: "${Role.member}")
     updateMiniConcertStaffWork(
-      id: Int!
       input: UpdateMiniConcertStaffWorkInput!
-    ): MiniConcertStaffWork! @requireAuth
-    deleteMiniConcertStaffWork(id: Int!): MiniConcertStaffWork! @requireAuth
+    ): MiniConcertStaffWork! @requireAuth(roles: "${Role.member}")
   }
 `

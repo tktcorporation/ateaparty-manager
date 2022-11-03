@@ -1,7 +1,12 @@
 import type { ComponentStory } from '@storybook/react'
 
-import { Loading, Empty, Failure, Success } from './MiniConcertStaffWillCell'
-import { standard } from './MiniConcertStaffWillCell.mock'
+import {
+  Loading,
+  Empty,
+  Failure,
+  Success,
+} from './MiniConcertStaffWorkManagementCell'
+import { standard } from './MiniConcertStaffWorkManagementCell.mock'
 
 export const loading = () => {
   return Loading ? <Loading /> : <></>
@@ -19,4 +24,4 @@ export const success: ComponentStory<typeof Success> = (args) => {
   return Success ? <Success {...standard()} {...args} /> : <></>
 }
 
-export default { title: 'Cells/MiniConcertStaffWillCell' }
+export default { title: 'Cells/MiniConcertStaffWorkManagementCell' }

@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 type Options = {
   value: string
   label: string
@@ -7,18 +5,10 @@ type Options = {
 interface Props {
   options: Options
   value: string
+  loading?: boolean
   setValue: (value: string) => void
 }
-const RadioButtonField = ({ options, value, setValue }: Props) => {
-  const [valueState, setValueState] = useState<string>(value)
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
-    setValueState(value)
-  }
-  useEffect(() => {
-    setValue(value)
-  }, [value, setValue])
-
+const RadioButtonField = ({ options, value, setValue, loading }: Props) => {
   return (
     <fieldset>
       <div className="space-y-1">
@@ -29,8 +19,9 @@ const RadioButtonField = ({ options, value, setValue }: Props) => {
               name="staff-will"
               type="radio"
               value={option.value}
-              checked={valueState === option.value}
-              onChange={handleChange}
+              checked={value === option.value}
+              onChange={() => setValue(option.value)}
+              disabled={loading}
               className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300"
             />
             <label htmlFor={option.value} className="ml-3 font-medium">

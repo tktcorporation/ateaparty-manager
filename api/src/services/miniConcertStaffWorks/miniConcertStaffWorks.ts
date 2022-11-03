@@ -6,38 +6,19 @@ import type {
 
 import { db } from 'src/lib/db'
 
-export const miniConcertStaffWorks: QueryResolvers['miniConcertStaffWorks'] =
+export const miniConcertStaffWork: QueryResolvers['miniConcertStaffWork'] =
   () => {
-    return db.miniConcertStaffWork.findMany()
-  }
-
-export const miniConcertStaffWork: QueryResolvers['miniConcertStaffWork'] = ({
-  id,
-}) => {
-  return db.miniConcertStaffWork.findUnique({
-    where: { id },
-  })
-}
-
-export const createMiniConcertStaffWork: MutationResolvers['createMiniConcertStaffWork'] =
-  ({ input }) => {
-    return db.miniConcertStaffWork.create({
-      data: input,
+    const member = context.currentUser.member
+    return db.miniConcertStaffWork.findUnique({
+      where: { memberId: member.id },
     })
   }
 
 export const updateMiniConcertStaffWork: MutationResolvers['updateMiniConcertStaffWork'] =
-  ({ id, input }) => {
+  ({ input }) => {
     return db.miniConcertStaffWork.update({
       data: input,
-      where: { id },
-    })
-  }
-
-export const deleteMiniConcertStaffWork: MutationResolvers['deleteMiniConcertStaffWork'] =
-  ({ id }) => {
-    return db.miniConcertStaffWork.delete({
-      where: { id },
+      where: { memberId: context.currentUser.member.id },
     })
   }
 
