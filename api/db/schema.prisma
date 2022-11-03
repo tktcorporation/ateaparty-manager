@@ -27,4 +27,26 @@ model Member {
   sub   String  @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  miniConcertStaffWork MiniConcertStaffWork?
+}
+
+enum MiniConcertStaffWorkEnergy {
+  CanDo
+  TeachMe
+  NotNow
+}
+model MiniConcertStaffWork {
+  id    Int     @id @default(autoincrement())
+
+  management MiniConcertStaffWorkEnergy @default(NotNow)
+  mc MiniConcertStaffWorkEnergy @default(NotNow)
+  visitorGuide MiniConcertStaffWorkEnergy @default(NotNow)
+  photography MiniConcertStaffWorkEnergy @default(NotNow)
+
+  member Member @relation(fields: [memberId], references: [id])
+  memberId Int @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
