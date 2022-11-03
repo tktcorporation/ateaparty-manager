@@ -7,7 +7,7 @@
       "runOnSave.commands": [
         {
           "globMatch": "**/*",
-          "command": "docker-compose exec -T app /bin/bash -c \"dum rw lint --fix\"",
+          "command": "docker-compose exec -T app /bin/bash -c \"bun rw lint --fix\"",
           "runIn": "backend"
         }
       ]
