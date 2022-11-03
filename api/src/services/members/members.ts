@@ -1,8 +1,4 @@
-import type {
-  QueryResolvers,
-  MutationResolvers,
-  MemberRelationResolvers,
-} from 'types/graphql'
+import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
@@ -49,12 +45,4 @@ export const updateMember: MutationResolvers['updateMember'] = ({
     data: input,
     where: { id },
   })
-}
-
-export const Member: MemberRelationResolvers = {
-  miniConcertStaffWill: (_obj, { root }) => {
-    return db.member
-      .findUnique({ where: { id: root?.id } })
-      .miniConcertStaffWill()
-  },
 }

@@ -6,7 +6,6 @@ export const schema = gql`
     sub: String!
     createdAt: DateTime!
     updatedAt: DateTime!
-    miniConcertStaffWill: MiniConcertStaffWill
   }
 
   type Query {
