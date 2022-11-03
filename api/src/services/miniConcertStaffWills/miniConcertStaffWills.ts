@@ -38,7 +38,6 @@ export const upsertMiniConcertStaffWill: MutationResolvers['upsertMiniConcertSta
       },
       where: { memberId: id },
     }
-    console.log('query', query)
     return db.miniConcertStaffWill.upsert(query)
   }
 
