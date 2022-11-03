@@ -4,6 +4,7 @@ interface Props {
   options: {
     value: string
     label: string
+    description?: string
   }[]
   initialSelectedIdList: string[]
   setSelectedIdList: (idList: string[]) => void
@@ -31,9 +32,9 @@ const CheckBoxField = ({
   }, [selectedIdList, setSelectedIdList])
   return (
     <fieldset>
-      <div className="mt-4 space-y-4">
+      <div className="space-y-2">
         {options.map((option) => (
-          <div key={option.value} className="flex items-center">
+          <div key={option.value} className="flex">
             <input
               id={option.value}
               name={option.value}
@@ -41,14 +42,18 @@ const CheckBoxField = ({
               value={option.value}
               checked={selectedIdList.includes(option.value)}
               onChange={handleChange}
-              className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+              className="focus:ring-3 mt-1 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300"
             />
-            <label
-              htmlFor={option.value}
-              className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              {option.label}
-            </label>
+            <div className="ml-2">
+              <label htmlFor={option.value} className="block font-medium">
+                {option.label}
+              </label>
+              {option.description && (
+                <p className="block text-sm text-gray-500">
+                  {option.description}
+                </p>
+              )}
+            </div>
           </div>
         ))}
       </div>

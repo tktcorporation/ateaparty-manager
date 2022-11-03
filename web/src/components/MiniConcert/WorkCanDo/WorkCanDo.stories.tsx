@@ -13,7 +13,7 @@
 
 import type { ComponentMeta } from '@storybook/react'
 
-import WorkWantToDo from './WorkWantToDo'
+import WorkWantToDo from './WorkCanDo'
 
 export const generated = () => {
   return <WorkWantToDo />
