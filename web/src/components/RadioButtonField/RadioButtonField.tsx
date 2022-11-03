@@ -6,9 +6,16 @@ interface Props {
   options: Options
   value: string
   loading?: boolean
+  name: string
   setValue: (value: string) => void
 }
-const RadioButtonField = ({ options, value, setValue, loading }: Props) => {
+const RadioButtonField = ({
+  options,
+  value,
+  setValue,
+  loading,
+  name,
+}: Props) => {
   return (
     <fieldset>
       <div className="space-y-1">
@@ -16,7 +23,7 @@ const RadioButtonField = ({ options, value, setValue, loading }: Props) => {
           <div key={option.value} className="flex items-center">
             <input
               id={option.value}
-              name="staff-will"
+              name={name}
               type="radio"
               value={option.value}
               checked={value === option.value}

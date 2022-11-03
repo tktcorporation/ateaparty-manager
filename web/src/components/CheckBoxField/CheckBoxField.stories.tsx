@@ -23,7 +23,6 @@ export const Generated = () => {
     { label: '来場者の誘導', value: 'Guide' },
     { label: 'マネジメント(事前の調整)', value: 'Management' },
     { label: '写真撮影', value: 'Photography' },
-    { label: '動画撮影', value: 'Video' },
   ]
   const [selectedIdList, setSelectedIdList] = useState<string[]>(['MC'])
   return (

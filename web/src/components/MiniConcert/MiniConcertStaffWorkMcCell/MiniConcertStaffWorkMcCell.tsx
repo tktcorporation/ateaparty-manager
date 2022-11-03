@@ -1,28 +1,31 @@
 import { useState } from 'react'
 
 import type {
-  FindMiniConcertStaffWorkQuery,
-  FindMiniConcertStaffWorkQueryVariables,
+  FindMiniConcertStaffWorkMcQuery,
+  FindMiniConcertStaffWorkMcQueryVariables,
+  UpdateMiniConcertStaffWorkMcMutation,
+  UpdateMiniConcertStaffWorkMcMutationVariables,
 } from 'types/graphql'
 
 import { CellSuccessProps, CellFailureProps, useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
-import RadioButtonField from '../RadioButtonField/RadioButtonField'
+import RadioButtonField from '../../RadioButtonField/RadioButtonField'
+import { options } from '../constants'
 
 export const QUERY = gql`
-  query FindMiniConcertStaffWorkQuery {
+  query FindMiniConcertStaffWorkMcQuery {
     miniConcertStaffWork: miniConcertStaffWork {
-      management
+      mc
     }
   }
 `
 export const UPDATE_MUTATION = gql`
-  mutation UpdateMiniConcertStaffWorkMutation(
+  mutation UpdateMiniConcertStaffWorkMcMutation(
     $input: UpdateMiniConcertStaffWorkInput!
   ) {
     updateMiniConcertStaffWork(input: $input) {
-      management
+      mc
     }
   }
 `
@@ -43,38 +46,38 @@ export const Empty = () => <div>Empty</div>
 
 export const Failure = ({
   error,
-}: CellFailureProps<FindMiniConcertStaffWorkQueryVariables>) => (
+}: CellFailureProps<FindMiniConcertStaffWorkMcQueryVariables>) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
 export const Success = ({
   miniConcertStaffWork,
 }: CellSuccessProps<
-  FindMiniConcertStaffWorkQuery,
-  FindMiniConcertStaffWorkQueryVariables
+  FindMiniConcertStaffWorkMcQuery,
+  FindMiniConcertStaffWorkMcQueryVariables
 >) => {
-  const { management } = miniConcertStaffWork
-  const [managementState, setManagementState] = useState(management)
-  const [updateMiniConcertStaffWork, { loading }] = useMutation(
-    UPDATE_MUTATION,
-    {
-      onCompleted: () => {
-        toast.success('Updated')
-      },
-      onError: (error) => {
-        toast.error(error.message)
-      },
-    }
-  )
+  const { mc } = miniConcertStaffWork
+  const [McState, setMcState] = useState(mc)
+  const [updateMiniConcertStaffWork, { loading }] = useMutation<
+    UpdateMiniConcertStaffWorkMcMutation,
+    UpdateMiniConcertStaffWorkMcMutationVariables
+  >(UPDATE_MUTATION, {
+    onCompleted: () => {
+      toast.success('Updated')
+    },
+    onError: (error) => {
+      toast.error(error.message)
+    },
+  })
   const handleChange = (v: string) => {
     if (v !== 'CanDo' && v !== 'TeachMe' && v !== 'NotNow') {
       throw new Error('Invalid value')
     }
-    setManagementState(v)
+    setMcState(v)
     updateMiniConcertStaffWork({
       variables: {
         input: {
-          management: v,
+          mc: v,
         },
       },
     })
@@ -83,16 +86,10 @@ export const Success = ({
   return (
     <>
       <RadioButtonField
-        options={[
-          { label: 'やってみたい', value: 'CanDo' },
-          {
-            label: '教えてもらいながらならやってみたい',
-            value: 'TeachMe',
-          },
-          { label: 'いまはいいかな', value: 'NotNow' },
-        ]}
+        options={options}
+        name="staffWork[mc]"
         loading={loading}
-        value={managementState}
+        value={McState}
         setValue={handleChange}
       />
     </>

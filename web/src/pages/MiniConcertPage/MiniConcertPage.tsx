@@ -1,7 +1,10 @@
 import { MetaTags } from '@redwoodjs/web'
 import { Toaster } from '@redwoodjs/web/dist/toast'
 
-import MiniConcertStaffWorkManagementCell from 'src/components/MiniConcertStaffWorkManagementCell'
+import MiniConcertStaffWorkManagementCell from 'src/components/MiniConcert/MiniConcertStaffWorkManagementCell'
+import MiniConcertStaffWorkMcCell from 'src/components/MiniConcert/MiniConcertStaffWorkMcCell'
+import MiniConcertStaffWorkPhotographyCell from 'src/components/MiniConcert/MiniConcertStaffWorkPhotographyCell'
+import MiniConcertStaffWorkVisitorGuideCell from 'src/components/MiniConcert/MiniConcertStaffWorkVisitorGuideCell'
 
 const MiniConcertPage = () => {
   return (
@@ -29,6 +32,33 @@ const MiniConcertPage = () => {
             </p>
             <div className="mt-2">
               <MiniConcertStaffWorkManagementCell />
+            </div>
+            <div className="mt-5">
+              <legend className="text-lg font-medium">司会</legend>
+              <p className="text-sm text-gray-500">
+                現場指揮。お客さんへの注意事項説明、演奏者の誘導を行い、コンサートを進行する。（司会台本あり）
+              </p>
+              <div className="mt-2">
+                <MiniConcertStaffWorkMcCell />
+              </div>
+            </div>
+            <div className="mt-5">
+              <legend className="text-lg font-medium">来場者案内</legend>
+              <p className="text-sm text-gray-500">
+                ワールドに来られたお客さんの案内。軽量アバター、注意事項の説明。
+              </p>
+              <div className="mt-2">
+                <MiniConcertStaffWorkVisitorGuideCell />
+              </div>
+            </div>
+            <div className="mt-5">
+              <legend className="text-lg font-medium">写真撮影</legend>
+              <p className="text-sm text-gray-500">
+                コンサートの様子を写真におさめて記録する。
+              </p>
+              <div className="mt-2">
+                <MiniConcertStaffWorkPhotographyCell />
+              </div>
             </div>
           </div>
         </div>
