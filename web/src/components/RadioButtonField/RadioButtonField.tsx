@@ -22,7 +22,7 @@ const RadioButtonField = ({
         {options.map((option) => (
           <div key={option.value} className="flex items-center">
             <input
-              id={option.value}
+              id={`${name}-${option.value}`}
               name={name}
               type="radio"
               value={option.value}
@@ -31,7 +31,10 @@ const RadioButtonField = ({
               disabled={loading}
               className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300"
             />
-            <label htmlFor={option.value} className="ml-3 font-medium">
+            <label
+              htmlFor={`${name}-${option.value}`}
+              className="ml-3 font-medium"
+            >
               {option.label}
             </label>
           </div>
