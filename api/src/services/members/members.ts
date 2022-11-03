@@ -24,17 +24,25 @@ export const upsertMember: MutationResolvers['upsertMember'] = async ({
     return member
   }
 
-  return db.member.create({
-    data: {
-      sub,
-    },
-  })
+  return createMember({ input: { sub } })
 }
 
-export const createMember: MutationResolvers['createMember'] = ({ input }) => {
-  return db.member.create({
+export const createMember: MutationResolvers['createMember'] = async ({
+  input,
+}) => {
+  const member = await db.member.create({
     data: input,
   })
+  await db.miniConcertStaffWork.create({
+    data: {
+      member: {
+        connect: {
+          id: member.id,
+        },
+      },
+    },
+  })
+  return member
 }
 
 export const updateMember: MutationResolvers['updateMember'] = ({

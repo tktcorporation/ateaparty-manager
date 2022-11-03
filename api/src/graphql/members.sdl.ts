@@ -3,7 +3,10 @@ import { Role } from 'src/lib/auth'
 export const schema = gql`
   type Member {
     id: Int!
+
     sub: String!
+    MiniConcertStaffWork: MiniConcertStaffWork
+
     createdAt: DateTime!
     updatedAt: DateTime!
   }
