@@ -9,26 +9,46 @@ generator client {
 }
 
 model TeaParty {
-  id    Int     @id @default(autoincrement())
-  scheduledAt DateTime
+  id Int @id @default(autoincrement())
+
+  scheduledAt   DateTime
+  teaPartyStaff TeaPartyStaff?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TeaPartyStaff {
+  id Int @id @default(autoincrement())
+
+  teaPartyId  Int      @unique
+  teaParty    TeaParty @relation(fields: [teaPartyId], references: [id])
+  mcStaffId  Int
+  mcStaff    Member   @relation("McStaff", fields: [mcStaffId], references: [id])
+  mcSubStaffId   Int?
+  mcSubStaff Member?  @relation("McSubStaff", fields: [mcSubStaffId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model ConfirmedSub {
-  id    Int     @id @default(autoincrement())
-  sub   String  @unique
+  id        Int      @id @default(autoincrement())
+  sub       String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Member {
-  id    Int     @id @default(autoincrement())
-  sub   String  @unique
+  id Int @id @default(autoincrement())
+
+  sub                  String                @unique
+  miniConcertStaffWork MiniConcertStaffWork?
+  teaPartyStaff        TeaPartyStaff[]       @relation("McStaff")
+  teaPartySubStaff     TeaPartyStaff[]       @relation("McSubStaff")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  miniConcertStaffWork MiniConcertStaffWork?
 }
 
 enum MiniConcertStaffWorkEnergy {
@@ -36,16 +56,17 @@ enum MiniConcertStaffWorkEnergy {
   TeachMe
   NotNow
 }
+
 model MiniConcertStaffWork {
-  id    Int     @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  management MiniConcertStaffWorkEnergy @default(NotNow)
-  mc MiniConcertStaffWorkEnergy @default(NotNow)
+  management   MiniConcertStaffWorkEnergy @default(NotNow)
+  mc           MiniConcertStaffWorkEnergy @default(NotNow)
   visitorGuide MiniConcertStaffWorkEnergy @default(NotNow)
-  photography MiniConcertStaffWorkEnergy @default(NotNow)
+  photography  MiniConcertStaffWorkEnergy @default(NotNow)
 
-  member Member @relation(fields: [memberId], references: [id])
-  memberId Int @unique
+  member   Member @relation(fields: [memberId], references: [id])
+  memberId Int    @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
