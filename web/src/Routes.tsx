@@ -32,7 +32,7 @@ const Routes = () => {
         <Set wrap={ScaffoldLayout} title="TeaParties" titleTo="teaParties" buttonLabel="New TeaParty" buttonTo="newTeaParty">
           <Route path="/tea-parties/new" page={TeaPartyNewTeaPartyPage} name="newTeaParty" />
           <Route path="/tea-parties/{id:Int}/edit" page={TeaPartyEditTeaPartyPage} name="editTeaParty" />
-          <Route path="/tea-parties/{id:Int}" page={TeaPartyTeaPartyPage} name="teaParty" />
+          <Route path="/tea-parties/{id:Int}" page={TeaPartyTeaPartyPage} name="teaParties" />
           <Route path="/tea-parties" page={TeaPartyTeaPartiesPage} name="teaParties" />
         </Set>
       </Private>
@@ -40,6 +40,7 @@ const Routes = () => {
         <Set wrap={AuthLayout}>
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
           <Route path="/mini-concert" page={MiniConcertPage} name="miniConcert" />
+          <Route path="/tea-party" page={TeaPartyPage} name="teaParty" />
         </Set>
       </Private>
       <Private unauthenticated="home">

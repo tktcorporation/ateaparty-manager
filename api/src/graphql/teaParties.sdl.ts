@@ -4,6 +4,8 @@ export const schema = gql`
   type TeaParty {
     id: Int!
     scheduledAt: DateTime!
+    mcStaff: Member
+    mcSubStaff: Member
   }
 
   type Query {

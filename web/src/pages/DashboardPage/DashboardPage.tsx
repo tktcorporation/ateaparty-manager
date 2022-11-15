@@ -6,14 +6,14 @@ import NavigationCard from 'src/components/NavigationCard/NavigationCard'
 const DashboardPage = () => {
   const navigateToList = [
     {
+      name: 'お茶会',
+      path: routes.teaParty(),
+      description: 'お茶会の予定作成',
+    },
+    {
       name: 'ミニコンサート',
       path: routes.miniConcert(),
       description: 'ミニコンサートへの参加登録、スタッフ登録はこちら',
-    },
-    {
-      name: 'Coming Soon.',
-      path: undefined,
-      description: '近日公開',
     },
     {
       name: 'Coming Soon..',
