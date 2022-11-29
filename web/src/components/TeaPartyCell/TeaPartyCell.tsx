@@ -1,4 +1,8 @@
-import type { FindTeaPartyQuery, FindTeaPartyQueryVariables } from 'types/graphql'
+import type {
+  FindTeaPartyQuery,
+  FindTeaPartyQueryVariables,
+} from 'types/graphql'
+
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 export const QUERY = gql`

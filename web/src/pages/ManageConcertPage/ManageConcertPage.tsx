@@ -8,7 +8,8 @@ const ManageConcertPage = () => {
 
       <h1>ManageConcertPage</h1>
       <p>
-        Find me in <code>./web/src/pages/ManageConcertPage/ManageConcertPage.tsx</code>
+        Find me in{' '}
+        <code>./web/src/pages/ManageConcertPage/ManageConcertPage.tsx</code>
       </p>
       <p>
         My default route is named <code>manageConcert</code>, link to me with `
