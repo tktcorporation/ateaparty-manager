@@ -2,7 +2,7 @@ import type { FindTeaPartyById } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import TeaParty from 'src/components/TeaParty/TeaParty'
+import TeaParty from 'src/components/ScafoldTeaParty/TeaParty'
 
 export const QUERY = gql`
   query FindTeaPartyById($id: Int!) {

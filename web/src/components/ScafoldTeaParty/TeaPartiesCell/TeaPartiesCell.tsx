@@ -3,7 +3,7 @@ import type { FindTeaParties } from 'types/graphql'
 import { Link, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import TeaParties from 'src/components/TeaParty/TeaParties'
+import TeaParties from 'src/components/ScafoldTeaParty/TeaParties'
 
 export const QUERY = gql`
   query FindTeaParties {

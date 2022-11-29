@@ -5,7 +5,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import TeaPartyForm from 'src/components/TeaParty/TeaPartyForm'
+import TeaPartyForm from 'src/components/ScafoldTeaParty/TeaPartyForm'
 
 export const QUERY = gql`
   query EditTeaPartyById($id: Int!) {

@@ -30,10 +30,10 @@ const Routes = () => {
       </Private>
       <Private unauthenticated="missingAuth" roles={Role.confirmed}>
         <Set wrap={ScaffoldLayout} title="TeaParties" titleTo="teaParties" buttonLabel="New TeaParty" buttonTo="newTeaParty">
-          <Route path="/tea-parties/new" page={TeaPartyNewTeaPartyPage} name="newTeaParty" />
-          <Route path="/tea-parties/{id:Int}/edit" page={TeaPartyEditTeaPartyPage} name="editTeaParty" />
-          <Route path="/tea-parties/{id:Int}" page={TeaPartyTeaPartyPage} name="teaParties" />
-          <Route path="/tea-parties" page={TeaPartyTeaPartiesPage} name="teaParties" />
+          <Route path="/tea-parties/new" page={ScafoldTeaPartyNewTeaPartyPage} name="newTeaParty" />
+          <Route path="/tea-parties/{id:Int}/edit" page={ScafoldTeaPartyEditTeaPartyPage} name="editTeaParty" />
+          <Route path="/tea-parties/{id:Int}" page={ScafoldTeaPartyTeaPartyPage} name="teaParties" />
+          <Route path="/tea-parties" page={ScafoldTeaPartyTeaPartiesPage} name="teaParties" />
         </Set>
       </Private>
       <Private unauthenticated="missingAuth" roles={Role.member}>

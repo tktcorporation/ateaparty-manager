@@ -7,7 +7,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { QUERY } from 'src/components/TeaParty/TeaPartiesCell'
+import { QUERY } from 'src/components/ScafoldTeaParty/TeaPartiesCell'
 import { timeTag, truncate } from 'src/lib/formatters'
 
 const DELETE_TEA_PARTY_MUTATION = gql`

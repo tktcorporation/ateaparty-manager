@@ -1,4 +1,4 @@
-import EditTeaPartyCell from 'src/components/TeaParty/EditTeaPartyCell'
+import EditTeaPartyCell from 'src/components/ScafoldTeaParty/EditTeaPartyCell'
 
 type TeaPartyPageProps = {
   id: number

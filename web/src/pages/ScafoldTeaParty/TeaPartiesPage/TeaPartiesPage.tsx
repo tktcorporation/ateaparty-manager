@@ -1,4 +1,4 @@
-import TeaPartiesCell from 'src/components/TeaParty/TeaPartiesCell'
+import TeaPartiesCell from 'src/components/ScafoldTeaParty/TeaPartiesCell'
 
 const TeaPartiesPage = () => {
   return <TeaPartiesCell />

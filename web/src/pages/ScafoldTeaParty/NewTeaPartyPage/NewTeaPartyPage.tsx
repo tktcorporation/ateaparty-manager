@@ -1,4 +1,4 @@
-import NewTeaParty from 'src/components/TeaParty/NewTeaParty'
+import NewTeaParty from 'src/components/ScafoldTeaParty/NewTeaParty'
 
 const NewTeaPartyPage = () => {
   return <NewTeaParty />

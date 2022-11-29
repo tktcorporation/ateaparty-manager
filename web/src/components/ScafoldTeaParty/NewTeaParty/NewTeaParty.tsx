@@ -4,7 +4,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import TeaPartyForm from 'src/components/TeaParty/TeaPartyForm'
+import TeaPartyForm from 'src/components/ScafoldTeaParty/TeaPartyForm'
 
 const CREATE_TEA_PARTY_MUTATION = gql`
   mutation CreateTeaPartyMutation($input: CreateTeaPartyInput!) {
