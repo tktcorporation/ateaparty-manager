@@ -1,53 +1,48 @@
 {
-    "name": "redwoodjs-v3-tutrial-2nd",
-    "image": "mcr.microsoft.com/devcontainers/universal:linux",
+  "name": "ateaparty-manager",
+  "image": "mcr.microsoft.com/devcontainers/universal:linux",
 
-    // Set *default* container specific settings.json values on container create.
-    "settings": {
-      "runOnSave.commands": [
-        {
-          "globMatch": "**/*",
-          "command": "docker-compose exec -T app /bin/bash -c \"bun rw lint --fix\"",
-          "runIn": "backend"
-        }
-      ]
-    },
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "runOnSave.commands": [
+      {
+        "globMatch": "**/*",
+        "command": "docker-compose exec -T app /bin/bash -c \"bun rw lint --fix\"",
+        "runIn": "backend"
+      }
+    ]
+  },
 
-    // Add the IDs of extensions you want installed when the container is created.
-    "extensions": [
-		"ms-azuretools.vscode-docker",
-		"GitHub.copilot",
-		"donjayamanne.githistory",
-		"eamodio.gitlens",
-		"mhutchie.git-graph",
-		"steoates.autoimport",
-		"pucelle.run-on-save",
-		"Prisma.prisma",
-		"WallabyJs.console-ninja",
-		"antfu.iconify",
-		"Atishay-Jain.All-Autocomplete",
-		"usernamehw.errorlens",
-		"GraphQL.vscode-graphql",
-		"dbaeumer.vscode-eslint",
-		"eamodio.gitlens",
-		"ofhumanbondage.react-proptypes-intellisense",
-		"mgmcdermott.vscode-language-babel",
-		"wix.vscode-import-cost",
-		"pflannery.vscode-versionlens",
-		"editorconfig.editorconfig",
-		"prisma.prisma",
-		"WakaTime.vscode-wakatime",
-		"bradlc.vscode-tailwindcss"
-	],
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "GitHub.copilot",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "steoates.autoimport",
+    "pucelle.run-on-save",
+    "Prisma.prisma",
+    "WallabyJs.console-ninja",
+    "antfu.iconify",
+    "Atishay-Jain.All-Autocomplete",
+    "usernamehw.errorlens",
+    "GraphQL.vscode-graphql",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "ofhumanbondage.react-proptypes-intellisense",
+    "mgmcdermott.vscode-language-babel",
+    "wix.vscode-import-cost",
+    "pflannery.vscode-versionlens",
+    "editorconfig.editorconfig",
+    "prisma.prisma",
+    "WakaTime.vscode-wakatime",
+    "bradlc.vscode-tailwindcss"
+  ],
 
-    // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    // "forwardPorts": [],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
 
-    // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "gh extension install davidraviv/gh-clean-branches",
-
-    // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-    "features": {
-      "homebrew": "latest"
-    }
-  }
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "gh extension install davidraviv/gh-clean-branches"
+}
