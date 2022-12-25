@@ -1,11 +1,8 @@
 import type { MiniConcertStaffWork } from '@prisma/client'
 
 import {
-  miniConcertStaffWorks,
   miniConcertStaffWork,
-  createMiniConcertStaffWork,
   updateMiniConcertStaffWork,
-  deleteMiniConcertStaffWork,
 } from './miniConcertStaffWorks'
 import type { StandardScenario } from './miniConcertStaffWorks.scenarios'
 
@@ -17,68 +14,39 @@ import type { StandardScenario } from './miniConcertStaffWorks.scenarios'
 
 describe('miniConcertStaffWorks', () => {
   scenario(
-    'returns all miniConcertStaffWorks',
-    async (scenario: StandardScenario) => {
-      const result = await miniConcertStaffWorks()
-
-      expect(result.length).toEqual(
-        Object.keys(scenario.miniConcertStaffWork).length
-      )
-    }
-  )
-
-  scenario(
     'returns a single miniConcertStaffWork',
     async (scenario: StandardScenario) => {
-      const result = await miniConcertStaffWork({
-        id: scenario.miniConcertStaffWork.one.id,
+      mockCurrentUser({
+        member: {
+          id: 1,
+          sub: 'String6995051',
+          updatedAt: new Date('2022-11-03T16:59:21.198Z'),
+          createdAt: new Date('2022-11-03T16:59:21.198Z'),
+        },
       })
+      const result = await miniConcertStaffWork()
 
       expect(result).toEqual(scenario.miniConcertStaffWork.one)
     }
   )
 
   scenario(
-    'creates a miniConcertStaffWork',
-    async (scenario: StandardScenario) => {
-      const result = await createMiniConcertStaffWork({
-        input: {
-          memberId: scenario.miniConcertStaffWork.two.memberId,
-          updatedAt: '2022-11-03T16:59:21.135Z',
-        },
-      })
-
-      expect(result.memberId).toEqual(
-        scenario.miniConcertStaffWork.two.memberId
-      )
-      expect(result.updatedAt).toEqual(new Date('2022-11-03T16:59:21.135Z'))
-    }
-  )
-
-  scenario(
     'updates a miniConcertStaffWork',
     async (scenario: StandardScenario) => {
-      const original = (await miniConcertStaffWork({
-        id: scenario.miniConcertStaffWork.one.id,
-      })) as MiniConcertStaffWork
+      mockCurrentUser({
+        member: {
+          id: 1,
+          sub: 'String6995051',
+          updatedAt: new Date('2022-11-03T16:59:21.198Z'),
+          createdAt: new Date('2022-11-03T16:59:21.198Z'),
+        },
+      })
+      ;(await miniConcertStaffWork()) as MiniConcertStaffWork
       const result = await updateMiniConcertStaffWork({
-        id: original.id,
-        input: { updatedAt: '2022-11-04T16:59:21.135Z' },
+        input: { mc: scenario.miniConcertStaffWork.one.mc },
       })
 
-      expect(result.updatedAt).toEqual(new Date('2022-11-04T16:59:21.135Z'))
-    }
-  )
-
-  scenario(
-    'deletes a miniConcertStaffWork',
-    async (scenario: StandardScenario) => {
-      const original = (await deleteMiniConcertStaffWork({
-        id: scenario.miniConcertStaffWork.one.id,
-      })) as MiniConcertStaffWork
-      const result = await miniConcertStaffWork({ id: original.id })
-
-      expect(result).toEqual(null)
+      expect(result.mc).toEqual(scenario.miniConcertStaffWork.one.mc)
     }
   )
 })

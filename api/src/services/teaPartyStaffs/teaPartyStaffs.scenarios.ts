@@ -26,8 +26,8 @@ export const standard = defineScenario<Prisma.TeaPartyStaffCreateArgs>({
         updatedAt: '2022-11-14T17:23:05.506Z',
         teaParty: {
           create: {
-            scheduledAt: '2022-11-14T17:23:05.506Z',
-            updatedAt: '2022-11-14T17:23:05.506Z',
+            scheduledAt: '2022-11-21T17:23:05.506Z',
+            updatedAt: '2022-11-21T17:23:05.506Z',
           },
         },
         mcStaff: {

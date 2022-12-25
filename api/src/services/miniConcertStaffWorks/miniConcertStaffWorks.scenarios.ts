@@ -9,6 +9,7 @@ export const standard = defineScenario<Prisma.MiniConcertStaffWorkCreateArgs>({
         updatedAt: '2022-11-03T16:59:21.198Z',
         member: {
           create: {
+            id: 1,
             sub: 'String6995051',
             updatedAt: '2022-11-03T16:59:21.198Z',
           },
@@ -20,6 +21,7 @@ export const standard = defineScenario<Prisma.MiniConcertStaffWorkCreateArgs>({
         updatedAt: '2022-11-03T16:59:21.198Z',
         member: {
           create: {
+            id: 2,
             sub: 'String8661145',
             updatedAt: '2022-11-03T16:59:21.198Z',
           },

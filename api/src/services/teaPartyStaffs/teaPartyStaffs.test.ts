@@ -1,5 +1,8 @@
 import type { TeaPartyStaff } from '@prisma/client'
 
+import { db } from 'src/lib/db'
+
+import { teaParty } from './../teaParties/teaParties'
 import {
   teaPartyStaffs,
   teaPartyStaff,
@@ -32,17 +35,20 @@ describe('teaPartyStaffs', () => {
   )
 
   scenario('creates a teaPartyStaff', async (scenario: StandardScenario) => {
+    const teaParty = await db.teaParty.create({
+      data: {
+        scheduledAt: '2021-09-01T00:00:00Z',
+      },
+    })
     const result = await createTeaPartyStaff({
       input: {
-        teaPartyId: scenario.teaPartyStaff.two.teaPartyId,
+        teaPartyId: teaParty.id,
         mcStaffId: scenario.teaPartyStaff.two.mcStaffId,
-        updatedAt: '2022-11-14T17:23:05.462Z',
       },
     })
 
-    expect(result.teaPartyId).toEqual(scenario.teaPartyStaff.two.teaPartyId)
+    expect(result.teaPartyId).toEqual(teaParty.id)
     expect(result.mcStaffId).toEqual(scenario.teaPartyStaff.two.mcStaffId)
-    expect(result.updatedAt).toEqual(new Date('2022-11-14T17:23:05.462Z'))
   })
 
   scenario('updates a teaPartyStaff', async (scenario: StandardScenario) => {
@@ -51,10 +57,17 @@ describe('teaPartyStaffs', () => {
     })) as TeaPartyStaff
     const result = await updateTeaPartyStaff({
       id: original.id,
-      input: { updatedAt: '2022-11-15T17:23:05.462Z' },
+      input: {
+        teaPartyId: original.teaPartyId,
+        mcStaffId: original.mcStaffId,
+        mcSubStaffId: original.mcSubStaffId,
+      },
     })
 
-    expect(result.updatedAt).toEqual(new Date('2022-11-15T17:23:05.462Z'))
+    expect(result.id).toEqual(original.id)
+    expect(result.teaPartyId).toEqual(original.teaPartyId)
+    expect(result.mcStaffId).toEqual(original.mcStaffId)
+    expect(result.mcSubStaffId).toEqual(original.mcSubStaffId)
   })
 
   scenario('deletes a teaPartyStaff', async (scenario: StandardScenario) => {
