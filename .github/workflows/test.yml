@@ -43,7 +43,7 @@ jobs:
       - if: always()
         name: test api
         env:
-          DISCORD_BOT_TOKEN={{ secrets.DEV_DISCORD_BOT_TOKEN }
+          DISCORD_BOT_TOKEN=${{ secrets.DEV_DISCORD_BOT_TOKEN }}
         run: docker-compose exec -T app /bin/bash -c "yarn rw test api --no-watch"
 
       - if: always()
