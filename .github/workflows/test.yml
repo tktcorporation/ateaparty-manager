@@ -41,8 +41,12 @@ jobs:
         run: docker-compose exec -T app /bin/bash -c "yarn rw lint"
 
       - if: always()
-        name: test
-        run: docker-compose exec -T app /bin/bash -c "yarn rw test --no-watch"
+        name: test api
+        run: docker-compose exec -T app /bin/bash -c "yarn rw test api --no-watch"
+
+      - if: always()
+        name: test web
+        run: docker-compose exec -T app /bin/bash -c "yarn rw test web --no-watch"
 
   dependabot:
     runs-on: ubuntu-latest
