@@ -1,6 +1,12 @@
 import { getGuildMembers, isGuildMember } from './discord'
 
 describe('discord', () => {
+  it('env vars are set', () => {
+    // 存在する
+    expect(process.env.DISCORD_BOT_TOKEN).not.toEqual(null)
+    // 一定の長さ以上
+    expect(process.env.DISCORD_BOT_TOKEN?.length).toBeGreaterThan(10)
+  })
   it('getGuildMembers', async () => {
     const result = await getGuildMembers()
 
