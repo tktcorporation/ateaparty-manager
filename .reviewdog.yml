@@ -1,12 +1,7 @@
 runner:
   rwlint:
     cmd: docker-compose exec -T app /bin/bash -c "yarn rw lint"
-    errorformat:
-      - '%-P%f'
-      - '%#%l:%c %# %trror  %m'
-      - '%#%l:%c %# %tarning  %m'
-      - '%-Q'
-      - '%-G%.%#'
+    format: rdjson
     level: warning
   rwtest:
     cmd: docker-compose exec -T app /bin/bash -c "yarn rw test --no-watch"
