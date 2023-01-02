@@ -23,7 +23,7 @@ jobs:
         # Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
 
-      - run: docker-compose run app /bin/bash -c "bun install && bun rw lint && bun rw test"
+      - run: docker-compose run app /bin/bash -c "yarn && yarn rw lint && yarn rw test"
 
   dependabot:
     runs-on: ubuntu-latest
