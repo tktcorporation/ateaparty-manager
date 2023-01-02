@@ -38,20 +38,11 @@ jobs:
 
       - if: always()
         name: lint
-        run: reviewdog -runners rwlint -diff="git diff FETCH_HEAD" -reporter=github-pr-review
+        run: docker-compose exec -T app /bin/bash -c "yarn rw lint"
 
       - if: always()
         name: test
-        run: reviewdog -runners rwtest -diff="git diff FETCH_HEAD" -reporter=github-pr-review
-
-      - if: always()
-        name: misspell
-        uses: reviewdog/action-misspell@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          filter_mode: diff_context
-          fail_on_error: true
+        run: docker-compose exec -T app /bin/bash -c "yarn rw test"
 
   dependabot:
     runs-on: ubuntu-latest
