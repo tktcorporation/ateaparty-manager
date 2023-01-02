@@ -8,10 +8,18 @@ permissions:
   contents: write
 
 jobs:
-  build-and-test:
+  lint-and-test:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
+    env:
+      REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
       # Pull the latest image to build, and avoid caching pull-only images.
       # (docker pull is faster than caching in most cases.)
       - run: docker-compose pull
@@ -23,13 +31,34 @@ jobs:
         # Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
 
-      - run: docker-compose run app /bin/bash -c "yarn && yarn rw lint && yarn rw test"
+      - name: setup container
+        run: docker-compose up -d
+
+      - name: setup yarn
+        run: docker-compose exec -T app /bin/bash -c "yarn" | reviewdog -reporter=github-pr-review
+
+      - if: always()
+        name: lint
+        run: docker-compose exec -T app /bin/bash -c "yarn rw lint" | reviewdog -reporter=github-pr-review
+
+      - if: always()
+        name: test
+        run: docker-compose exec -T app /bin/bash -c "yarn rw test" | reviewdog -reporter=github-pr-review
+
+      - if: always()
+        name: misspell
+        uses: reviewdog/action-misspell@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          filter_mode: diff_context
+          fail_on_error: true
 
   dependabot:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
-    needs: build-and-test
+    needs: lint-and-test
     steps:
       - name: Dependabot metadata
         id: metadata
