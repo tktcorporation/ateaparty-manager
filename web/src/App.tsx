@@ -12,7 +12,7 @@ import './index.css'
 
 const auth0 = new Auth0Client({
   domain: process.env.AUTH0_DOMAIN,
-  client_id: process.env.AUTH0_CLIENT_ID  ,
+  client_id: process.env.AUTH0_CLIENT_ID,
   redirect_uri: window.location.href,
 
   // ** NOTE ** Storing tokens in browser local storage provides persistence across page refreshes and browser tabs.
