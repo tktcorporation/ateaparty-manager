@@ -1,6 +1,5 @@
 name: Test, automerge(dependabot)
 on:
-  push:
   pull_request:
 
 permissions:
@@ -35,7 +34,7 @@ jobs:
         run: docker-compose up -d
 
       - name: setup yarn
-        run: docker-compose exec -T app /bin/bash -c "yarn" | reviewdog -reporter=github-pr-review
+        run: docker-compose exec -T app /bin/bash -c "yarn"
 
       - if: always()
         name: lint

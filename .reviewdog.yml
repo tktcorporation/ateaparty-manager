@@ -7,6 +7,7 @@ runner:
       - '%#%l:%c %# %tarning  %m'
       - '%-Q'
       - '%-G%.%#'
+    level: warning
   rwtest:
     cmd: docker-compose exec -T app /bin/bash -c "yarn rw test --no-watch"
     errorformat:
@@ -15,3 +16,4 @@ runner:
       - '%Z%.%#at %.%# (%f:%l:%c)'
       - '%C%.%#'
       - '%-G%.%#'
+    level: warning
