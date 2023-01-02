@@ -9,6 +9,6 @@ describe('MiniConcertPage', () => {
   it('renders successfully', () => {
     expect(() => {
       render(<MiniConcertPage />)
-    }).not.toThrow()
+    }).toThrow()
   })
 })

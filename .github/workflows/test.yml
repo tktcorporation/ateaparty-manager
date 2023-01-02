@@ -39,11 +39,11 @@ jobs:
 
       - if: always()
         name: lint
-        run: docker-compose exec -T app /bin/bash -c "yarn rw lint" | reviewdog -reporter=github-pr-review
+        run: reviewdog -runners rwlint -diff="git diff FETCH_HEAD" -reporter=github-pr-review -fail-on-error
 
       - if: always()
         name: test
-        run: docker-compose exec -T app /bin/bash -c "yarn rw test" | reviewdog -reporter=github-pr-review
+        run: reviewdog -runners rwtest -diff="git diff FETCH_HEAD" -reporter=github-pr-review -fail-on-error
 
       - if: always()
         name: misspell
