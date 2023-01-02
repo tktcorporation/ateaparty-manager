@@ -2,7 +2,6 @@ import type { TeaPartyStaff } from '@prisma/client'
 
 import { db } from 'src/lib/db'
 
-import { teaParty } from './../teaParties/teaParties'
 import {
   teaPartyStaffs,
   teaPartyStaff,

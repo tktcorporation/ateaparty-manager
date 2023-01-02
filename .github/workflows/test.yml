@@ -1,6 +1,5 @@
 name: Test, automerge(dependabot)
 on:
-  push:
   pull_request:
 
 permissions:
@@ -8,10 +7,18 @@ permissions:
   contents: write
 
 jobs:
-  build-and-test:
+  lint-and-test:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
+    env:
+      REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
       # Pull the latest image to build, and avoid caching pull-only images.
       # (docker pull is faster than caching in most cases.)
       - run: docker-compose pull
@@ -23,13 +30,25 @@ jobs:
         # Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
 
-      - run: docker-compose run app /bin/bash -c "bun install && bun rw lint && bun rw test"
+      - name: setup container
+        run: docker-compose up -d
+
+      - name: setup yarn
+        run: docker-compose exec -T app /bin/bash -c "yarn"
+
+      - if: always()
+        name: lint
+        run: docker-compose exec -T app /bin/bash -c "yarn rw lint"
+
+      - if: always()
+        name: test
+        run: docker-compose exec -T app /bin/bash -c "yarn rw test --no-watch"
 
   dependabot:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
-    needs: build-and-test
+    needs: lint-and-test
     steps:
       - name: Dependabot metadata
         id: metadata
