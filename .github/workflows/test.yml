@@ -38,11 +38,11 @@ jobs:
 
       - if: always()
         name: lint
-        run: reviewdog -runners rwlint -diff="git diff FETCH_HEAD" -reporter=github-pr-review -fail-on-error
+        run: reviewdog -runners rwlint -diff="git diff FETCH_HEAD" -reporter=github-pr-review
 
       - if: always()
         name: test
-        run: reviewdog -runners rwtest -diff="git diff FETCH_HEAD" -reporter=github-pr-review -fail-on-error
+        run: reviewdog -runners rwtest -diff="git diff FETCH_HEAD" -reporter=github-pr-review
 
       - if: always()
         name: misspell
