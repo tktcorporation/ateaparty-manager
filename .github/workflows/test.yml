@@ -42,7 +42,7 @@ jobs:
 
       - if: always()
         name: test
-        run: docker-compose exec -T app /bin/bash -c "yarn rw test"
+        run: docker-compose exec -T app /bin/bash -c "yarn rw test --no-watch"
 
   dependabot:
     runs-on: ubuntu-latest
