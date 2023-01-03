@@ -1,3 +1,5 @@
+import { Role } from 'src/lib/auth'
+
 export const schema = gql`
   type TeaPartyStaff {
     id: Int!
@@ -12,8 +14,8 @@ export const schema = gql`
   }
 
   type Query {
-    teaPartyStaffs: [TeaPartyStaff!]! @requireAuth
-    teaPartyStaff(id: Int!): TeaPartyStaff @requireAuth
+    teaPartyStaffs: [TeaPartyStaff!]! @requireAuth(roles: "${Role.member}")
+    teaPartyStaff(id: Int!): TeaPartyStaff @requireAuth(roles: "${Role.member}")
   }
 
   input CreateTeaPartyStaffInput {

@@ -7,11 +7,15 @@ export const QUERY = gql`
     teaParties {
       id
       scheduledAt
-      mcStaff {
-        name
-      }
-      mcSubStaff {
-        name
+      teaPartyStaff {
+        mcStaff {
+          id
+          name
+        }
+        mcSubStaff {
+          id
+          name
+        }
       }
     }
   }

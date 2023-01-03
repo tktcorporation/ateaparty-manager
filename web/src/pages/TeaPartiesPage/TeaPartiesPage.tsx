@@ -1,20 +1,11 @@
-import {
-  MicrophoneIcon,
-  CalendarDaysIcon,
-  PlusIcon,
-} from '@heroicons/react/24/outline'
+import { MicrophoneIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
-import TeaPartiesCell from 'src/components/TeaPartiesCell'
+import TeaPartyCell from 'src/components/TeaPartyCell'
 
 const TeaPartiesPage = () => {
-  const nextTeaParty = {
-    id: 1,
-    date: new Date(),
-    mc: 'Taro',
-  }
   const teaParties = [
     {
       id: 1,
@@ -34,24 +25,11 @@ const TeaPartiesPage = () => {
       <div className="align-center flex flex-col flex-wrap justify-center text-center">
         <h1 className="text-3xl">次のお茶会は</h1>
         <div className="mt-4 text-xl">
-          <p className="inline-flex items-center">
-            <CalendarDaysIcon className="h-5" />
-            <span className="ml-1">日付</span>
-          </p>
-          <p>{nextTeaParty.date.toLocaleDateString('ja-JP')}</p>
-          <p className="mt-2 inline-flex items-center">
-            <MicrophoneIcon className="h-5" />
-            <span className="ml-1">司会</span>
-          </p>
-          <p>{nextTeaParty.mc || 'まだ決まってないよ！'}</p>
-          <button className="btn btn-outline btn-sm mt-3">
-            <Link to={routes.teaParty()}>変更</Link>
-          </button>
+          <TeaPartyCell id={1} />
         </div>
       </div>
 
       <div className="align-center mt-8 flex flex-col justify-center text-center">
-        <TeaPartiesCell />
         <h2 className="inline-flex items-center self-center text-2xl">
           <span>次回以降</span>
           <button className="btn btn-outline btn-primary btn-circle btn-xs ml-3">

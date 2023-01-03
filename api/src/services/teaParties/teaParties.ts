@@ -9,6 +9,7 @@ export const teaParties: QueryResolvers['teaParties'] = () => {
 export const teaParty: QueryResolvers['teaParty'] = ({ id }) => {
   return db.teaParty.findUnique({
     where: { id },
+    include: { teaPartyStaff: true },
   })
 }
 
@@ -29,6 +30,36 @@ export const updateTeaParty: MutationResolvers['updateTeaParty'] = ({
     where: { id },
   })
 }
+
+export const updateTeaPartyWithStaff: MutationResolvers['updateTeaPartyWithStaff'] =
+  ({ id, input }) => {
+    const teaPartyStaffInput = {
+      mcStaff: undefined,
+      mcSubStaff: undefined,
+    }
+    if (input.mcStaffId !== undefined) {
+      teaPartyStaffInput.mcStaff =
+        input.mcStaffId === null ? null : { connect: { id: input.mcStaffId } }
+    }
+    if (input.mcSubStaffId !== undefined) {
+      teaPartyStaffInput.mcSubStaff =
+        input.mcSubStaffId === null
+          ? null
+          : { connect: { id: input.mcSubStaffId } }
+    }
+    return db.teaParty.update({
+      data: {
+        scheduledAt: input.scheduledAt,
+        teaPartyStaff: {
+          upsert: {
+            create: teaPartyStaffInput,
+            update: teaPartyStaffInput,
+          },
+        },
+      },
+      where: { id },
+    })
+  }
 
 export const deleteTeaParty: MutationResolvers['deleteTeaParty'] = ({ id }) => {
   return db.teaParty.delete({
