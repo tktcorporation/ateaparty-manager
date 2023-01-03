@@ -24,7 +24,11 @@ describe('members', () => {
 
   scenario('creates a member', async () => {
     const result = await createMember({
-      input: { sub: 'String9957165' },
+      input: {
+        sub: 'String9957165',
+        name: 'String',
+        pictureUrl: 'https://example.com/image.jpg',
+      },
     })
 
     expect(result.sub).toEqual('String9957165')

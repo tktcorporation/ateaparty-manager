@@ -21,12 +21,12 @@ model TeaParty {
 model TeaPartyStaff {
   id Int @id @default(autoincrement())
 
-  teaPartyId  Int      @unique
-  teaParty    TeaParty @relation(fields: [teaPartyId], references: [id])
-  mcStaffId  Int
-  mcStaff    Member   @relation("McStaff", fields: [mcStaffId], references: [id])
-  mcSubStaffId   Int?
-  mcSubStaff Member?  @relation("McSubStaff", fields: [mcSubStaffId], references: [id])
+  teaPartyId   Int      @unique
+  teaParty     TeaParty @relation(fields: [teaPartyId], references: [id])
+  mcStaffId    Int
+  mcStaff      Member   @relation("McStaff", fields: [mcStaffId], references: [id])
+  mcSubStaffId Int?
+  mcSubStaff   Member?  @relation("McSubStaff", fields: [mcSubStaffId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -43,6 +43,8 @@ model Member {
   id Int @id @default(autoincrement())
 
   sub                  String                @unique
+  name                 String
+  pictureUrl           String
   miniConcertStaffWork MiniConcertStaffWork?
   teaPartyStaff        TeaPartyStaff[]       @relation("McStaff")
   teaPartySubStaff     TeaPartyStaff[]       @relation("McSubStaff")

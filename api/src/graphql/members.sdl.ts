@@ -5,6 +5,9 @@ export const schema = gql`
     id: Int!
 
     sub: String!
+    name: String!
+    pictureUrl: String!
+
     MiniConcertStaffWork: MiniConcertStaffWork
 
     createdAt: DateTime!
@@ -18,16 +21,20 @@ export const schema = gql`
 
   input CreateMemberInput {
     sub: String!
+    name: String!
+    pictureUrl: String!
   }
 
   input UpdateMemberInput {
     sub: String
+    name: String
+    pictureUrl: String
   }
 
   type Mutation {
     createMember(input: CreateMemberInput!): Member! @requireAuth(roles: "${Role.admin}")
     updateMember(id: Int!, input: UpdateMemberInput!): Member! @requireAuth(roles: "${Role.admin}")
     # deleteMember(id: Int!): Member! @requireAuth(roles: "${Role.admin}")
-    upsertMember(sub: String!): Member! @requireAuth(roles: "${Role.admin}")
+    upsertMember(input: CreateMemberInput!): Member! @requireAuth(roles: "${Role.admin}")
   }
 `

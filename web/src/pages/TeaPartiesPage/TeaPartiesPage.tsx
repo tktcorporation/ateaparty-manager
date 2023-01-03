@@ -7,17 +7,22 @@ import {
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
+import TeaPartiesCell from 'src/components/TeaPartiesCell'
+
 const TeaPartiesPage = () => {
   const nextTeaParty = {
+    id: 1,
     date: new Date(),
     mc: 'Taro',
   }
   const teaParties = [
     {
+      id: 1,
       date: new Date(),
       mc: 'Taro',
     },
     {
+      id: 2,
       date: new Date(),
       mc: 'Jiro',
     },
@@ -46,6 +51,7 @@ const TeaPartiesPage = () => {
       </div>
 
       <div className="align-center mt-8 flex flex-col justify-center text-center">
+        <TeaPartiesCell />
         <h2 className="inline-flex items-center self-center text-2xl">
           <span>次回以降</span>
           <button className="btn btn-outline btn-primary btn-circle btn-xs ml-3">
@@ -56,7 +62,7 @@ const TeaPartiesPage = () => {
         </h2>
         <ul className="mt-4 grid grid-cols-3 gap-4">
           {teaParties.map((teaParty) => (
-            <li key={teaParty.date.toISOString()}>
+            <li key={teaParty.id}>
               <p className="text-lg">
                 {teaParty.date.toLocaleDateString('ja-JP')}
               </p>

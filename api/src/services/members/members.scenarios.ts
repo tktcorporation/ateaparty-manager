@@ -4,8 +4,23 @@ import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.MemberCreateArgs>({
   member: {
-    one: { data: { sub: 'String9873488', updatedAt: '2022-10-31T21:35:26Z' } },
-    two: { data: { sub: 'String7102107', updatedAt: '2022-10-31T21:35:26Z' } },
+    one: {
+      data: {
+        id: undefined,
+        sub: 'String9873488',
+        name: 'Taro',
+        pictureUrl: 'https://example.com/image.jpg',
+        updatedAt: '2022-10-31T21:35:26Z',
+      },
+    },
+    two: {
+      data: {
+        sub: 'String7102107',
+        name: 'Jiro',
+        pictureUrl: 'https://example.com/image2.jpg',
+        updatedAt: '2022-11-01T21:35:26Z',
+      },
+    },
   },
 })
 

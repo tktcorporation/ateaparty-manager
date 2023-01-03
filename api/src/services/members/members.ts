@@ -14,17 +14,17 @@ export const member: QueryResolvers['member'] = ({ id }) => {
 
 // find or create
 export const upsertMember: MutationResolvers['upsertMember'] = async ({
-  sub,
+  input,
 }) => {
   const member = await db.member.findUnique({
-    where: { sub },
+    where: { sub: input.sub },
   })
 
   if (member) {
     return member
   }
 
-  return createMember({ input: { sub } })
+  return createMember({ input })
 }
 
 export const createMember: MutationResolvers['createMember'] = async ({
