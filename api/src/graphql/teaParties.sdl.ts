@@ -10,6 +10,7 @@ export const schema = gql`
   type Query {
     teaParties: [TeaParty!]! @requireAuth(roles: "${Role.member}")
     teaParty(id: Int!): TeaParty @requireAuth(roles: "${Role.member}")
+    nextTeaParty: TeaParty @requireAuth(roles: "${Role.member}")
   }
 
   input CreateTeaPartyInput {

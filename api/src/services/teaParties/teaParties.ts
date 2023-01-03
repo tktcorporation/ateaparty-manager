@@ -13,6 +13,15 @@ export const teaParty: QueryResolvers['teaParty'] = ({ id }) => {
   })
 }
 
+// 次回開催のお茶会を取得する
+export const nextTeaParty: QueryResolvers['nextTeaParty'] = () => {
+  return db.teaParty.findFirst({
+    where: { scheduledAt: { gte: new Date() } },
+    orderBy: { scheduledAt: 'asc' },
+    include: { teaPartyStaff: true },
+  })
+}
+
 export const createTeaParty: MutationResolvers['createTeaParty'] = ({
   input,
 }) => {

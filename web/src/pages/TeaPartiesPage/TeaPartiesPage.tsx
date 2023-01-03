@@ -3,7 +3,7 @@ import { MicrophoneIcon, PlusIcon } from '@heroicons/react/24/outline'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
-import TeaPartyCell from 'src/components/TeaPartyCell'
+import NextTeaPartyCell from 'src/components/NextTeaPartyCell'
 
 const TeaPartiesPage = () => {
   const teaParties = [
@@ -25,7 +25,7 @@ const TeaPartiesPage = () => {
       <div className="align-center flex flex-col flex-wrap justify-center text-center">
         <h1 className="text-3xl">次のお茶会は</h1>
         <div className="mt-4 text-xl">
-          <TeaPartyCell id={1} />
+          <NextTeaPartyCell />
         </div>
       </div>
 
