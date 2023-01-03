@@ -22,8 +22,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createTeaParty(input: CreateTeaPartyInput!): TeaParty! @requireAuth(roles: "${Role.confirmed}")
-    updateTeaParty(id: Int!, input: UpdateTeaPartyInput!): TeaParty! @requireAuth(roles: "${Role.confirmed}")
+    createTeaParty(input: CreateTeaPartyInput!): TeaParty! @requireAuth(roles: "${Role.member}")
+    updateTeaParty(id: Int!, input: UpdateTeaPartyInput!): TeaParty! @requireAuth(roles: "${Role.member}")
     deleteTeaParty(id: Int!): TeaParty! @requireAuth(roles: "${Role.confirmed}")
   }
 `

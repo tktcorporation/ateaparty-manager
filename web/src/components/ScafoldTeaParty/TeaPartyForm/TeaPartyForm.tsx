@@ -5,7 +5,7 @@ import {
   FormError,
   FieldError,
   Label,
-  DatetimeLocalField,
+  DateField,
   Submit,
 } from '@redwoodjs/forms'
 import type { RWGqlError } from '@redwoodjs/forms'
@@ -48,7 +48,7 @@ const TeaPartyForm = (props: TeaPartyFormProps) => {
           Scheduled at
         </Label>
 
-        <DatetimeLocalField
+        <DateField
           name="scheduledAt"
           defaultValue={formatDatetime(props.teaParty?.scheduledAt)}
           className="rw-input"
