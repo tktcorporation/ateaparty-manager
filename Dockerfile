@@ -9,7 +9,3 @@ RUN apt-get update && \
     git
 
 RUN npm i -g npm pnpm
-
-RUN curl -fsSL https://bun.sh/install | bash
-RUN echo 'export BUN_INSTALL="$HOME/.bun"' >> ~/.bashrc
-RUN echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> ~/.bashrc
