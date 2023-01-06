@@ -15,10 +15,7 @@ import Symbol from 'src/assets/Logo_symbol.svg'
 import UserAuthTools from 'src/components/UserAuthTools/UserAuthTools'
 
 const LandingLayout = ({ children }: LandingLayoutProps) => {
-  const navigation = [
-    { name: '近日公開..', href: routes.home() },
-    { name: '近日公開...', href: routes.home() },
-  ]
+  const navigation = []
   const { loading, isAuthenticated, logIn, logOut } = useAuth()
   return (
     <>
