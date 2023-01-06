@@ -1,5 +1,4 @@
 import { MetaTags } from '@redwoodjs/web'
-import { Toaster } from '@redwoodjs/web/dist/toast'
 
 import MiniConcertStaffWorkManagementCell from 'src/components/MiniConcert/MiniConcertStaffWorkManagementCell'
 import MiniConcertStaffWorkMcCell from 'src/components/MiniConcert/MiniConcertStaffWorkMcCell'
@@ -10,8 +9,6 @@ const MiniConcertPage = () => {
   return (
     <>
       <MetaTags title="MiniConcert" description="MiniConcert page" />
-
-      <Toaster />
 
       <div className="flex h-full w-full flex-col items-center justify-center">
         <h1 className="text-center text-4xl font-bold">ミニコンサート</h1>

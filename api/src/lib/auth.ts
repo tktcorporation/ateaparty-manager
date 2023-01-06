@@ -7,7 +7,7 @@ import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 import { isGuildMember } from 'src/lib/discord/discord'
 import { logger } from 'src/lib/logger'
 import { confirmedSubBySub } from 'src/services/confirmedSubs/confirmedSubs'
-import { upsertMember } from 'src/services/members/members'
+import { memberBySub } from 'src/services/members/members'
 
 export enum Role {
   admin = 'admin',
@@ -23,6 +23,9 @@ export type RoleType = keyof typeof Role
 type RedwoodUser = Record<string, unknown> & {
   roles?: string[]
   member?: Member
+  sub: string
+  name: string
+  pictureUrl: string
 }
 
 /**
@@ -59,31 +62,25 @@ export const getCurrentUser = async (
   const roles: AllowedRoles =
     decodedRoles && Array.isArray(decodedRoles) ? decodedRoles : []
 
-  const { sub, name, pictureUrl: picture } = await getUserInfoFromAuth0(token)
+  const { sub, name, pictureUrl } = await getUserInfoFromAuth0(token)
 
   const confirmedSub = await confirmedSubBySub({ sub })
   confirmedSub && roles.push(Role.confirmed)
 
-  const { member, role } = await getOrCreateMemberAndRoleBySub(
-    sub,
-    name,
-    picture
-  )
+  const { member, role } = await getMemberAndRoleBySub(sub)
   role && roles.push(role)
 
   logger.debug(`${__filename}: roles ${roles}`)
 
   if (roles) {
-    return { ...decoded, member, roles }
+    return { ...decoded, member, roles, name, pictureUrl, sub }
   }
 
-  return { ...decoded }
+  return { ...decoded, name, pictureUrl, sub }
 }
 
-const getOrCreateMemberAndRoleBySub = async (
-  sub: string,
-  name: string,
-  pictureUrl: string
+const getMemberAndRoleBySub = async (
+  sub: string
 ): Promise<{
   member: Member | undefined
   role: RoleType | undefined
@@ -91,15 +88,11 @@ const getOrCreateMemberAndRoleBySub = async (
   const userId = sub.split('|')[2]
   const isMember = await isGuildMember(userId)
   const member = isMember
-    ? ((await upsertMember({
-        input: {
-          sub,
-          name,
-          pictureUrl,
-        },
+    ? ((await memberBySub({
+        sub,
       })) as Member)
     : undefined
-  const role = isMember ? Role.member : undefined
+  const role = member ? Role.member : undefined
   return { member, role }
 }
 

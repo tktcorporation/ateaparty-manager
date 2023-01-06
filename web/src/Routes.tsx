@@ -45,11 +45,11 @@ const Routes = () => {
           <Route path="/tea-parties/{id:Int}/edit" page={EditTeaPartyPage} name="editTeaParty" />
         </Set>
       </Private>
-      <Private unauthenticated="home">
-        <Route path="/missing-auth" page={MissingAuthPage} name="missingAuth" />
-      </Private>
       <Set wrap={LandingLayout}>
         <Route path="/" page={HomePage} name="home" />
+        <Private unauthenticated="home">
+          <Route path="/missing-auth" page={MissingAuthPage} name="missingAuth" />
+        </Private>
       </Set>
       <Route notfound page={NotFoundPage} />
     </Router>

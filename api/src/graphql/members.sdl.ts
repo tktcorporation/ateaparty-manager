@@ -17,9 +17,10 @@ export const schema = gql`
   type Query {
     members: [Member!]! @requireAuth(roles: "${Role.admin}")
     member(id: Int!): Member @requireAuth(roles: "${Role.admin}")
+    memberBySub(sub: String!): Member @requireAuth
   }
 
-  input CreateMemberInput {
+  input UpsertMemberInput {
     sub: String!
     name: String!
     pictureUrl: String!
@@ -32,9 +33,9 @@ export const schema = gql`
   }
 
   type Mutation {
-    createMember(input: CreateMemberInput!): Member! @requireAuth(roles: "${Role.admin}")
+    createMember: Member! @requireAuth
     updateMember(id: Int!, input: UpdateMemberInput!): Member! @requireAuth(roles: "${Role.admin}")
     # deleteMember(id: Int!): Member! @requireAuth(roles: "${Role.admin}")
-    upsertMember(input: CreateMemberInput!): Member! @requireAuth(roles: "${Role.admin}")
+    upsertMember(input: UpsertMemberInput!): Member! @requireAuth(roles: "${Role.admin}")
   }
 `

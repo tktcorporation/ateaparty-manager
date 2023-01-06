@@ -10,6 +10,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+import { Toaster } from '@redwoodjs/web/dist/toast'
 
 import Symbol from 'src/assets/Logo_symbol.svg'
 import UserAuthTools from 'src/components/UserAuthTools/UserAuthTools'
@@ -20,6 +21,7 @@ const LandingLayout = ({ children }: LandingLayoutProps) => {
   return (
     <>
       <MetaTags title="Home" description="Home page" />
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <div className="mx-auto flex justify-center">
         <div className="flex w-full flex-col md:max-w-screen-2xl">
           <Popover>

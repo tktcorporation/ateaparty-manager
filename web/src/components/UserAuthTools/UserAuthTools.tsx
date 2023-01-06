@@ -15,11 +15,13 @@ const UserAuthTools = ({
   return (
     <button
       className={
-        'btn btn-outline btn-primary inline-flex items-center px-4 py-2 transition' +
+        'btn btn-outline inline-flex items-center px-4 py-2 transition' +
         ' ' +
         (loading ? 'loading' : '') +
         ' ' +
-        `text-${size}`
+        `btn-${size}` +
+        ' ' +
+        (isAuthenticated ? '' : 'btn-primary')
       }
       disabled={loading}
       onClick={async () => {
@@ -33,7 +35,7 @@ const UserAuthTools = ({
         }
       }}
     >
-      {!loading ? (isAuthenticated ? 'ログアウト' : 'ログイン') : 'LOADING'}
+      {isAuthenticated ? 'ログアウト' : 'ログイン'}
     </button>
   )
 }
