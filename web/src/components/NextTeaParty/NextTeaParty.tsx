@@ -26,6 +26,11 @@ const NextTeaParty = ({
         <span className="ml-1">司会</span>
       </p>
       <p>{mcStaffName || 'まだ決まってないよ！'}</p>
+      <p className="mt-2 inline-flex items-center">
+        <MicrophoneIcon className="h-5" />
+        <span className="ml-1">サブ司会</span>
+      </p>
+      <p>{mcSubStaffName || 'まだ決まってないよ！'}</p>
       <button className="btn btn-outline btn-sm mt-3">
         <Link
           to={routes.editTeaParty({

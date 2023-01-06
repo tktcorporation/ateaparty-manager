@@ -8,11 +8,11 @@ const LoginButton = ({ loading, logIn, label }: LoginButtonProps) => {
     <button
       type="button"
       className={
-        'inline-flex items-center rounded-md border-2 border-primary-400 px-4 py-2 text-xl font-medium text-primary transition' +
+        'border-primary-400 inline-flex items-center rounded-md border-2 px-4 py-2 text-xl font-medium text-primary transition' +
         ' ' +
         (loading
           ? 'cursor-progress'
-          : 'hover:bg-primary-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2')
+          : 'hover:bg-primary-400 focus:ring-primary-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2')
       }
       disabled={loading}
       onClick={async () => {
