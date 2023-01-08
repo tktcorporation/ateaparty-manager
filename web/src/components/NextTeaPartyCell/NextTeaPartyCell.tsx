@@ -16,10 +16,12 @@ export const QUERY = gql`
         mcStaff {
           id
           name
+          pictureUrl
         }
         mcSubStaff {
           id
           name
+          pictureUrl
         }
       }
     }
@@ -28,7 +30,7 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => <div>次回の予定はまだ決まってないよ！</div>
 
 export const Failure = ({
   error,

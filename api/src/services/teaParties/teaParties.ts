@@ -3,7 +3,10 @@ import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 import { db } from 'src/lib/db'
 
 export const teaParties: QueryResolvers['teaParties'] = () => {
-  return db.teaParty.findMany()
+  return db.teaParty.findMany({
+    orderBy: { scheduledAt: 'asc' },
+    include: { teaPartyStaff: true },
+  })
 }
 
 export const teaParty: QueryResolvers['teaParty'] = ({ id }) => {

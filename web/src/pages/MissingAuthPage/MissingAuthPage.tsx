@@ -16,7 +16,7 @@ const MissingAuthPage = () => {
     currentUser,
   } = useAuth()
   const { loading: registrationLoading, createMember } = useMemberRegistration()
-  const { roles, name, pictureUrl } = currentUser
+  const { roles, name, pictureUrl } = currentUser || {}
   useEffect(() => {
     if (
       roles &&

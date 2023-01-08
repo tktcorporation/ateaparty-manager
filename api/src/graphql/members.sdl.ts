@@ -15,7 +15,7 @@ export const schema = gql`
   }
 
   type Query {
-    members: [Member!]! @requireAuth(roles: "${Role.admin}")
+    members: [Member!]! @requireAuth(roles: "${Role.member}")
     member(id: Int!): Member @requireAuth(roles: "${Role.admin}")
     memberBySub(sub: String!): Member @requireAuth
   }

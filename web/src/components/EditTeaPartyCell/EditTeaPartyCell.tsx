@@ -23,8 +23,14 @@ export const QUERY = gql`
         mcSubStaff {
           id
           name
+          pictureUrl
         }
       }
+    }
+    members: members {
+      id
+      name
+      pictureUrl
     }
   }
 `
@@ -41,7 +47,14 @@ const UPDATE_TEA_PARTY_MUTATION = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <div role="status" className="max-w-sm ">
+    <svg
+      className="-ml-1 mr-3 h-5 w-5 animate-spin text-gray-500"
+      viewBox="0 0 24 24"
+    ></svg>
+  </div>
+)
 
 export const Empty = () => <div>Empty</div>
 
@@ -53,6 +66,7 @@ export const Failure = ({
 
 export const Success = ({
   teaParty,
+  members,
 }: CellSuccessProps<
   FindTeaPartyWithStaffQuery,
   FindTeaPartyWithStaffQueryVariables
@@ -73,12 +87,10 @@ export const Success = ({
     input: UpdateTeaPartyWithStaffInput,
     id: FindTeaPartyWithStaffQuery['teaParty']['id']
   ) => {
-    console.log(input)
     updateTeaParty({ variables: { id, input } })
   }
   return (
     <div>
-      <p>{JSON.stringify(teaParty)}</p>
       <EditTeaPartyForm
         teaParty={{
           id: teaParty.id,
@@ -86,16 +98,7 @@ export const Success = ({
           mcStaffId: teaParty.teaPartyStaff?.mcStaff?.id,
           mcSubStaffId: teaParty.teaPartyStaff?.mcSubStaff?.id,
         }}
-        members={[
-          {
-            id: 1,
-            name: 'ほげ',
-          },
-          {
-            id: 2,
-            name: 'ふが',
-          },
-        ]}
+        members={members}
         onSave={onSave}
         error={error}
         loading={loading}

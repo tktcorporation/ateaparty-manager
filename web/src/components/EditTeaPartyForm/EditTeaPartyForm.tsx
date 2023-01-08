@@ -18,6 +18,7 @@ interface TeaPartyFormProps {
   members: {
     id: number
     name: string
+    pictureUrl: string
   }[]
   onSave: (data: UpdateTeaPartyWithStaffInput, id: number) => void
   error: RWGqlError
@@ -35,7 +36,6 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
     console.log(__filename, `onSubmit: ${JSON.stringify(data)}`)
     props.onSave(data, props.teaParty.id)
   }
-  console.log(__filename, `props: ${JSON.stringify(props)}`)
   return (
     <Form onSubmit={onSubmit} error={props.error}>
       <FormError
@@ -47,7 +47,7 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
 
       <Label
         name="scheduledAt"
-        className="rw-label"
+        className="label"
         errorClassName="rw-label rw-label-error"
       >
         開催日
@@ -56,7 +56,7 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
       <DateField
         name="scheduledAt"
         defaultValue={formatDate(props.teaParty?.scheduledAt)}
-        className="rw-input"
+        className="input input-bordered w-full max-w-xs"
         errorClassName="rw-input rw-input-error"
         validation={{ required: true }}
       />
@@ -65,7 +65,7 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
 
       <Label
         name="mcStaffId"
-        className="rw-label"
+        className="label"
         errorClassName="rw-label rw-label-error"
       >
         司会者
@@ -74,7 +74,7 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
       <SelectField
         name="mcStaffId"
         defaultValue={props.teaParty?.mcStaffId?.toString()}
-        className="rw-input"
+        className="select select-bordered w-full max-w-xs"
         errorClassName="rw-input rw-input-error"
         validation={{ valueAsNumber: true, required: true }}
       >
@@ -86,7 +86,7 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
         ))}
       </SelectField>
 
-      <div className="rw-button-group">
+      <div className="mt-5">
         <Submit disabled={props.loading} className="btn btn-primary">
           Save
         </Submit>

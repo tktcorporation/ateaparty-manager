@@ -20,12 +20,12 @@ const NextTeaParty = ({
         <CalendarDaysIcon className="h-5" />
         <span className="ml-1">日付</span>
       </p>
-      <p>{scheduledAt.toLocaleDateString('ja-JP')}</p>
+      <p className="text-2xl">{scheduledAt.toLocaleDateString('ja-JP')}</p>
       <p className="mt-2 inline-flex items-center">
         <MicrophoneIcon className="h-5" />
         <span className="ml-1">司会</span>
       </p>
-      <p>{mcStaffName || 'まだ決まってないよ！'}</p>
+      <p className="text-2xl">{mcStaffName || 'まだ決まってないよ！'}</p>
       <p className="mt-2 inline-flex items-center">
         <MicrophoneIcon className="h-5" />
         <span className="ml-1">サブ司会</span>
