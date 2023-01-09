@@ -16,6 +16,8 @@ export const standard = defineScenario<Prisma.TeaPartyStaffCreateArgs>({
         mcStaff: {
           create: {
             sub: 'String6132215',
+            name: 'String',
+            pictureUrl: 'String',
             updatedAt: '2022-11-14T17:23:05.506Z',
           },
         },
@@ -33,6 +35,8 @@ export const standard = defineScenario<Prisma.TeaPartyStaffCreateArgs>({
         mcStaff: {
           create: {
             sub: 'String9934173',
+            name: 'String2',
+            pictureUrl: 'String2',
             updatedAt: '2022-11-14T17:23:05.506Z',
           },
         },

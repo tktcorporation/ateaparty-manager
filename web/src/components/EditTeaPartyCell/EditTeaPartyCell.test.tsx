@@ -36,7 +36,7 @@ describe('EditTeaPartyCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success editTeaParty={standard().editTeaParty} />)
+      render(<Success teaParty={standard().teaParty} members={[]} />)
     }).not.toThrow()
   })
 })

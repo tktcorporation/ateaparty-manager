@@ -1,5 +1,7 @@
 import type { Member } from '@prisma/client'
 
+import * as discord from 'src/lib/discord'
+
 import { members, member, createMember, updateMember } from './members'
 import type { StandardScenario } from './members.scenarios'
 
@@ -23,24 +25,27 @@ describe('members', () => {
   })
 
   scenario('creates a member', async () => {
-    const result = await createMember({
-      input: {
-        sub: 'String9957165',
-        name: 'String',
-        pictureUrl: 'https://example.com/image.jpg',
-      },
+    const isGuildMemberSpy = jest
+      .spyOn(discord, 'isGuildMember')
+      .mockReturnValueOnce(new Promise((resolve) => resolve(true)))
+    mockCurrentUser({
+      sub: 'oauth|discord|123412341234123412',
+      name: 'Test User',
+      pictureUrl: 'https://example.com/image.jpg',
     })
+    const result = await createMember()
 
-    expect(result.sub).toEqual('String9957165')
+    expect(result.sub).toEqual('oauth|discord|123412341234123412')
+    expect(isGuildMemberSpy).toHaveBeenCalledWith('123412341234123412')
   })
 
   scenario('updates a member', async (scenario: StandardScenario) => {
     const original = (await member({ id: scenario.member.one.id })) as Member
     const result = await updateMember({
       id: original.id,
-      input: { sub: 'String92559672' },
+      input: { sub: 'oauth|discord|123412341234123412' },
     })
 
-    expect(result.sub).toEqual('String92559672')
+    expect(result.sub).toEqual('oauth|discord|123412341234123412')
   })
 })

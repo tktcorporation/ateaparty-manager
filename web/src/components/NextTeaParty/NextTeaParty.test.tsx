@@ -8,7 +8,9 @@ import NextTeaParty from './NextTeaParty'
 describe('NextTeaParty', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<NextTeaParty />)
+      render(
+        <NextTeaParty id={1} scheduledAt={new Date()} mcStaffName="test" />
+      )
     }).not.toThrow()
   })
 })

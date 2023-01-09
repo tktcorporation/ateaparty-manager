@@ -7,10 +7,14 @@ export const standard = (/* vars, { ctx, req } */) => ({
       mcStaff: {
         id: 42,
         name: 'String',
+        pictureUrl: 'String',
+        sub: 'String',
       },
       mcSubStaff: {
         id: 42,
         name: 'String',
+        pictureUrl: 'String',
+        sub: 'String',
       },
     },
   },

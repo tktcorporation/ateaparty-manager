@@ -17,12 +17,15 @@ describe('miniConcertStaffWorks', () => {
     'returns a single miniConcertStaffWork',
     async (scenario: StandardScenario) => {
       mockCurrentUser({
+        id: scenario.miniConcertStaffWork.one.id,
+        sub: 'oauth|discord|123412341234123412',
+        pictureUrl: 'String',
+        name: 'String',
         member: {
-          id: 1,
-          sub: 'String6995051',
-          updatedAt: new Date('2022-11-03T16:59:21.198Z'),
-          createdAt: new Date('2022-11-03T16:59:21.198Z'),
+          id: scenario.miniConcertStaffWork.one.memberId,
         },
+        updatedAt: new Date('2022-11-03T16:59:21.198Z'),
+        createdAt: new Date('2022-11-03T16:59:21.198Z'),
       })
       const result = await miniConcertStaffWork()
 
@@ -34,12 +37,15 @@ describe('miniConcertStaffWorks', () => {
     'updates a miniConcertStaffWork',
     async (scenario: StandardScenario) => {
       mockCurrentUser({
+        id: 1,
+        name: 'String',
+        sub: 'oauth|discord|123412341234123412',
+        pictureUrl: 'String',
         member: {
-          id: 1,
-          sub: 'String6995051',
-          updatedAt: new Date('2022-11-03T16:59:21.198Z'),
-          createdAt: new Date('2022-11-03T16:59:21.198Z'),
+          id: scenario.miniConcertStaffWork.one.memberId,
         },
+        updatedAt: new Date('2022-11-03T16:59:21.198Z'),
+        createdAt: new Date('2022-11-03T16:59:21.198Z'),
       })
       ;(await miniConcertStaffWork()) as MiniConcertStaffWork
       const result = await updateMiniConcertStaffWork({

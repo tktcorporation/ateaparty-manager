@@ -33,7 +33,6 @@ type FormTeaParty = UpdateTeaPartyWithStaffInput
 
 const EditTeaPartyForm = (props: TeaPartyFormProps) => {
   const onSubmit = (data: FormTeaParty) => {
-    console.log(__filename, `onSubmit: ${JSON.stringify(data)}`)
     props.onSave(data, props.teaParty.id)
   }
   return (
