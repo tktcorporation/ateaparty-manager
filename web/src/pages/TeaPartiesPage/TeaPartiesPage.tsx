@@ -21,7 +21,7 @@ const TeaPartiesPage = () => {
       <div className="align-center mt-8 flex flex-col justify-center text-center">
         <h2 className="inline-flex items-center self-center text-2xl">
           <span>次回以降</span>
-          <button className="btn btn-circle btn-outline btn-primary btn-xs ml-3">
+          <button className="btn btn-outline btn-primary btn-circle btn-xs ml-3">
             <Link to={routes.teaParty()}>
               <PlusIcon className="h-4" />
             </Link>
