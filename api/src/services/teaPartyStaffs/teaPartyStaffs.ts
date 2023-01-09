@@ -42,6 +42,13 @@ export const deleteTeaPartyStaff: MutationResolvers['deleteTeaPartyStaff'] = ({
   })
 }
 
+export const deleteTeaPartyStaffsByTeaPartyId: MutationResolvers['deleteTeaPartyStaffsByTeaPartyId'] =
+  ({ teaPartyId }) => {
+    return db.teaPartyStaff.deleteMany({
+      where: { teaPartyId },
+    })
+  }
+
 export const TeaPartyStaff: TeaPartyStaffRelationResolvers = {
   teaParty: (_obj, { root }) => {
     return db.teaPartyStaff.findUnique({ where: { id: root?.id } }).teaParty()

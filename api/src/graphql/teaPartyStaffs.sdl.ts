@@ -38,5 +38,6 @@ export const schema = gql`
       input: UpdateTeaPartyStaffInput!
     ): TeaPartyStaff! @requireAuth
     deleteTeaPartyStaff(id: Int!): TeaPartyStaff! @requireAuth
+    deleteTeaPartyStaffsByTeaPartyId(teaPartyId: Int!): Int @requireAuth(roles: "${Role.admin}")
   }
 `
