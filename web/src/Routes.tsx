@@ -30,24 +30,26 @@ const Routes = () => {
       </Private>
       <Private unauthenticated="missingAuth" roles={Role.confirmed}>
         <Set wrap={ScaffoldLayout} title="TeaParties" titleTo="teaParties" buttonLabel="New TeaParty" buttonTo="newTeaParty">
-          <Route path="/tea-parties/new" page={ScafoldTeaPartyNewTeaPartyPage} name="newTeaParty" />
-          <Route path="/tea-parties/{id:Int}/edit" page={ScafoldTeaPartyEditTeaPartyPage} name="editTeaParty" />
-          <Route path="/tea-parties/{id:Int}" page={ScafoldTeaPartyTeaPartyPage} name="teaParties" />
-          <Route path="/tea-parties" page={ScafoldTeaPartyTeaPartiesPage} name="teaParties" />
+          <Route path="/scafold-tea-parties/new" page={ScafoldTeaPartyNewTeaPartyPage} name="scafoldNewTeaParty" />
+          <Route path="/scafold-tea-parties/{id:Int}/edit" page={ScafoldTeaPartyEditTeaPartyPage} name="scafoldEditTeaParty" />
+          <Route path="/scafold-tea-parties/{id:Int}" page={ScafoldTeaPartyTeaPartyPage} name="scafoldTeaParties" />
+          <Route path="/scafold-tea-parties" page={ScafoldTeaPartyTeaPartiesPage} name="scafoldTeaParties" />
         </Set>
       </Private>
       <Private unauthenticated="missingAuth" roles={Role.member}>
         <Set wrap={AuthLayout}>
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
           <Route path="/mini-concert" page={MiniConcertPage} name="miniConcert" />
-          <Route path="/tea-party" page={TeaPartyPage} name="teaParty" />
+          <Route path="/tea-parties" page={TeaPartiesPage} name="teaParties" />
+          <Route path="/tea-parties/new" page={TeaPartyPage} name="teaParty" />
+          <Route path="/tea-parties/{id:Int}/edit" page={EditTeaPartyPage} name="editTeaParty" />
         </Set>
-      </Private>
-      <Private unauthenticated="home">
-        <Route path="/missing-auth" page={MissingAuthPage} name="missingAuth" />
       </Private>
       <Set wrap={LandingLayout}>
         <Route path="/" page={HomePage} name="home" />
+        <Private unauthenticated="home">
+          <Route path="/missing-auth" page={MissingAuthPage} name="missingAuth" />
+        </Private>
       </Set>
       <Route notfound page={NotFoundPage} />
     </Router>

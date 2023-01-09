@@ -7,8 +7,8 @@ const DashboardPage = () => {
   const navigateToList = [
     {
       name: 'お茶会',
-      path: routes.teaParty(),
-      description: 'お茶会の予定作成',
+      path: routes.teaParties(),
+      description: 'お茶会の予定、司会者の登録はこちら',
     },
     {
       name: 'ミニコンサート',

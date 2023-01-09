@@ -1,5 +1,7 @@
 import type { TeaParty } from '@prisma/client'
 
+import { deleteTeaPartyStaffsByTeaPartyId } from '../teaPartyStaffs/teaPartyStaffs'
+
 import {
   teaParties,
   teaParty,
@@ -25,7 +27,7 @@ describe('teaParties', () => {
   scenario('returns a single teaParty', async (scenario: StandardScenario) => {
     const result = await teaParty({ id: scenario.teaParty.one.id })
 
-    expect(result).toEqual(scenario.teaParty.one)
+    expect(result).toMatchObject(scenario.teaParty.one)
   })
 
   scenario('creates a teaParty', async () => {
@@ -49,6 +51,7 @@ describe('teaParties', () => {
   })
 
   scenario('deletes a teaParty', async (scenario: StandardScenario) => {
+    await deleteTeaPartyStaffsByTeaPartyId({ id: scenario.teaParty.one.id })
     const original = (await deleteTeaParty({
       id: scenario.teaParty.one.id,
     })) as TeaParty

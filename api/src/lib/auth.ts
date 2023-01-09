@@ -1,11 +1,13 @@
+import axios from 'axios'
 import { Member } from 'types/graphql'
 
 import type { Decoded } from '@redwoodjs/api'
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 
 import { isGuildMember } from 'src/lib/discord/discord'
+import { logger } from 'src/lib/logger'
 import { confirmedSubBySub } from 'src/services/confirmedSubs/confirmedSubs'
-import { upsertMember } from 'src/services/members/members'
+import { memberBySub } from 'src/services/members/members'
 
 export enum Role {
   admin = 'admin',
@@ -21,6 +23,9 @@ export type RoleType = keyof typeof Role
 type RedwoodUser = Record<string, unknown> & {
   roles?: string[]
   member?: Member
+  sub: string
+  name: string
+  pictureUrl: string
 }
 
 /**
@@ -46,7 +51,8 @@ type RedwoodUser = Record<string, unknown> & {
  * @returns RedwoodUser
  */
 export const getCurrentUser = async (
-  decoded: Decoded
+  decoded: Decoded,
+  { token }: { token: string }
 ): Promise<RedwoodUser | null> => {
   if (!decoded) {
     return null
@@ -56,12 +62,7 @@ export const getCurrentUser = async (
   const roles: AllowedRoles =
     decodedRoles && Array.isArray(decodedRoles) ? decodedRoles : []
 
-  // oauth|discord|1234567890
-  const sub = decoded.sub
-
-  if (typeof sub !== 'string') {
-    return { ...decoded }
-  }
+  const { sub, name, pictureUrl } = await getUserInfoFromAuth0(token)
 
   const confirmedSub = await confirmedSubBySub({ sub })
   confirmedSub && roles.push(Role.confirmed)
@@ -69,13 +70,13 @@ export const getCurrentUser = async (
   const { member, role } = await getMemberAndRoleBySub(sub)
   role && roles.push(role)
 
-  console.log('roles', roles)
+  logger.debug(`${__filename}: roles ${roles}`)
 
   if (roles) {
-    return { ...decoded, member, roles }
+    return { ...decoded, member, roles, name, pictureUrl, sub }
   }
 
-  return { ...decoded }
+  return { ...decoded, name, pictureUrl, sub }
 }
 
 const getMemberAndRoleBySub = async (
@@ -87,10 +88,43 @@ const getMemberAndRoleBySub = async (
   const userId = sub.split('|')[2]
   const isMember = await isGuildMember(userId)
   const member = isMember
-    ? ((await upsertMember({ sub })) as Member)
+    ? ((await memberBySub({
+        sub,
+      })) as Member)
     : undefined
-  const role = isMember ? Role.member : undefined
+  const role = member ? Role.member : undefined
   return { member, role }
+}
+
+const getUserInfoFromAuth0 = async (accessToken: string) => {
+  const {
+    data,
+  }: {
+    data: {
+      [key: string]: unknown
+    }
+  } = await axios.get(`https://${process.env.AUTH0_DOMAIN}/userinfo`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+  if (!data) {
+    throw new Error('Unable to get user info from Auth0')
+  }
+
+  const { sub, picture, name } = data
+  if (
+    typeof sub !== 'string' ||
+    typeof picture !== 'string' ||
+    typeof name !== 'string'
+  ) {
+    throw new Error('Unable to get data params from Auth0')
+  }
+  return {
+    sub,
+    pictureUrl: picture,
+    name,
+  }
 }
 
 /**

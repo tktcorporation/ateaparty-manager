@@ -1,6 +1,9 @@
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
+import { ValidationError } from '@redwoodjs/graphql-server'
+
 import { db } from 'src/lib/db'
+import { isGuildMember } from 'src/lib/discord/discord'
 
 export const members: QueryResolvers['members'] = () => {
   return db.member.findMany()
@@ -12,26 +15,32 @@ export const member: QueryResolvers['member'] = ({ id }) => {
   })
 }
 
-// find or create
-export const upsertMember: MutationResolvers['upsertMember'] = async ({
-  sub,
-}) => {
-  const member = await db.member.findUnique({
+export const memberBySub: QueryResolvers['memberBySub'] = ({ sub }) => {
+  return db.member.findUnique({
     where: { sub },
   })
-
-  if (member) {
-    return member
-  }
-
-  return createMember({ input: { sub } })
 }
 
-export const createMember: MutationResolvers['createMember'] = async ({
-  input,
-}) => {
+export const createMember: MutationResolvers['createMember'] = async () => {
+  const userId = context.currentUser.sub.split('|')[2]
+  const isMember = await isGuildMember(userId)
+  if (!isMember) {
+    throw new ValidationError(
+      'メンバー登録を行うには「あ茶会」のメンバーである必要があります'
+    )
+  }
+  const isAlreadyRegistered = await db.member.findUnique({
+    where: { sub: context.currentUser.sub },
+  })
+  if (isAlreadyRegistered) {
+    throw new ValidationError('すでにメンバー登録されています')
+  }
   const member = await db.member.create({
-    data: input,
+    data: {
+      sub: context.currentUser.sub,
+      name: context.currentUser.name,
+      pictureUrl: context.currentUser.pictureUrl,
+    },
   })
   await db.miniConcertStaffWork.create({
     data: {

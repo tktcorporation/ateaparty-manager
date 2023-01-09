@@ -1,3 +1,4 @@
+import { PlusIcon } from '@heroicons/react/24/outline'
 import type { FindTeaParties } from 'types/graphql'
 
 import { Link, routes } from '@redwoodjs/router'
@@ -10,6 +11,18 @@ export const QUERY = gql`
     teaParties {
       id
       scheduledAt
+      teaPartyStaff {
+        mcStaff {
+          id
+          name
+          pictureUrl
+        }
+        mcSubStaff {
+          id
+          name
+          pictureUrl
+        }
+      }
     }
   }
 `
@@ -18,12 +31,12 @@ export const Loading = () => <div>Loading...</div>
 
 export const Empty = () => {
   return (
-    <div className="rw-text-center">
-      {'No teaParties yet. '}
-      <Link to={routes.newTeaParty()} className="rw-link">
-        {'Create one?'}
+    <button className="btn btn-outline btn-primary">
+      <Link to={routes.teaParty()}>
+        お茶会の予定を作成する
+        <PlusIcon className="h-4" />
       </Link>
-    </div>
+    </button>
   )
 }
 
