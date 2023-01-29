@@ -32,10 +32,7 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => {
   return (
     <button className="btn btn-outline btn-primary">
-      <Link to={routes.teaParty()}>
-        お茶会の予定を作成する
-        <PlusIcon className="h-4" />
-      </Link>
+      <Link to={routes.teaParty()}>お茶会の予定を作成する</Link>
     </button>
   )
 }

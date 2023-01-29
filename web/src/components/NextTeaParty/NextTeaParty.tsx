@@ -15,31 +15,33 @@ const NextTeaParty = ({
   mcSubStaffName,
 }: NextTeaPartyProps) => {
   return (
-    <div>
-      <p className="inline-flex items-center">
-        <CalendarDaysIcon className="h-5" />
-        <span className="ml-1">日付</span>
+    <div className="flex flex-col gap-5">
+      <p className="text-4xl font-semibold tracking-wider">
+        {scheduledAt.toLocaleDateString('ja-JP')}
       </p>
-      <p className="text-2xl">{scheduledAt.toLocaleDateString('ja-JP')}</p>
-      <p className="mt-2 inline-flex items-center">
-        <MicrophoneIcon className="h-5" />
-        <span className="ml-1">司会</span>
+      <p className="flex gap-7 self-center text-2xl">
+        <span className="inline-flex items-center">
+          <MicrophoneIcon className="h-5" />
+          <span className="ml-1">司会</span>
+        </span>
+        <span className="">{mcStaffName || 'まだ決まってないよ！'}</span>
       </p>
-      <p className="text-2xl">{mcStaffName || 'まだ決まってないよ！'}</p>
-      <p className="mt-2 inline-flex items-center">
-        <MicrophoneIcon className="h-5" />
-        <span className="ml-1">サブ司会</span>
+      <p className="flex gap-7 self-center text-2xl">
+        <span className="inline-flex items-center">
+          <MicrophoneIcon className="h-5" />
+          <span className="ml-1">サブ司会</span>
+        </span>
+        {mcSubStaffName || 'まだ決まってないよ！'}
       </p>
-      <p>{mcSubStaffName || 'まだ決まってないよ！'}</p>
-      <button className="btn btn-outline btn-sm mt-3">
-        <Link
-          to={routes.editTeaParty({
-            id,
-          })}
-        >
-          変更
-        </Link>
-      </button>
+
+      <Link
+        to={routes.editTeaParty({
+          id,
+        })}
+        className="btn btn-outline self-center px-6"
+      >
+        変更
+      </Link>
     </div>
   )
 }

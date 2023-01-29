@@ -5,25 +5,46 @@ import { Link, routes } from '@redwoodjs/router'
 
 const TeaPartiesList = ({ teaParties }: FindTeaParties) => {
   return (
-    <ul className="mt-4 grid grid-cols-3 gap-4">
-      {teaParties.map((teaParty) => (
-        <li key={teaParty.id}>
-          <p className="text-lg">
-            {new Date(teaParty.scheduledAt).toLocaleDateString('ja-JP')}
-          </p>
-
-          <p>
-            <MicrophoneIcon className="inline-flex h-4" />
-            <span className="ml-1">
-              {teaParty?.teaPartyStaff?.mcStaff?.name || 'まだ決まってないよ！'}
-            </span>
-          </p>
-          <Link to={routes.editTeaParty({ id: teaParty.id })}>
-            司会者を選ぶ
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div className="w-full overflow-x-auto">
+      <table className="table w-full">
+        <thead>
+          <tr>
+            <th>開催日</th>
+            <th>
+              <MicrophoneIcon className="inline-flex h-4" />
+              <span>司会者</span>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {teaParties.map((teaParty) => (
+            <tr key={teaParty.id}>
+              <td>
+                <div>
+                  <div className="font-bold">
+                    {new Date(teaParty.scheduledAt).toLocaleDateString('ja-JP')}
+                  </div>
+                  {/* <div className="text-sm opacity-50">United States</div> */}
+                </div>
+              </td>
+              <td>
+                {teaParty?.teaPartyStaff?.mcStaff?.name ||
+                  'まだ決まってないよ！'}
+              </td>
+              <th>
+                <Link
+                  className="btn btn-ghost btn-xs"
+                  to={routes.editTeaParty({ id: teaParty.id })}
+                >
+                  EDIT
+                </Link>
+              </th>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
