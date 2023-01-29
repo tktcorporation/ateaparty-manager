@@ -8,7 +8,7 @@ const LoginButton = ({ loading, logIn, label }: LoginButtonProps) => {
     <button
       type="button"
       className={
-        'btn btn-outline btn-primary inline-flex items-center px-4 py-2 transition' +
+        'btn-outline btn-primary btn inline-flex items-center px-4 py-2 transition' +
         ' ' +
         (loading ? 'loading' : '')
       }

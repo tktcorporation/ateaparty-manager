@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 
+import clsx from 'clsx'
+
 import { useAuth } from '@redwoodjs/auth'
 import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
@@ -48,10 +50,9 @@ const MissingAuthPage = () => {
           </div>
           <div className="mt-10">
             <button
-              className={
-                'btn btn-primary btn-wide ' +
-                (registrationLoading ? 'loading' : '')
-              }
+              className={clsx('btn-primary btn-wide btn', {
+                loading: registrationLoading,
+              })}
               onClick={() => createMember()}
             >
               メンバー登録する
@@ -60,7 +61,6 @@ const MissingAuthPage = () => {
               <UserAuthTools
                 loading={authLoading}
                 isAuthenticated={isAuthenticated}
-                size="sm"
                 logIn={logIn}
                 logOut={logOut}
               />
