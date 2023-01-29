@@ -23,7 +23,7 @@ const TeaPartiesPage = () => {
         </div>
         <div className="flex justify-end">
           <Link
-            className="btn btn-outline btn-primary btn-circle btn-sm ml-3"
+            className="btn-outline btn-primary btn-sm btn-circle btn ml-3"
             to={routes.teaParty()}
           >
             <PlusIcon className="h-4" />

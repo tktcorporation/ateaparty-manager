@@ -15,7 +15,7 @@ const UserAuthTools = ({
   return (
     <button
       className={
-        'btn btn-outline inline-flex items-center px-4 py-2 transition' +
+        'btn-outline btn inline-flex items-center px-4 py-2 transition' +
         ' ' +
         (loading ? 'loading' : '') +
         ' ' +

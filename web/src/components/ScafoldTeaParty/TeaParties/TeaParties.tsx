@@ -34,7 +34,7 @@ const TeaPartiesList = ({ teaParties }: FindTeaParties) => {
               </td>
               <th>
                 <Link
-                  className="btn btn-ghost btn-xs"
+                  className="btn-ghost btn-xs btn"
                   to={routes.editTeaParty({ id: teaParty.id })}
                 >
                   EDIT

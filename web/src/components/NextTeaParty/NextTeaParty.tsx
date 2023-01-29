@@ -1,4 +1,4 @@
-import { MicrophoneIcon, CalendarDaysIcon } from '@heroicons/react/24/outline'
+import { MicrophoneIcon } from '@heroicons/react/24/outline'
 
 import { Link, routes } from '@redwoodjs/router'
 
@@ -38,7 +38,7 @@ const NextTeaParty = ({
         to={routes.editTeaParty({
           id,
         })}
-        className="btn btn-outline self-center px-6"
+        className="btn-outline btn self-center px-6"
       >
         変更
       </Link>

@@ -50,7 +50,7 @@ const MissingAuthPage = () => {
           </div>
           <div className="mt-10">
             <button
-              className={clsx('btn btn-primary btn-wide', {
+              className={clsx('btn-primary btn-wide btn', {
                 loading: registrationLoading,
               })}
               onClick={() => createMember()}

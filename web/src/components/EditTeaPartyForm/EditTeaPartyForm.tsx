@@ -55,7 +55,7 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
       <DateField
         name="scheduledAt"
         defaultValue={formatDate(props.teaParty?.scheduledAt)}
-        className="input input-bordered w-full max-w-xs"
+        className="input-bordered input w-full max-w-xs"
         errorClassName="rw-input rw-input-error"
         validation={{ required: true }}
       />
@@ -73,7 +73,7 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
       <SelectField
         name="mcStaffId"
         defaultValue={props.teaParty?.mcStaffId?.toString()}
-        className="select select-bordered w-full max-w-xs"
+        className="select-bordered select w-full max-w-xs"
         errorClassName="rw-input rw-input-error"
         validation={{ valueAsNumber: true, required: true }}
       >
@@ -86,7 +86,7 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
       </SelectField>
 
       <div className="mt-5">
-        <Submit disabled={props.loading} className="btn btn-primary">
+        <Submit disabled={props.loading} className="btn-primary btn">
           Save
         </Submit>
       </div>
