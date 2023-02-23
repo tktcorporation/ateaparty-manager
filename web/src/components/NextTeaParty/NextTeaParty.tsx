@@ -14,11 +14,8 @@ const NextTeaParty = ({
   mcStaffName,
   mcSubStaffName,
 }: NextTeaPartyProps) => {
-  return (
-    <div className="flex flex-col gap-5">
-      <p className="text-4xl font-semibold tracking-wider">
-        {scheduledAt.toLocaleDateString('ja-JP')}
-      </p>
+  const staffArea = mcStaffName ? (
+    <>
       <p className="flex gap-7 self-center text-2xl">
         <span className="inline-flex items-center">
           <MicrophoneIcon className="h-5" />
@@ -33,7 +30,6 @@ const NextTeaParty = ({
         </span>
         {mcSubStaffName || 'まだ決まってないよ！'}
       </p>
-
       <Link
         to={routes.editTeaParty({
           id,
@@ -42,6 +38,29 @@ const NextTeaParty = ({
       >
         変更
       </Link>
+    </>
+  ) : (
+    <>
+      <p className="flex gap-7 self-center text-2xl">
+        誰が司会するか決めて登録してね！
+      </p>
+      <Link
+        to={routes.editTeaParty({
+          id,
+        })}
+        className="btn-outline btn self-center px-6"
+      >
+        司会を登録する
+      </Link>
+    </>
+  )
+
+  return (
+    <div className="flex flex-col gap-5">
+      <p className="text-4xl font-semibold tracking-wider">
+        {scheduledAt.toLocaleDateString('ja-JP')}
+      </p>
+      {staffArea}
     </div>
   )
 }

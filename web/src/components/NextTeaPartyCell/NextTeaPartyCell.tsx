@@ -30,7 +30,7 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => <div>次回の予定はまだ決まってないよ！</div>
+export const Empty = () => <div>次回お茶会の予定を教えてね</div>
 
 export const Failure = ({
   error,
