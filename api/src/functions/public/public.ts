@@ -1,6 +1,6 @@
 import type { APIGatewayEvent, Context } from 'aws-lambda'
 
-import { logger } from 'src/lib/logger'
+import { db } from 'src/lib/db'
 
 /**
  * The handler function is your code that processes http request events.
@@ -18,16 +18,36 @@ import { logger } from 'src/lib/logger'
  * @param { Context } context - contains information about the invocation,
  * function, and execution environment.
  */
-export const handler = async (event: APIGatewayEvent, context: Context) => {
-  logger.info('Invoked public function')
-
+export const handler = async (_event: APIGatewayEvent, _context: Context) => {
+  // 直近二回のお茶会予定を取得
+  const teaParties = await db.teaParty.findMany({
+    orderBy: { scheduledAt: 'desc' },
+    include: {
+      teaPartyStaff: {
+        include: {
+          mcStaff: true,
+          mcSubStaff: true,
+        },
+      },
+    },
+    take: 2,
+  })
+  const result = teaParties.map((teaParty) => ({
+    scheduledAt: teaParty.scheduledAt,
+    mcStaff: {
+      name: teaParty.teaPartyStaff.mcStaff.name,
+    },
+    mcSubStaff: teaParty.teaPartyStaff.mcSubStaff && {
+      name: teaParty.teaPartyStaff.mcSubStaff.name,
+    },
+  }))
   return {
     statusCode: 200,
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      data: 'public function',
+      data: result,
     }),
   }
 }
