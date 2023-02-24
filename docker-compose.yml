@@ -20,7 +20,7 @@ services:
     ports:
       - "7910:7910" # storybook
       - "8910:8910" # redwoodjs web
-      - "8911:8911"
+      - "8911:8911" # redwoodjs api
       - "18911:18911"
       - "5555:5555"
     depends_on:

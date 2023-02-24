@@ -8,4 +8,4 @@ RUN apt-get update && \
     unzip \
     git
 
-RUN npm i -g npm pnpm
+RUN npm i -g npm pnpm @antfu/ni

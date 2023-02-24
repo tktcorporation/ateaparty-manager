@@ -33,7 +33,13 @@ type FormTeaParty = UpdateTeaPartyWithStaffInput
 
 const EditTeaPartyForm = (props: TeaPartyFormProps) => {
   const onSubmit = (data: FormTeaParty) => {
-    props.onSave(data, props.teaParty.id)
+    props.onSave(
+      {
+        ...data,
+        mcSubStaffId: data.mcSubStaffId || undefined,
+      },
+      props.teaParty.id
+    )
   }
   return (
     <Form onSubmit={onSubmit} error={props.error}>
@@ -76,6 +82,29 @@ const EditTeaPartyForm = (props: TeaPartyFormProps) => {
         className="select-bordered select w-full max-w-xs"
         errorClassName="rw-input rw-input-error"
         validation={{ valueAsNumber: true, required: true }}
+      >
+        <option value="">選択してください</option>
+        {props.members.map((member) => (
+          <option key={member.id} value={member.id}>
+            {member.name}
+          </option>
+        ))}
+      </SelectField>
+
+      <Label
+        name="mcSubStaffId"
+        className="label"
+        errorClassName="rw-label rw-label-error"
+      >
+        サブ司会
+      </Label>
+
+      <SelectField
+        name="mcSubStaffId"
+        defaultValue={props.teaParty?.mcSubStaffId?.toString()}
+        className="select-bordered select w-full max-w-xs"
+        errorClassName="rw-input rw-input-error"
+        validation={{ valueAsNumber: true }}
       >
         <option value="">選択してください</option>
         {props.members.map((member) => (
