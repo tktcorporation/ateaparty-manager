@@ -34,10 +34,10 @@ export const handler = async (_event: APIGatewayEvent, _context: Context) => {
   })
   const result = teaParties.map((teaParty) => ({
     scheduledAt: teaParty.scheduledAt,
-    mcStaff: {
+    mcStaff: teaParty.teaPartyStaff?.mcStaff && {
       name: teaParty.teaPartyStaff.mcStaff.name,
     },
-    mcSubStaff: teaParty.teaPartyStaff.mcSubStaff && {
+    mcSubStaff: teaParty.teaPartyStaff?.mcSubStaff && {
       name: teaParty.teaPartyStaff.mcSubStaff.name,
     },
   }))
