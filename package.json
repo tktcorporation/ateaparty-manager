@@ -7,6 +7,9 @@
       "packages/*"
     ]
   },
+  "scripts": {
+    "db:reset": "nr prisma migrate reset && nr rw prisma migrate dev"
+  },
   "devDependencies": {
     "@redwoodjs/core": "3.8.0",
     "prettier-plugin-tailwindcss": "0.2.2"
