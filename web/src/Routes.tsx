@@ -18,6 +18,7 @@ import { Role } from './lib/auth'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/calendar" page={CalendarPage} name="calendar" />
       <Route path="/manage-concert" page={ManageConcertPage} name="manageConcert" />
       <Route path="/logout" page={LogoutPage} name="logout" />
       <Private unauthenticated="home" roles={Role.admin}>
