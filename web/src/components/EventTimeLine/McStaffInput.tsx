@@ -1,9 +1,15 @@
+interface McStaffInputProps {
+  mcStaff: string
+  onMcStaffChange: (value: string) => void
+  mcSubStaff: string
+  onMcSubStaffChange: (value: string) => void
+}
 const McStaffInput = ({
   mcStaff,
   onMcStaffChange,
   mcSubStaff,
   onMcSubStaffChange,
-}) => {
+}: McStaffInputProps) => {
   return (
     <>
       <div className="mb-4">

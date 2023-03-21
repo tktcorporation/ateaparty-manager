@@ -11,22 +11,25 @@ generator client {
 model TeaParty {
   id Int @id @default(autoincrement())
 
-  scheduledAt   DateTime
-  teaPartyStaff TeaPartyStaff?
+  date DateTime @unique
+
+  host     Member @relation("HostRelation", fields: [hostId], references: [id])
+  hostId   Int
+  cohost   Member @relation("CohostRelation", fields: [cohostId], references: [id])
+  cohostId Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model TeaPartyStaff {
+model Member {
   id Int @id @default(autoincrement())
 
-  teaPartyId   Int      @unique
-  teaParty     TeaParty @relation(fields: [teaPartyId], references: [id])
-  mcStaffId    Int
-  mcStaff      Member   @relation("McStaff", fields: [mcStaffId], references: [id])
-  mcSubStaffId Int?
-  mcSubStaff   Member?  @relation("McSubStaff", fields: [mcSubStaffId], references: [id])
+  sub              String     @unique
+  name             String
+  avatar           String
+  hostedTeaParty   TeaParty[] @relation("HostRelation")
+  cohostedTeaParty TeaParty[] @relation("CohostRelation")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -35,41 +38,6 @@ model TeaPartyStaff {
 model ConfirmedSub {
   id        Int      @id @default(autoincrement())
   sub       String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Member {
-  id Int @id @default(autoincrement())
-
-  sub                  String                @unique
-  name                 String
-  pictureUrl           String
-  miniConcertStaffWork MiniConcertStaffWork?
-  teaPartyStaff        TeaPartyStaff[]       @relation("McStaff")
-  teaPartySubStaff     TeaPartyStaff[]       @relation("McSubStaff")
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-enum MiniConcertStaffWorkEnergy {
-  CanDo
-  TeachMe
-  NotNow
-}
-
-model MiniConcertStaffWork {
-  id Int @id @default(autoincrement())
-
-  management   MiniConcertStaffWorkEnergy @default(NotNow)
-  mc           MiniConcertStaffWorkEnergy @default(NotNow)
-  visitorGuide MiniConcertStaffWorkEnergy @default(NotNow)
-  photography  MiniConcertStaffWorkEnergy @default(NotNow)
-
-  member   Member @relation(fields: [memberId], references: [id])
-  memberId Int    @unique
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

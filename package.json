@@ -9,7 +9,7 @@
   },
   "scripts": {
     "setup": "ni && nr rw prisma migrate dev && nr rw prisma db seed",
-    "db:reset": "nr prisma migrate reset && nr rw prisma migrate dev"
+    "db:reset": "nr rw prisma migrate reset && nr rw prisma migrate dev"
   },
   "devDependencies": {
     "@redwoodjs/core": "3.8.0",

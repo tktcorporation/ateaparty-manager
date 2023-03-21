@@ -6,9 +6,7 @@ export const schema = gql`
 
     sub: String!
     name: String!
-    pictureUrl: String!
-
-    MiniConcertStaffWork: MiniConcertStaffWork
+    avatar: String!
 
     createdAt: DateTime!
     updatedAt: DateTime!

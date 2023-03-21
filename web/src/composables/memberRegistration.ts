@@ -8,7 +8,7 @@ const CREATE_MEMBER = gql`
       id
       sub
       name
-      pictureUrl
+      avatar
       createdAt
       updatedAt
     }
