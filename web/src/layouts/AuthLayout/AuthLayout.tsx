@@ -18,7 +18,7 @@ import UserAuthTools from 'src/components/UserAuthTools/UserAuthTools'
 const LandingLayout = ({ children }: LandingLayoutProps) => {
   const navigation = [
     { name: 'Dashboard', href: routes.dashboard() },
-    { name: 'ミニコンサート', href: routes.miniConcert() },
+    { name: 'ミニコンサート', href: undefined },
   ]
   const { loading, isAuthenticated, logIn, logOut } = useAuth()
   return (

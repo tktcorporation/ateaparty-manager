@@ -12,7 +12,7 @@ const DashboardPage = () => {
     },
     {
       name: 'ミニコンサート',
-      path: routes.miniConcert(),
+      path: undefined,
       description: 'ミニコンサートへの参加登録、スタッフ登録はこちら',
     },
     {
