@@ -1,27 +1,18 @@
-import type { QueryResolvers, MutationResolvers } from 'types/graphql'
+import type {
+  QueryResolvers,
+  MutationResolvers,
+  TeaPartyRelationResolvers,
+} from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
 export const teaParties: QueryResolvers['teaParties'] = () => {
-  return db.teaParty.findMany({
-    orderBy: { scheduledAt: 'asc' },
-    include: { teaPartyStaff: true },
-  })
+  return db.teaParty.findMany()
 }
 
 export const teaParty: QueryResolvers['teaParty'] = ({ id }) => {
   return db.teaParty.findUnique({
     where: { id },
-    include: { teaPartyStaff: true },
-  })
-}
-
-// 次回開催のお茶会を取得する
-export const nextTeaParty: QueryResolvers['nextTeaParty'] = () => {
-  return db.teaParty.findFirst({
-    where: { scheduledAt: { gte: new Date() } },
-    orderBy: { scheduledAt: 'asc' },
-    include: { teaPartyStaff: true },
   })
 }
 
@@ -43,38 +34,17 @@ export const updateTeaParty: MutationResolvers['updateTeaParty'] = ({
   })
 }
 
-export const updateTeaPartyWithStaff: MutationResolvers['updateTeaPartyWithStaff'] =
-  ({ id, input }) => {
-    const teaPartyStaffInput = {
-      mcStaff: undefined,
-      mcSubStaff: undefined,
-    }
-    if (input.mcStaffId !== undefined) {
-      teaPartyStaffInput.mcStaff =
-        input.mcStaffId === null ? null : { connect: { id: input.mcStaffId } }
-    }
-    if (input.mcSubStaffId !== undefined) {
-      teaPartyStaffInput.mcSubStaff =
-        input.mcSubStaffId === null
-          ? null
-          : { connect: { id: input.mcSubStaffId } }
-    }
-    return db.teaParty.update({
-      data: {
-        scheduledAt: input.scheduledAt,
-        teaPartyStaff: {
-          upsert: {
-            create: teaPartyStaffInput,
-            update: teaPartyStaffInput,
-          },
-        },
-      },
-      where: { id },
-    })
-  }
-
 export const deleteTeaParty: MutationResolvers['deleteTeaParty'] = ({ id }) => {
   return db.teaParty.delete({
     where: { id },
   })
+}
+
+export const TeaParty: TeaPartyRelationResolvers = {
+  host: (_obj, { root }) => {
+    return db.teaParty.findUnique({ where: { id: root?.id } }).host()
+  },
+  cohost: (_obj, { root }) => {
+    return db.teaParty.findUnique({ where: { id: root?.id } }).cohost()
+  },
 }

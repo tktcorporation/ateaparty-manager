@@ -1,7 +1,5 @@
 import type { TeaParty } from '@prisma/client'
 
-import { deleteTeaPartyStaffsByTeaPartyId } from '../teaPartyStaffs/teaPartyStaffs'
-
 import {
   teaParties,
   teaParty,
@@ -12,7 +10,7 @@ import {
 import type { StandardScenario } from './teaParties.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
-// and can fail without adjustments, e.g. Float and DateTime types.
+// and can fail without adjustments, e.g. Float.
 //           Please refer to the RedwoodJS Testing Docs:
 //       https://redwoodjs.com/docs/testing#testing-services
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
@@ -27,15 +25,23 @@ describe('teaParties', () => {
   scenario('returns a single teaParty', async (scenario: StandardScenario) => {
     const result = await teaParty({ id: scenario.teaParty.one.id })
 
-    expect(result).toMatchObject(scenario.teaParty.one)
+    expect(result).toEqual(scenario.teaParty.one)
   })
 
-  scenario('creates a teaParty', async () => {
+  scenario('creates a teaParty', async (scenario: StandardScenario) => {
     const result = await createTeaParty({
-      input: { scheduledAt: '2022-10-12T13:50:34.000Z' },
+      input: {
+        date: '2023-04-16T18:11:39.624Z',
+        hostId: scenario.teaParty.two.hostId,
+        cohostId: scenario.teaParty.two.cohostId,
+        updatedAt: '2023-04-16T18:11:39.624Z',
+      },
     })
 
-    expect(result.scheduledAt).toEqual(new Date('2022-10-12T13:50:34Z'))
+    expect(result.date).toEqual(new Date('2023-04-16T18:11:39.624Z'))
+    expect(result.hostId).toEqual(scenario.teaParty.two.hostId)
+    expect(result.cohostId).toEqual(scenario.teaParty.two.cohostId)
+    expect(result.updatedAt).toEqual(new Date('2023-04-16T18:11:39.624Z'))
   })
 
   scenario('updates a teaParty', async (scenario: StandardScenario) => {
@@ -44,14 +50,13 @@ describe('teaParties', () => {
     })) as TeaParty
     const result = await updateTeaParty({
       id: original.id,
-      input: { scheduledAt: '2022-10-13T13:50:34Z' },
+      input: { date: '2023-04-17T18:11:39.624Z' },
     })
 
-    expect(result.scheduledAt).toEqual(new Date('2022-10-13T13:50:34Z'))
+    expect(result.date).toEqual(new Date('2023-04-17T18:11:39.624Z'))
   })
 
   scenario('deletes a teaParty', async (scenario: StandardScenario) => {
-    await deleteTeaPartyStaffsByTeaPartyId({ id: scenario.teaParty.one.id })
     const original = (await deleteTeaParty({
       id: scenario.teaParty.one.id,
     })) as TeaParty

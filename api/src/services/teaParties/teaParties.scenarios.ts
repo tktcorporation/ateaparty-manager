@@ -1,45 +1,50 @@
 import type { Prisma, TeaParty } from '@prisma/client'
-
 import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.TeaPartyCreateArgs>({
   teaParty: {
     one: {
       data: {
-        scheduledAt: '2022-10-12T13:50:34Z',
-        teaPartyStaff: {
+        date: '2023-04-16T18:11:39.695Z',
+        updatedAt: '2023-04-16T18:11:39.695Z',
+        host: {
           create: {
-            mcStaff: {
-              create: {
-                name: 'String',
-                pictureUrl: 'String',
-                sub: 'oauth|discord|123412341234123411',
-              },
-            },
+            sub: 'String7420920',
+            name: 'String',
+            avatar: 'String',
+            updatedAt: '2023-04-16T18:11:39.695Z',
           },
         },
-      },
-      include: {
-        teaPartyStaff: true,
+        cohost: {
+          create: {
+            sub: 'String8223244',
+            name: 'String',
+            avatar: 'String',
+            updatedAt: '2023-04-16T18:11:39.695Z',
+          },
+        },
       },
     },
     two: {
       data: {
-        scheduledAt: '2022-10-12T13:50:34Z',
-        teaPartyStaff: {
+        date: '2023-04-16T18:11:39.695Z',
+        updatedAt: '2023-04-16T18:11:39.695Z',
+        host: {
           create: {
-            mcStaff: {
-              create: {
-                name: 'String',
-                pictureUrl: 'String',
-                sub: 'oauth|discord|123412341234123412',
-              },
-            },
+            sub: 'String8723571',
+            name: 'String',
+            avatar: 'String',
+            updatedAt: '2023-04-16T18:11:39.695Z',
           },
         },
-      },
-      include: {
-        teaPartyStaff: true,
+        cohost: {
+          create: {
+            sub: 'String5003521',
+            name: 'String',
+            avatar: 'String',
+            updatedAt: '2023-04-16T18:11:39.695Z',
+          },
+        },
       },
     },
   },

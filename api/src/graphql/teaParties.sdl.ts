@@ -1,36 +1,36 @@
-import { Role } from 'src/lib/auth'
-
 export const schema = gql`
   type TeaParty {
     id: Int!
-    scheduledAt: DateTime!
-    teaPartyStaff: TeaPartyStaff
+    date: DateTime!
+    host: Member!
+    hostId: Int!
+    cohost: Member
+    cohostId: Int
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   type Query {
-    teaParties: [TeaParty!]! @requireAuth(roles: "${Role.member}")
-    teaParty(id: Int!): TeaParty @requireAuth(roles: "${Role.member}")
-    nextTeaParty: TeaParty @requireAuth(roles: "${Role.member}")
+    teaParties: [TeaParty!]! @requireAuth
+    teaParty(id: Int!): TeaParty @requireAuth
   }
 
   input CreateTeaPartyInput {
-    scheduledAt: DateTime!
+    date: DateTime!
+    hostId: Int!
+    cohostId: Int
   }
 
   input UpdateTeaPartyInput {
-    scheduledAt: DateTime
-  }
-
-  input UpdateTeaPartyWithStaffInput {
-    scheduledAt: DateTime
-    mcStaffId: Int
-    mcSubStaffId: Int
+    date: DateTime
+    hostId: Int
+    cohostId: Int
   }
 
   type Mutation {
-    createTeaParty(input: CreateTeaPartyInput!): TeaParty! @requireAuth(roles: "${Role.member}")
-    updateTeaParty(id: Int!, input: UpdateTeaPartyInput!): TeaParty! @requireAuth(roles: "${Role.member}")
-    updateTeaPartyWithStaff(id: Int!, input: UpdateTeaPartyWithStaffInput!): TeaParty! @requireAuth(roles: "${Role.member}")
-    deleteTeaParty(id: Int!): TeaParty! @requireAuth(roles: "${Role.confirmed}")
+    createTeaParty(input: CreateTeaPartyInput!): TeaParty! @requireAuth
+    updateTeaParty(id: Int!, input: UpdateTeaPartyInput!): TeaParty!
+      @requireAuth
+    deleteTeaParty(id: Int!): TeaParty! @requireAuth
   }
 `

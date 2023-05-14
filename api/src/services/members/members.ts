@@ -39,16 +39,7 @@ export const createMember: MutationResolvers['createMember'] = async () => {
     data: {
       sub: context.currentUser.sub,
       name: context.currentUser.name,
-      pictureUrl: context.currentUser.pictureUrl,
-    },
-  })
-  await db.miniConcertStaffWork.create({
-    data: {
-      member: {
-        connect: {
-          id: member.id,
-        },
-      },
+      avatar: context.currentUser.pictureUrl,
     },
   })
   return member

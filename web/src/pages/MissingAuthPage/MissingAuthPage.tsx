@@ -25,7 +25,7 @@ const MissingAuthPage = () => {
       Array.isArray(roles) &&
       roles.filter((r) => r === 'member').length > 0
     ) {
-      navigate(routes.dashboard())
+      navigate(routes.teaParties())
     }
   }, [roles])
   return (
