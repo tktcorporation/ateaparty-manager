@@ -31,7 +31,6 @@ const Routes = () => {
       <Private unauthenticated="missingAuth" roles={Role.confirmed}></Private>
       <Private unauthenticated="missingAuth" roles={Role.member}>
         <Set wrap={AuthLayout}>
-          <Route path="/dashboard" page={DashboardPage} name="dashboard" />
           <Route path="/tea-parties" page={TeaPartiesPage} name="teaParties" />
         </Set>
       </Private>

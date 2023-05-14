@@ -8,7 +8,7 @@ import LoginButton from 'src/components/LoginButton/LoginButton'
 const HomePage = () => {
   const { loading, logIn, isAuthenticated } = useAuth()
   if (isAuthenticated) {
-    return <Redirect to={routes.dashboard()} />
+    return <Redirect to={routes.teaParties()} />
   }
   return (
     <>
