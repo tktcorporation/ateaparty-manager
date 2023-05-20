@@ -9,7 +9,7 @@ export const standard = defineScenario<Prisma.MemberCreateArgs>({
         id: undefined,
         sub: 'String9873488',
         name: 'Taro',
-        pictureUrl: 'https://example.com/image.jpg',
+        avatar: 'https://example.com/image.jpg',
         updatedAt: '2022-10-31T21:35:26Z',
       },
     },
@@ -17,7 +17,7 @@ export const standard = defineScenario<Prisma.MemberCreateArgs>({
       data: {
         sub: 'String7102107',
         name: 'Jiro',
-        pictureUrl: 'https://example.com/image2.jpg',
+        avatar: 'https://example.com/image2.jpg',
         updatedAt: '2022-11-01T21:35:26Z',
       },
     },

@@ -21,7 +21,7 @@ const formatDatetime = (value?: string | Date) => {
 
 type FormTeaParty = NonNullable<EditTeaPartyById['teaParty']>
 
-interface TeaPartyFormProps {
+export interface TeaPartyFormProps {
   teaParty?: {
     id: number
     hostId: number

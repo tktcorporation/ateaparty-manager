@@ -34,14 +34,12 @@ describe('teaParties', () => {
         date: '2023-04-16T18:11:39.624Z',
         hostId: scenario.teaParty.two.hostId,
         cohostId: scenario.teaParty.two.cohostId,
-        updatedAt: '2023-04-16T18:11:39.624Z',
       },
     })
 
     expect(result.date).toEqual(new Date('2023-04-16T18:11:39.624Z'))
     expect(result.hostId).toEqual(scenario.teaParty.two.hostId)
     expect(result.cohostId).toEqual(scenario.teaParty.two.cohostId)
-    expect(result.updatedAt).toEqual(new Date('2023-04-16T18:11:39.624Z'))
   })
 
   scenario('updates a teaParty', async (scenario: StandardScenario) => {
