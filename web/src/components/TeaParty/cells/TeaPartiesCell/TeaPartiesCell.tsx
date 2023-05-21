@@ -1,8 +1,6 @@
 import { format, formatDistanceToNow } from 'date-fns'
 import ja from 'date-fns/locale/ja'
 
-import TeaPartyNewFormCell from 'src/components/TeaParty/cells/TeaPartyNewFormCell'
-
 export const QUERY = gql`
   query TeaPartiesQuery {
     teaParties: teaPartiesNotYetHeld {
@@ -28,7 +26,33 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Success = ({ teaParties }) => {
+type TeaPartiesCellProps = {
+  teaParties: Array<{
+    id: number
+    host: {
+      id: number
+      avatar: string
+      name: string
+    }
+    cohost: {
+      id: number
+
+      avatar: string
+
+      name: string
+    }
+
+    date: string
+  }>
+
+  members: Array<{
+    id: number
+
+    name: string
+  }>
+}
+
+export const Success = ({ teaParties }: TeaPartiesCellProps) => {
   // 直近の予定を取得
   const nearestTeaParty = teaParties && teaParties[0]
 
@@ -145,11 +169,6 @@ export const Success = ({ teaParties }) => {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="mt-16">
-        <h3>新しいお茶会の予定</h3>
-        <TeaPartyNewFormCell />
       </div>
     </>
   )
