@@ -12,7 +12,7 @@ if (!managerUrl) {
 }
 
 const main = async () => {
-  const res = await fetch(`${managerUrl}/api/tea-party`)
+  const res = await fetch(`${managerUrl}/api/public`)
   const {
     data,
   }: {
