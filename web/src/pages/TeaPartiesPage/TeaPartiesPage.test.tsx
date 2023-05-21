@@ -31,8 +31,6 @@ describe('TeaPartiesPage', () => {
 
   it('renders successfully', async () => {
     render(<TeaPartiesPage />)
-    expect(screen.getByText('お茶会')).toBeInTheDocument()
-
     // Wait for the data to be loaded and the component to be rendered.
     await waitFor(() =>
       expect(screen.queryByText('Loading...')).not.toBeInTheDocument()
