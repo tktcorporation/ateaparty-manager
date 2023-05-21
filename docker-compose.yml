@@ -46,3 +46,14 @@ services:
       - ./dev.db/data-test:/var/lib/postgresql/data
     ports:
       - "5433:5432"
+  reminder:
+    # deno slim bullseye
+    image: denoland/deno:ubuntu-1.33.4
+    restart: always
+    volumes:
+      - ./exec/:/app/src
+    working_dir: /app/src
+    command: ["deno", "run", "--allow-net", "--allow-env", "remind.ts"]
+    environment:
+      - DISCORD_WEBHOOK_URL=${DEV_DISCORD_WEBHOOK_URL:-https://discord.com/api/webhooks/1109897426573205594/KY_UG97tU4agXDbzGC9y73WAuBdPl8A7t_uQ_n68irfST-p3EQ6UNLuuniEibN7E5zWf}
+      - MANAGER_URL=${DEV_MANAGER_URL:-http://localhost:8910}
