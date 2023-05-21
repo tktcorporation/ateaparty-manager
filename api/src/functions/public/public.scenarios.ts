@@ -8,7 +8,7 @@ export const standard = defineScenario({
   teaParty: {
     one: {
       data: {
-        date: new Date(),
+        date: addDays(new Date(), 1),
         host: {
           create: {
             sub: 'oauth2|discord|000000000000000001',
@@ -20,7 +20,7 @@ export const standard = defineScenario({
     },
     two: {
       data: {
-        date: addDays(new Date(), 1),
+        date: addDays(new Date(), 8),
         host: {
           create: {
             name: 'String',

@@ -22,7 +22,11 @@ export const Success = ({ teaParties }) => {
     <>
       <ul className="rw-list-unstyled">
         {teaParties.map((teaParty) => (
-          <li key={teaParty.id}>
+          <li
+            key={teaParty.id}
+            data-testid={`tea-party-${teaParty.id}`}
+            // className="rw-segment rw-table-wrapper-flex"
+          >
             <div>{teaParty.date}</div>
             <div>Host: {teaParty.hostId}</div>
             <div>Cohost: {teaParty.cohostId}</div>
