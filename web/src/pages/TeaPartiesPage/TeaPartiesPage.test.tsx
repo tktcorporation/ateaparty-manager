@@ -1,6 +1,4 @@
-import { within } from '@testing-library/dom'
-
-import { render, screen, waitFor } from '@redwoodjs/testing'
+import { render } from '@redwoodjs/testing'
 import { mockGraphQLQuery } from '@redwoodjs/testing'
 
 import TeaPartiesPage from './TeaPartiesPage'
