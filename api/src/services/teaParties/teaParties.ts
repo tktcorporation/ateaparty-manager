@@ -10,6 +10,18 @@ export const teaParties: QueryResolvers['teaParties'] = () => {
   return db.teaParty.findMany()
 }
 
+// まだ開催されていないお茶会を取得する
+export const teaPartiesNotYetHeld: QueryResolvers['teaPartiesNotYetHeld'] =
+  () => {
+    return db.teaParty.findMany({
+      where: {
+        date: {
+          gt: new Date(),
+        },
+      },
+    })
+  }
+
 export const teaParty: QueryResolvers['teaParty'] = ({ id }) => {
   return db.teaParty.findUnique({
     where: { id },

@@ -1,10 +1,6 @@
 import { addDays } from 'date-fns'
 
-import type { ScenarioData } from '@redwoodjs/testing/api'
-
 export const standard = defineScenario({
-  // Define the "fixture" to write into your test database here
-  // See guide: https://redwoodjs.com/docs/testing#scenarios
   teaParty: {
     one: {
       data: {
@@ -39,5 +35,3 @@ export const standard = defineScenario({
     },
   },
 })
-
-export type StandardScenario = ScenarioData<unknown>

@@ -8,6 +8,7 @@ import {
   DateField,
   Submit,
   SelectField,
+  UseFormReturn,
 } from '@redwoodjs/forms'
 import type { RWGqlError } from '@redwoodjs/forms'
 
@@ -19,9 +20,9 @@ const formatDatetime = (value?: string | Date) => {
   }
 }
 
-type FormTeaParty = NonNullable<EditTeaPartyById['teaParty']>
+export type FormTeaParty = NonNullable<EditTeaPartyById['teaParty']>
 
-interface TeaPartyFormProps {
+export interface TeaPartyFormProps {
   teaParty?: {
     id: number
     hostId: number
@@ -30,6 +31,7 @@ interface TeaPartyFormProps {
   }
   members: { id: number; name: string }[]
   onSave: (data: UpdateTeaPartyInput, id?: FormTeaParty['id']) => void
+  formMethods: UseFormReturn<FormTeaParty>
   error: RWGqlError
   loading: boolean
 }
@@ -37,11 +39,16 @@ interface TeaPartyFormProps {
 const TeaPartyForm = (props: TeaPartyFormProps) => {
   const onSubmit = (data: FormTeaParty) => {
     props.onSave(data, props?.teaParty?.id)
+    // reset form
   }
 
   return (
     <div className="rw-form-wrapper">
-      <Form<FormTeaParty> onSubmit={onSubmit} error={props.error}>
+      <Form<FormTeaParty>
+        onSubmit={onSubmit}
+        error={props.error}
+        formMethods={props.formMethods}
+      >
         <FormError
           error={props.error}
           wrapperClassName="rw-form-error-wrapper"

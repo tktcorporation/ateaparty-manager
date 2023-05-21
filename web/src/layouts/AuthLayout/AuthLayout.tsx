@@ -16,7 +16,10 @@ import Symbol from 'src/assets/Logo_symbol.svg'
 import UserAuthTools from 'src/components/UserAuthTools/UserAuthTools'
 
 const LandingLayout = ({ children }: LandingLayoutProps) => {
-  const navigation = [{ name: 'ミニコンサート', href: undefined }]
+  const navigation = [
+    { name: 'お茶会', href: routes.teaParties() },
+    { name: 'スタッフ', href: undefined },
+  ]
   const { loading, isAuthenticated, logIn, logOut } = useAuth()
   return (
     <>

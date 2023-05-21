@@ -1,7 +1,9 @@
+import { useForm } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import TeaPartyForm from 'src/components/TeaPartyForm'
+import { QUERY as TEAPARTIES_QUERY } from 'src/components/TeaParty/cells/TeaPartiesCell/TeaPartiesCell'
+import TeaPartyForm, { FormTeaParty } from 'src/components/TeaPartyForm'
 
 export const QUERY = gql`
   query CreateTeaParty {
@@ -27,12 +29,15 @@ export const Empty = () => {
 }
 
 export const Success = ({ members }) => {
+  const formMethods = useForm<FormTeaParty>({ defaultValues: {} })
   const [createTeaParty, { loading, error }] = useMutation(
     CREATE_TEA_PARTY_MUTATION,
     {
       onCompleted: () => {
         toast.success('Tea Party created')
+        formMethods.reset()
       },
+      refetchQueries: [{ query: TEAPARTIES_QUERY }],
     }
   )
 
@@ -43,6 +48,7 @@ export const Success = ({ members }) => {
   return (
     <TeaPartyForm
       onSave={onSave}
+      formMethods={formMethods}
       members={members}
       loading={loading}
       error={error}
