@@ -12,6 +12,8 @@ export const schema = gql`
 
   type Query {
     teaParties: [TeaParty!]! @requireAuth
+    # まだ開催されていないお茶会を取得する
+    teaPartiesNotYetHeld: [TeaParty!]! @requireAuth
     teaParty(id: Int!): TeaParty @requireAuth
   }
 
