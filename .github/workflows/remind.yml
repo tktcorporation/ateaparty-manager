@@ -1,0 +1,25 @@
+name: "remind"
+on:
+  schedule:
+    # 毎週水曜日の18時(JST)に実行
+    - cron: "0 9 * * 3"
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Setup deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Run script
+        run: deno run --allow-net --allow-env ./exec/remind.ts
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          MANAGER_URL: ${{ secrets.MANAGER_URL }}
