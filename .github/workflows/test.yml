@@ -13,6 +13,7 @@ jobs:
     env:
       DEV_DISCORD_BOT_TOKEN: ${{ secrets.DEV_DISCORD_BOT_TOKEN }}
       DEV_DISCORD_GUILD_ID: ${{ secrets.DEV_DISCORD_GUILD_ID }}
+      CI: 1
     steps:
       - uses: actions/checkout@v3
 
