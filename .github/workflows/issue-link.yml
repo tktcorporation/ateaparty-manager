@@ -5,6 +5,9 @@ on:
 
 jobs:
   issue-link:
+    # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: tkt-actions/add-issue-links@v1.8.1
