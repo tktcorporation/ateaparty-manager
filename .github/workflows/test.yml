@@ -5,56 +5,127 @@ on:
 permissions:
   pull-requests: write
   contents: write
+env:
+  DEV_DISCORD_BOT_TOKEN: ${{ secrets.DEV_DISCORD_BOT_TOKEN }}
+  DEV_DISCORD_GUILD_ID: ${{ secrets.DEV_DISCORD_GUILD_ID }}
+  CI: 1
 
 jobs:
-  lint-and-test:
+  setup:
     timeout-minutes: 5
-    runs-on: ubuntu-latest
-    env:
-      DEV_DISCORD_BOT_TOKEN: ${{ secrets.DEV_DISCORD_BOT_TOKEN }}
-      DEV_DISCORD_GUILD_ID: ${{ secrets.DEV_DISCORD_GUILD_ID }}
-      CI: 1
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [18]
     steps:
       - uses: actions/checkout@v3
 
-      - uses: reviewdog/action-setup@v1
+      - uses: docker/setup-buildx-action@v2
+      - uses: docker/build-push-action@v4
         with:
-          reviewdog_version: latest
+          context: .
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-      # Pull the latest image to build, and avoid caching pull-only images.
-      # (docker pull is faster than caching in most cases.)
-      - run: docker-compose pull
+      - name: Setup docker
+        run: |
+          docker compose pull -q
+          docker compose build --progress=plain
 
-      # In this step, this action saves a list of existing images,
-      # the cache is created without them in the post run.
-      # It also restores the cache if it exists.
-      - uses: satackey/action-docker-layer-caching@v0.0.11
-        # Ignore the failure of a step and avoid terminating the job.
-        continue-on-error: true
-
-      - name: setup container
-        run: docker-compose up -d
+      # ref: https://zenn.dev/link/comments/71195269e61d4f
+      - name: cache node_modules
+        id: node_modules_cache_id
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            .yarn/berry/cache
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
 
       - name: setup yarn
-        run: docker-compose exec -T app /bin/bash -c "yarn"
+        run: docker compose run --rm -T app /bin/bash -c "yarn install --immutable"
 
-      - if: always()
-        name: lint
-        run: docker-compose exec -T app /bin/bash -c "yarn rw lint"
+      - name: cache workspace
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            .yarn/berry/cache
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-ateaparty-manager-${{ github.sha }}
 
-      - if: always()
-        name: test api
-        run: docker-compose exec -T app /bin/bash -c "yarn rw test api --no-watch"
+  lint:
+    timeout-minutes: 5
+    needs: [setup]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [18]
 
-      - if: always()
-        name: test web
-        run: docker-compose exec -T app /bin/bash -c "yarn rw test web --no-watch"
+    steps:
+      - uses: actions/checkout@v3
+      - name: restore workspace cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            .yarn/berry/cache
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-ateaparty-manager-${{ github.sha }}
+      - name: lint
+        run: docker compose run --rm -T app /bin/bash -c "yarn rw lint"
+
+  test-api:
+    timeout-minutes: 5
+    needs: [setup]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [18]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: restore workspace cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            .yarn/berry/cache
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-ateaparty-manager-${{ github.sha }}
+      - name: test api
+        run: docker compose run --rm -T app /bin/bash -c "yarn rw test api --no-watch"
+
+  test-web:
+    timeout-minutes: 5
+    needs: [setup]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [18]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: restore workspace cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            .yarn/berry/cache
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-ateaparty-manager-${{ github.sha }}
+      - name: test web
+        run: docker compose run --rm -T app /bin/bash -c "yarn rw test web --no-watch"
 
   dependabot:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
-    needs: lint-and-test
+    needs:
+      - setup
+      - lint
+      - test-api
+      - test-web
     steps:
       - name: Dependabot metadata
         id: metadata

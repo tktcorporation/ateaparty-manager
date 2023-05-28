@@ -6,6 +6,7 @@ services:
     working_dir: /app
     volumes:
       - .:/app
+      - .yarn/berry/cache:/root/.yarn/berry/cache:cached
     environment:
       - RWJS_DEV_API_URL=${RWJS_DEV_API_URL:-http://localhost}
       - SESSION_SECRET=${SESSION_SECRET:-dummy}
