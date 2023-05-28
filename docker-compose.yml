@@ -17,6 +17,7 @@ services:
       - AUTH0_AUDIENCE=${AUTH0_AUDIENCE:-https://ateaparty-manager-dev.api}
       - DISCORD_GUILD_ID=${DEV_DISCORD_GUILD_ID:-dummy}
       - DISCORD_BOT_TOKEN=${DEV_DISCORD_BOT_TOKEN:-dummy}
+      - CI=${CI:-0}
     ports:
       - "7910:7910" # storybook
       - "8910:8910" # redwoodjs web
