@@ -9,8 +9,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-    assignees:
-      - "tktcorporation"
     commit-message:
       prefix: ":arrow_up:"
 
@@ -18,7 +16,12 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    assignees:
-      - "tktcorporation"
+    commit-message:
+      prefix: ":arrow_up:"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
     commit-message:
       prefix: ":arrow_up:"
