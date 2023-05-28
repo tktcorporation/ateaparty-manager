@@ -22,11 +22,18 @@ jobs:
       - uses: actions/checkout@v3
 
       - uses: docker/setup-buildx-action@v2
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
       - uses: docker/build-push-action@v4
         with:
           context: .
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Setup docker
         run: |
           docker compose build --progress=plain
@@ -64,16 +71,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: docker/setup-buildx-action@v2
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
       - uses: docker/build-push-action@v4
         with:
           context: .
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Setup docker
         run: |
           docker compose build --progress=plain
           docker compose pull -q
+
       - name: restore workspace cache
         uses: actions/cache@v3
         with:
@@ -95,16 +111,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: docker/setup-buildx-action@v2
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
       - uses: docker/build-push-action@v4
         with:
           context: .
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Setup docker
         run: |
           docker compose build --progress=plain
           docker compose pull -q
+
       - name: restore workspace cache
         uses: actions/cache@v3
         with:
@@ -126,16 +151,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: docker/setup-buildx-action@v2
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
       - uses: docker/build-push-action@v4
         with:
           context: .
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Setup docker
         run: |
           docker compose build --progress=plain
           docker compose pull -q
+
       - name: restore workspace cache
         uses: actions/cache@v3
         with:
