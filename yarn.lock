@@ -10695,9 +10695,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:2.46.1":
-  version: 2.46.1
-  resolution: "daisyui@npm:2.46.1"
+"daisyui@npm:2.52.0":
+  version: 2.52.0
+  resolution: "daisyui@npm:2.52.0"
   dependencies:
     color: ^4.2
     css-selector-tokenizer: ^0.8.0
@@ -10706,7 +10706,7 @@ __metadata:
   peerDependencies:
     autoprefixer: ^10.0.2
     postcss: ^8.1.6
-  checksum: 8e398d12ac0f982387aa9f6c7f8c24cd7867e631aeeded64a84a30c14c6b877bb8b63f1b831a79ca6e3e9e74abc979c8b68b730ceb9f42f93eadc2b61ab7e999
+  checksum: c8ab5f47534d8a8676b8b200bf9d7a9c6129d172f94c1114a9d0bc8e433f59b5bebe057506b74fea0e366b5367f34362ba8d2c783ccb53c57fc52c0b697aaf53
   languageName: node
   linkType: hard
 
@@ -23867,7 +23867,7 @@ __metadata:
     "@redwoodjs/web": ^3.8.0
     autoprefixer: ^10.4.12
     clsx: ^1.2.1
-    daisyui: 2.46.1
+    daisyui: 2.52.0
     humanize-string: 2.1.0
     postcss: ^8.4.17
     postcss-loader: ^7.3.2
