@@ -1,43 +1,35 @@
 {
   "name": "ateaparty-manager",
-  "image": "mcr.microsoft.com/devcontainers/universal:linux",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
 
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "runOnSave.commands": [
-      // {
-      //   "globMatch": "**/*",
-      //   "command": "docker-compose exec -T app /bin/bash -c \"bun rw lint --fix\"",
-      //   "runIn": "backend"
-      // }
-    ]
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "GitHub.copilot",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "steoates.autoimport",
+        "pucelle.run-on-save",
+        "Prisma.prisma",
+        "antfu.iconify",
+        "Atishay-Jain.All-Autocomplete",
+        "usernamehw.errorlens",
+        "GraphQL.vscode-graphql",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "ofhumanbondage.react-proptypes-intellisense",
+        "mgmcdermott.vscode-language-babel",
+        "wix.vscode-import-cost",
+        "pflannery.vscode-versionlens",
+        "editorconfig.editorconfig",
+        "prisma.prisma",
+        "WakaTime.vscode-wakatime",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
   },
-
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "ms-azuretools.vscode-docker",
-    "GitHub.copilot",
-    "donjayamanne.githistory",
-    "eamodio.gitlens",
-    "mhutchie.git-graph",
-    "steoates.autoimport",
-    "pucelle.run-on-save",
-    "Prisma.prisma",
-    "antfu.iconify",
-    "Atishay-Jain.All-Autocomplete",
-    "usernamehw.errorlens",
-    "GraphQL.vscode-graphql",
-    "dbaeumer.vscode-eslint",
-    "eamodio.gitlens",
-    "ofhumanbondage.react-proptypes-intellisense",
-    "mgmcdermott.vscode-language-babel",
-    "wix.vscode-import-cost",
-    "pflannery.vscode-versionlens",
-    "editorconfig.editorconfig",
-    "prisma.prisma",
-    "WakaTime.vscode-wakatime",
-    "bradlc.vscode-tailwindcss"
-  ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
