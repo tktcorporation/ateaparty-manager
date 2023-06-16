@@ -22,7 +22,8 @@ import { db } from 'src/lib/db'
 export const handler = async (_event: APIGatewayEvent, _context: Context) => {
   // 直近二回のお茶会予定を取得
   const teaParties = await db.teaParty.findMany({
-    orderBy: { date: 'desc' },
+    // 日付の昇順
+    orderBy: { date: 'asc' },
     // 現在から二週間以内
     where: { date: { gte: new Date(), lt: addWeeks(new Date(), 2) } },
     include: {
