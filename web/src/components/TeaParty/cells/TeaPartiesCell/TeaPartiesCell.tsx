@@ -1,6 +1,9 @@
 import { format, formatDistanceToNow } from 'date-fns'
 import ja from 'date-fns/locale/ja'
 
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
+
 export const QUERY = gql`
   query TeaPartiesQuery {
     teaParties: teaPartiesNotYetHeld {
@@ -20,6 +23,14 @@ export const QUERY = gql`
     members {
       id
       name
+    }
+  }
+`
+
+export const DELETE_TEA_PARTY_MUTATION = gql`
+  mutation DeleteTeaPartyMutation($id: Int!) {
+    deleteTeaParty(id: $id) {
+      id
     }
   }
 `
@@ -69,6 +80,22 @@ export const Success = ({ teaParties }: TeaPartiesCellProps) => {
     ? formatDistanceToNow(nearestPartyDate, { addSuffix: true, locale: ja })
     : null
 
+  const [deleteTeaParty] = useMutation(DELETE_TEA_PARTY_MUTATION, {
+    onCompleted: () => {
+      toast.success('Tea Party deleted')
+    },
+    refetchQueries: [{ query: QUERY }],
+  })
+
+  const handleDelete = async (id: number) => {
+    console.log('delete', id)
+    try {
+      await deleteTeaParty({ variables: { id } })
+    } catch (error) {
+      console.error('Error deleting tea party:', error)
+    }
+  }
+
   return (
     <>
       {nearestTeaParty ? (
@@ -117,6 +144,13 @@ export const Success = ({ teaParties }: TeaPartiesCellProps) => {
                 </div>
               </div>
             </div>
+            {/* 削除ボタン */}
+            <button
+              className="ml-6 text-red-500"
+              onClick={() => handleDelete(nearestTeaParty.id)}
+            >
+              削除
+            </button>
           </div>
         </div>
       ) : (
@@ -166,6 +200,13 @@ export const Success = ({ teaParties }: TeaPartiesCellProps) => {
                   )}
                 </div>
               </div>
+              {/* 削除ボタン */}
+              <button
+                className="ml-6 text-red-500"
+                onClick={() => handleDelete(teaParty.id)}
+              >
+                削除
+              </button>
             </div>
           </div>
         ))}
