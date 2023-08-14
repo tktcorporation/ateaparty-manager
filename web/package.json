@@ -18,7 +18,7 @@
     "@heroicons/react": "^2.0.18",
     "@radix-ui/react-checkbox": "^1.0.1",
     "@radix-ui/react-icons": "^1.1.1",
-    "@redwoodjs/auth": "^3.8.0",
+    "@redwoodjs/auth": "^6.0.6",
     "@redwoodjs/forms": "^3.8.0",
     "@redwoodjs/router": "^3.8.0",
     "@redwoodjs/web": "^3.8.0",
