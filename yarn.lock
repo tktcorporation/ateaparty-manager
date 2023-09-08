@@ -1715,6 +1715,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime-corejs3@npm:7.22.11":
+  version: 7.22.11
+  resolution: "@babel/runtime-corejs3@npm:7.22.11"
+  dependencies:
+    core-js-pure: ^3.30.2
+    regenerator-runtime: ^0.14.0
+  checksum: 2bc7d2fafcf2a8602ed008c664301e1cb6e7950af85107db37875019d128b31f199d04790024f9215f1512e84034f63b7bafbe0db75e93257eb9357f26c24600
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.5.0, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.20.1
   resolution: "@babel/runtime@npm:7.20.1"
@@ -4193,18 +4203,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/forms@npm:^3.8.0":
-  version: 3.8.0
-  resolution: "@redwoodjs/forms@npm:3.8.0"
+"@redwoodjs/forms@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@redwoodjs/forms@npm:6.2.0"
   dependencies:
-    "@babel/runtime-corejs3": 7.20.6
-    core-js: 3.26.1
+    "@babel/runtime-corejs3": 7.22.11
+    core-js: 3.32.0
     pascalcase: 1.0.0
-    react-hook-form: 7.40.0
+    react-hook-form: 7.45.4
   peerDependencies:
-    graphql: 16.6.0
-    react: 17.0.2
-  checksum: bd68d83b70b27e54d8e27bf2f0844028898bf7558412b11f3917a326c013122f155a839304e2e9ac4890b764f36c51954cb4fccb839c2479875001dca7942da2
+    graphql: 16.8.0
+    react: 18.2.0
+  checksum: eec9861f9a1b97c92ac8c12b42fe55ef137f7f38d2015edab6c4eced0b7d0157ee74353d340b292306aec5273ba4ff2c74817195e541389e71bb7d49d85fe3d4
   languageName: node
   linkType: hard
 
@@ -10120,10 +10130,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js-pure@npm:^3.30.2":
+  version: 3.32.2
+  resolution: "core-js-pure@npm:3.32.2"
+  checksum: 93ca80cd5b0b30f452ebc5ebf1249c37c8cb4cf56ed9802bfb422c002bc96685abe07e39249b0feed851a8884cddf712113ddb4f8e8e0397bfd3332b0e51225b
+  languageName: node
+  linkType: hard
+
 "core-js@npm:3.26.1":
   version: 3.26.1
   resolution: "core-js@npm:3.26.1"
   checksum: 82d36c6f54fc0349998fa7fc67d200ba272f1cd1674c6786dc17f9d259d6555fc05662044528eae73ad6e90f71d503ab5c060ad4745492ef804308209f9aec13
+  languageName: node
+  linkType: hard
+
+"core-js@npm:3.32.0":
+  version: 3.32.0
+  resolution: "core-js@npm:3.32.0"
+  checksum: 8839b9a5cfff4999cf5e3277072c7c581b29618c6dbc2f9d0170c529a701310ec78843bd97bede0742cf6899b526bdb062bb1d148c6e9a40f3d19173b7ee8e88
   languageName: node
   linkType: hard
 
@@ -20087,12 +20111,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.40.0":
-  version: 7.40.0
-  resolution: "react-hook-form@npm:7.40.0"
+"react-hook-form@npm:7.45.4":
+  version: 7.45.4
+  resolution: "react-hook-form@npm:7.45.4"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
-  checksum: 16e071ba3a11977948d7b0cbb6a84db80823465740210d3ea58d7cb93813e8771a585e4ffb82f53b24ac5ea43a6fe37da07b42d41aecda7b160dc68d68e50781
+  checksum: 09c016213ed09771e6e0c2f85b816a52ef5dc975324fbd676d2b056dd22de7447ac3fb38997f05c92e7cecc8f14f6fa931a8cc8c24ba569e72fe621333b835b2
   languageName: node
   linkType: hard
 
@@ -20354,6 +20378,13 @@ __metadata:
   version: 0.13.11
   resolution: "regenerator-runtime@npm:0.13.11"
   checksum: 12b069dc774001fbb0014f6a28f11c09ebfe3c0d984d88c9bced77fdb6fedbacbca434d24da9ae9371bfbf23f754869307fb51a4c98a8b8b18e5ef748677ca24
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "regenerator-runtime@npm:0.14.0"
+  checksum: e25f062c1a183f81c99681691a342760e65c55e8d3a4d4fe347ebe72433b123754b942b70b622959894e11f8a9131dc549bd3c9a5234677db06a4af42add8d12
   languageName: node
   linkType: hard
 
@@ -23882,7 +23913,7 @@ __metadata:
     "@radix-ui/react-checkbox": ^1.0.1
     "@radix-ui/react-icons": ^1.1.1
     "@redwoodjs/auth": ^3.8.0
-    "@redwoodjs/forms": ^3.8.0
+    "@redwoodjs/forms": ^6.2.0
     "@redwoodjs/router": ^3.8.0
     "@redwoodjs/web": ^3.8.0
     autoprefixer: ^10.4.12
