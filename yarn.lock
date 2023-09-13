@@ -1715,6 +1715,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime-corejs3@npm:7.22.15":
+  version: 7.22.15
+  resolution: "@babel/runtime-corejs3@npm:7.22.15"
+  dependencies:
+    core-js-pure: ^3.30.2
+    regenerator-runtime: ^0.14.0
+  checksum: 603ca28f1924ee587fcfccc394c5e4aedc3322193914a2db824e7fe041604282749b023d9edb5076a72af7413050081223c6187f870b9a925a1e9c7a3313f706
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.5.0, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.20.1
   resolution: "@babel/runtime@npm:7.20.1"
@@ -4037,13 +4047,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/auth@npm:3.8.0, @redwoodjs/auth@npm:^3.8.0":
+"@redwoodjs/auth@npm:3.8.0":
   version: 3.8.0
   resolution: "@redwoodjs/auth@npm:3.8.0"
   dependencies:
     "@babel/runtime-corejs3": 7.20.6
     core-js: 3.26.1
   checksum: deeb715b116bb05704193b3a506b524817316a124d1e6a9b526ae52061e8693db65e1e5274d8312ec8cfe31c960e173e02bbe00148dec52c35ddc0cfeb3ceb8d
+  languageName: node
+  linkType: hard
+
+"@redwoodjs/auth@npm:^6.2.1":
+  version: 6.2.1
+  resolution: "@redwoodjs/auth@npm:6.2.1"
+  dependencies:
+    "@babel/runtime-corejs3": 7.22.15
+    core-js: 3.32.2
+    react: 18.2.0
+  checksum: 8703d1d5beb8dcb9880ad91a9eb62e448f5e7f65cd705219aff5764f71a1d436fb411e5a405bf7e5e75552a876ef97a64118c3dff89ba8d22304ae3427f0c474
   languageName: node
   linkType: hard
 
@@ -10120,10 +10141,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js-pure@npm:^3.30.2":
+  version: 3.32.2
+  resolution: "core-js-pure@npm:3.32.2"
+  checksum: 93ca80cd5b0b30f452ebc5ebf1249c37c8cb4cf56ed9802bfb422c002bc96685abe07e39249b0feed851a8884cddf712113ddb4f8e8e0397bfd3332b0e51225b
+  languageName: node
+  linkType: hard
+
 "core-js@npm:3.26.1":
   version: 3.26.1
   resolution: "core-js@npm:3.26.1"
   checksum: 82d36c6f54fc0349998fa7fc67d200ba272f1cd1674c6786dc17f9d259d6555fc05662044528eae73ad6e90f71d503ab5c060ad4745492ef804308209f9aec13
+  languageName: node
+  linkType: hard
+
+"core-js@npm:3.32.2":
+  version: 3.32.2
+  resolution: "core-js@npm:3.32.2"
+  checksum: 22f47e0972c6bff2eecbb02ab15ae012e35c7b3344d8569c7d8be906910867a84290d95e85b06a6e5c27a44d34a426ba96ee57874e542e42337428117df9ccde
   languageName: node
   linkType: hard
 
@@ -20178,6 +20213,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react@npm:18.2.0":
+  version: 18.2.0
+  resolution: "react@npm:18.2.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: b562d9b569b0cb315e44b48099f7712283d93df36b19a39a67c254c6686479d3980b7f013dc931f4a5a3ae7645eae6386b4aa5eea933baa54ecd0f9acb0902b8
+  languageName: node
+  linkType: hard
+
 "read-cache@npm:^1.0.0":
   version: 1.0.0
   resolution: "read-cache@npm:1.0.0"
@@ -20354,6 +20398,13 @@ __metadata:
   version: 0.13.11
   resolution: "regenerator-runtime@npm:0.13.11"
   checksum: 12b069dc774001fbb0014f6a28f11c09ebfe3c0d984d88c9bced77fdb6fedbacbca434d24da9ae9371bfbf23f754869307fb51a4c98a8b8b18e5ef748677ca24
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "regenerator-runtime@npm:0.14.0"
+  checksum: e25f062c1a183f81c99681691a342760e65c55e8d3a4d4fe347ebe72433b123754b942b70b622959894e11f8a9131dc549bd3c9a5234677db06a4af42add8d12
   languageName: node
   linkType: hard
 
@@ -23881,7 +23932,7 @@ __metadata:
     "@heroicons/react": ^2.0.18
     "@radix-ui/react-checkbox": ^1.0.1
     "@radix-ui/react-icons": ^1.1.1
-    "@redwoodjs/auth": ^3.8.0
+    "@redwoodjs/auth": ^6.2.1
     "@redwoodjs/forms": ^3.8.0
     "@redwoodjs/router": ^3.8.0
     "@redwoodjs/web": ^3.8.0
