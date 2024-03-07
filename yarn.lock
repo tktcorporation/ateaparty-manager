@@ -1715,6 +1715,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime-corejs3@npm:7.24.0":
+  version: 7.24.0
+  resolution: "@babel/runtime-corejs3@npm:7.24.0"
+  dependencies:
+    core-js-pure: ^3.30.2
+    regenerator-runtime: ^0.14.0
+  checksum: 5ed3f35c8bd06cd7f398112577b440d8ed4dfbe95f35695990b739543c0199bccd09f2c4c7870a82b7088652bc365bdd3548e6306e603bc036afcecb580e3755
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.5.0, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.20.1
   resolution: "@babel/runtime@npm:7.20.1"
@@ -4193,18 +4203,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/forms@npm:^3.8.0":
-  version: 3.8.0
-  resolution: "@redwoodjs/forms@npm:3.8.0"
+"@redwoodjs/forms@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "@redwoodjs/forms@npm:7.1.0"
   dependencies:
-    "@babel/runtime-corejs3": 7.20.6
-    core-js: 3.26.1
+    "@babel/runtime-corejs3": 7.24.0
+    core-js: 3.35.1
+    graphql: 16.8.1
     pascalcase: 1.0.0
-    react-hook-form: 7.40.0
+    react-hook-form: 7.49.3
   peerDependencies:
-    graphql: 16.6.0
-    react: 17.0.2
-  checksum: bd68d83b70b27e54d8e27bf2f0844028898bf7558412b11f3917a326c013122f155a839304e2e9ac4890b764f36c51954cb4fccb839c2479875001dca7942da2
+    react: 18.2.0
+  checksum: 02c05b2c9bb588d44c53b5ab8f16c7dde814277c8de309c8ac77461050f3356b91f40448d4fdd877b32b55c050e87703cd321cd529ba800acc13684fa2c1022e
   languageName: node
   linkType: hard
 
@@ -10120,10 +10130,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js-pure@npm:^3.30.2":
+  version: 3.36.0
+  resolution: "core-js-pure@npm:3.36.0"
+  checksum: 1c5ecb37451bcebaa449e36285d27c4c79d5ff24b8bfd44491ce661cfc12b5c56471c847d306d21a56894338d00abea4993a6f8e07c71d4e887d1f71e410d22e
+  languageName: node
+  linkType: hard
+
 "core-js@npm:3.26.1":
   version: 3.26.1
   resolution: "core-js@npm:3.26.1"
   checksum: 82d36c6f54fc0349998fa7fc67d200ba272f1cd1674c6786dc17f9d259d6555fc05662044528eae73ad6e90f71d503ab5c060ad4745492ef804308209f9aec13
+  languageName: node
+  linkType: hard
+
+"core-js@npm:3.35.1":
+  version: 3.35.1
+  resolution: "core-js@npm:3.35.1"
+  checksum: ebc8e22c36d13bcf2140cbc1d8ad65d1b08192bff4c43ade70c72eac103cb4dcfbc521f2b1ad1c74881b0a4353e64986537893ae4f07888e49228340efa13ae6
   languageName: node
   linkType: hard
 
@@ -13698,6 +13722,13 @@ __metadata:
   version: 16.6.0
   resolution: "graphql@npm:16.6.0"
   checksum: 3a2c15ff58b69d017618d2b224fa6f3c4a7937e1f711c3a5e0948db536b4931e6e649560b53de7cc26735e027ceea6e2d0a6bb7c29fc4639b290313e3aa71618
+  languageName: node
+  linkType: hard
+
+"graphql@npm:16.8.1":
+  version: 16.8.1
+  resolution: "graphql@npm:16.8.1"
+  checksum: 129c318156b466f440914de80dbf7bc67d17f776f2a088a40cb0da611d19a97c224b1c6d2b13cbcbc6e5776e45ed7468b8432f9c3536724e079b44f1a3d57a8a
   languageName: node
   linkType: hard
 
@@ -20087,12 +20118,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.40.0":
-  version: 7.40.0
-  resolution: "react-hook-form@npm:7.40.0"
+"react-hook-form@npm:7.49.3":
+  version: 7.49.3
+  resolution: "react-hook-form@npm:7.49.3"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
-  checksum: 16e071ba3a11977948d7b0cbb6a84db80823465740210d3ea58d7cb93813e8771a585e4ffb82f53b24ac5ea43a6fe37da07b42d41aecda7b160dc68d68e50781
+  checksum: f8e5b2dcc3d97c820b4fbac262d7e914d74f385f26f34da31b8efc6c0f32ba995f2a2330bdfd3d8b7c8b56a52349a0cbc0c0dbe9053b3971e5e0c78003dfb7f0
   languageName: node
   linkType: hard
 
@@ -20365,6 +20396,13 @@ __metadata:
   version: 0.13.11
   resolution: "regenerator-runtime@npm:0.13.11"
   checksum: 12b069dc774001fbb0014f6a28f11c09ebfe3c0d984d88c9bced77fdb6fedbacbca434d24da9ae9371bfbf23f754869307fb51a4c98a8b8b18e5ef748677ca24
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.14.0":
+  version: 0.14.1
+  resolution: "regenerator-runtime@npm:0.14.1"
+  checksum: 1b16eb2c4bceb1665c89de70dcb64126a22bc8eb958feef3cd68fe11ac6d2a4899b5cd1b80b0774c7c03591dc57d16631a7f69d2daa2ec98100e2f29f7ec4cc4
   languageName: node
   linkType: hard
 
@@ -23893,7 +23931,7 @@ __metadata:
     "@radix-ui/react-checkbox": ^1.0.1
     "@radix-ui/react-icons": ^1.1.1
     "@redwoodjs/auth": ^3.8.0
-    "@redwoodjs/forms": ^3.8.0
+    "@redwoodjs/forms": ^7.1.0
     "@redwoodjs/router": ^3.8.0
     "@redwoodjs/web": ^3.8.0
     autoprefixer: ^10.4.12
