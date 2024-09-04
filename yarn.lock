@@ -4193,18 +4193,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/forms@npm:^3.8.0":
-  version: 3.8.0
-  resolution: "@redwoodjs/forms@npm:3.8.0"
+"@redwoodjs/forms@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "@redwoodjs/forms@npm:8.0.0"
   dependencies:
-    "@babel/runtime-corejs3": 7.20.6
-    core-js: 3.26.1
+    graphql: 16.9.0
     pascalcase: 1.0.0
-    react-hook-form: 7.40.0
+    react-hook-form: 7.52.2
   peerDependencies:
-    graphql: 16.6.0
-    react: 17.0.2
-  checksum: bd68d83b70b27e54d8e27bf2f0844028898bf7558412b11f3917a326c013122f155a839304e2e9ac4890b764f36c51954cb4fccb839c2479875001dca7942da2
+    react: 18.3.1
+  checksum: 3b43a8f2c0ad7cb38fbb620372bc5c31c9ff832df79113d917e0ab077a07becbd3d8bd8a3c0d493b487412fcbcca989066cef953443a0c5dc51d7f5585dc6e02
   languageName: node
   linkType: hard
 
@@ -13715,6 +13713,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"graphql@npm:16.9.0":
+  version: 16.9.0
+  resolution: "graphql@npm:16.9.0"
+  checksum: a8850f077ff767377237d1f8b1da2ec70aeb7623cdf1dfc9e1c7ae93accc0c8149c85abe68923be9871a2934b1bce5a2496f846d4d56e1cfb03eaaa7ddba9b6a
+  languageName: node
+  linkType: hard
+
 "gzip-size@npm:^6.0.0":
   version: 6.0.0
   resolution: "gzip-size@npm:6.0.0"
@@ -20120,12 +20125,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.40.0":
-  version: 7.40.0
-  resolution: "react-hook-form@npm:7.40.0"
+"react-hook-form@npm:7.52.2":
+  version: 7.52.2
+  resolution: "react-hook-form@npm:7.52.2"
   peerDependencies:
-    react: ^16.8.0 || ^17 || ^18
-  checksum: 16e071ba3a11977948d7b0cbb6a84db80823465740210d3ea58d7cb93813e8771a585e4ffb82f53b24ac5ea43a6fe37da07b42d41aecda7b160dc68d68e50781
+    react: ^16.8.0 || ^17 || ^18 || ^19
+  checksum: 2b8d37239d40f4326a24609c1bf5b4ba2cf66bc4a988213ccd7eb92a254dd5bf9c4b94caa353bce4b1d6d8a9ecd2ea3103e25c6d2d72d53f7be26f09053a8b2f
   languageName: node
   linkType: hard
 
@@ -23926,7 +23931,7 @@ __metadata:
     "@radix-ui/react-checkbox": ^1.0.1
     "@radix-ui/react-icons": ^1.1.1
     "@redwoodjs/auth": ^3.8.0
-    "@redwoodjs/forms": ^3.8.0
+    "@redwoodjs/forms": ^8.0.0
     "@redwoodjs/router": ^3.8.0
     "@redwoodjs/web": ^3.8.0
     autoprefixer: ^10.4.12
