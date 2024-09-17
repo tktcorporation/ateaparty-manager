@@ -4037,13 +4037,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/auth@npm:3.8.0, @redwoodjs/auth@npm:^3.8.0":
+"@redwoodjs/auth@npm:3.8.0":
   version: 3.8.0
   resolution: "@redwoodjs/auth@npm:3.8.0"
   dependencies:
     "@babel/runtime-corejs3": 7.20.6
     core-js: 3.26.1
   checksum: deeb715b116bb05704193b3a506b524817316a124d1e6a9b526ae52061e8693db65e1e5274d8312ec8cfe31c960e173e02bbe00148dec52c35ddc0cfeb3ceb8d
+  languageName: node
+  linkType: hard
+
+"@redwoodjs/auth@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@redwoodjs/auth@npm:8.2.0"
+  dependencies:
+    core-js: 3.38.1
+    react: 18.3.1
+  checksum: c75687637ddd95f253644c046945c2e91b15899ec3adf30b5065831ccce7a0b9ebd25fd9cf7cd6201935e05fac03809e09e06bf411af600696c785e31c302832
   languageName: node
   linkType: hard
 
@@ -10138,6 +10148,13 @@ __metadata:
   version: 3.26.1
   resolution: "core-js@npm:3.26.1"
   checksum: 82d36c6f54fc0349998fa7fc67d200ba272f1cd1674c6786dc17f9d259d6555fc05662044528eae73ad6e90f71d503ab5c060ad4745492ef804308209f9aec13
+  languageName: node
+  linkType: hard
+
+"core-js@npm:3.38.1":
+  version: 3.38.1
+  resolution: "core-js@npm:3.38.1"
+  checksum: 7df063b6f13a54e46515817ac3e235c6c598a4d3de65cd188a061fc250642be313b895fb9fb2f36e1e31890a1bb4ef61d82666a340413f540b7ce3c65689739b
   languageName: node
   linkType: hard
 
@@ -20211,6 +20228,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react@npm:18.3.1":
+  version: 18.3.1
+  resolution: "react@npm:18.3.1"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 283e8c5efcf37802c9d1ce767f302dd569dd97a70d9bb8c7be79a789b9902451e0d16334b05d73299b20f048cbc3c7d288bbbde10b701fa194e2089c237dbea3
+  languageName: node
+  linkType: hard
+
 "read-cache@npm:^1.0.0":
   version: 1.0.0
   resolution: "read-cache@npm:1.0.0"
@@ -23925,7 +23951,7 @@ __metadata:
     "@heroicons/react": ^2.0.18
     "@radix-ui/react-checkbox": ^1.0.1
     "@radix-ui/react-icons": ^1.1.1
-    "@redwoodjs/auth": ^3.8.0
+    "@redwoodjs/auth": ^8.2.0
     "@redwoodjs/forms": ^3.8.0
     "@redwoodjs/router": ^3.8.0
     "@redwoodjs/web": ^3.8.0
